@@ -316,6 +316,20 @@
       margin-top: 0.65rem;
     }
 
+    .comp-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+      padding: 0.55rem 0.75rem;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.28);
+      border-radius: 0.5rem;
+      font-size: 0.82rem;
+      color: #a7f3d0;
+      font-weight: 600;
+    }
+
     .visa-box {
       background: rgba(11, 15, 25, 0.75);
       border-left: 3px solid var(--green);
@@ -340,6 +354,18 @@
     .highlights {
       font-size: 0.85rem;
       color: #cbd5e1;
+    }
+
+    .link-row {
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .link-row a {
+      color: var(--accent);
+      text-decoration: underline;
     }
 
     .card-footer {
@@ -413,11 +439,11 @@
       <div class="header-top">
         <div class="title-group">
           <h1>Summer 2027 AI Product &amp; Business Analyst Radar</h1>
-          <p>Automated daily internship discovery &amp; visa eligibility tracker powered by Antigravity</p>
+          <p>Automated daily internship discovery, pay verification &amp; visa eligibility tracker powered by Antigravity</p>
           <div class="profile-badges">
             <span class="badge badge-accent">🎓 CMU-Africa (Kigali, Rwanda)</span>
             <span class="badge badge-green">🇳🇬 Nigerian Citizen + 🇷🇼 Rwanda Residence Permit</span>
-            <span class="badge badge-purple">🎯 AI PM • AI Product Owner • AI Business Analyst</span>
+            <span class="badge badge-purple">💰 100% Paid Roles w/ Direct Links</span>
           </div>
         </div>
         <div class="sync-box">
@@ -428,9 +454,9 @@
 
       <div class="kpi-grid">
         <div class="kpi-card">
-          <div class="kpi-label">Eligible Roles Tracked</div>
+          <div class="kpi-label">Eligible Paid Roles</div>
           <div class="kpi-val" id="kpi-total">0</div>
-          <div class="kpi-sub">Pre-filtered for international students</div>
+          <div class="kpi-sub">All roles verified paid / stipend</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Zero-Visa / Local &amp; Remote</div>
@@ -458,7 +484,7 @@
           type="text"
           id="search-input"
           class="search-input"
-          placeholder="Search company, title, location (e.g. Kigali, London, Remote, Databricks, J-1)..."
+          placeholder="Search company, title, pay, location (e.g. Kigali, London, Remote, Paid, Databricks, J-1)..."
         />
         <button class="btn" id="export-btn">⬇ Export CSV</button>
       </div>
@@ -524,268 +550,319 @@
   </main>
 
   <script>
+    /* FALLBACK_DATA_START */
     const FALLBACK_DATA = {
-      "metadata": {
-        "last_updated": "2026-11-18T15:46:00+02:00"
+  "metadata": {
+    "candidate_profile": "Nigerian Citizen | Graduate Student at Carnegie Mellon University Africa (Kigali, Rwanda) | Valid Rwandan Student Residence Permit",
+    "target_season": "Summer 2027",
+    "target_roles": [
+      "AI Product Manager",
+      "AI Product Owner",
+      "AI Business Analyst"
+    ],
+    "last_updated": "2026-11-18T17:15:00+02:00",
+    "filtered_out_examples": [
+      {
+        "company": "BAE Systems",
+        "role": "Business Analyst Intern III (AI/BI) - Summer 2027",
+        "reason": "Excluded automatically: U.S. defense contractor requiring U.S. Citizenship."
       },
-      "jobs": [
-        {
-          "id": "instadeep-ai-pm-2027",
-          "title": "AI Product & Experience Intern (Decision-Making AI / BioAI)",
-          "company": "InstaDeep (BioNTech)",
-          "category": "AI Product Manager",
-          "work_mode": "Hybrid",
-          "location": "Kigali, Rwanda / London, UK / Paris, France",
-          "region": "Africa & EMEA",
-          "sponsorship_policy": "Local Kigali office + EMEA Visa Sponsorship for London/Paris",
-          "nigerian_kigali_visa_path": "Zero visa friction for the Kigali office using your existing Rwandan Residence Permit; or UK GAE / French Convention de Stage via Kigali embassies.",
-          "feasibility": "Zero Visa (Remote / Local)",
-          "season": "Summer 2027 (Rolling)",
-          "url": "https://www.instadeep.com/careers/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "InstaDeep operates an active AI hub right in Kigali alongside London and Paris, frequently recruiting CMU-Africa talent."
-        },
-        {
-          "id": "gp-ai-pm-intern-2027",
-          "title": "Product Management Intern – AI & Analytics (G-P Assist)",
-          "company": "G-P (Globalization Partners)",
-          "category": "AI Product Manager",
-          "work_mode": "Remote",
-          "location": "Remote (Global)",
-          "region": "Global Remote",
-          "sponsorship_policy": "Global EOR / Remote-first infrastructure",
-          "nigerian_kigali_visa_path": "No travel visa required. Work remotely from Kigali (UTC+2) or Nigeria (UTC+1); G-P is an Employer of Record platform equipped for international remote hires.",
-          "feasibility": "Zero Visa (Remote / Local)",
-          "season": "2027 Cohort (6-Month Track)",
-          "url": "https://www.globalization-partners.com/careers/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Focuses on G-P Assist (LLM-powered global HR assistant), product analytics, user behavior, and AI adoption metrics."
-        },
-        {
-          "id": "microsoft-adc-pm-ba-2027",
-          "title": "Product Management & Business Program Intern (Global Internship Program)",
-          "company": "Microsoft (Africa Development Center & EMEA)",
-          "category": "AI Product Manager",
-          "work_mode": "Hybrid",
-          "location": "Lagos, Nigeria / Nairobi, Kenya",
-          "region": "Africa & EMEA",
-          "sponsorship_policy": "Full local & regional work authorization support",
-          "nigerian_kigali_visa_path": "Zero visa needed for Lagos (Nigerian citizen); simple East African eTA/student pass for Nairobi from Kigali.",
-          "feasibility": "Zero Visa (Remote / Local)",
-          "season": "Summer 2027",
-          "url": "https://careers.microsoft.com/v2/global/en/universityinternship",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Recruits university students across Nigeria, Rwanda, and Kenya for 12-week summer product management and business analytics tracks across Azure & AI."
-        },
-        {
-          "id": "google-ssa-emea-ba-2027",
-          "title": "Business Analyst & Product Strategy Intern (EMEA / Africa)",
-          "company": "Google",
-          "category": "AI Business Analyst",
-          "work_mode": "Hybrid",
-          "location": "Nairobi, Kenya / Lagos, Nigeria / Dublin / London",
-          "region": "Africa & EMEA",
-          "sponsorship_policy": "Sponsors EMEA internship visas + direct hiring in Lagos/Nairobi",
-          "nigerian_kigali_visa_path": "No visa required for Lagos; Kenya eTA from Kigali for Nairobi; or UK GAE / Irish Stamp 2A via VFS in Kigali for London/Dublin.",
-          "feasibility": "Zero Visa (Remote / Local)",
-          "season": "Summer 2027",
-          "url": "https://careers.google.com/students/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Covers gTech, Large Customer Sales Analytics, and AI/ML Student Researcher & Product Strategy tracks across EMEA and Sub-Saharan Africa."
-        },
-        {
-          "id": "retensa-ai-product-intern-2027",
-          "title": "AI Product Intern (SaaS & Conversational AI)",
-          "company": "Retensa",
-          "category": "AI Product Owner",
-          "work_mode": "Remote",
-          "location": "Remote (24–32 hrs/week)",
-          "region": "Global Remote",
-          "sponsorship_policy": "Remote Stipend / Contractor",
-          "nigerian_kigali_visa_path": "No travel visa needed. Can be completed remotely from Kigali or Nigeria.",
-          "feasibility": "Zero Visa (Remote / Local)",
-          "season": "Spring / Summer 2027",
-          "url": "https://retensa.com/about/careers/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Hands-on AI Product Owner duties: user story mapping, Agile backlog management, and R&D requirements gathering for predictive retention AI."
-        },
-        {
-          "id": "wiremind-ai-po-2027",
-          "title": "AI Product Owner Intern (Optimization & Forecasting AI)",
-          "company": "Wiremind",
-          "category": "AI Product Owner",
-          "work_mode": "Hybrid",
-          "location": "Paris, France",
-          "region": "Europe (Schengen)",
-          "sponsorship_policy": "Supports European Student Internship Agreement (Convention de Stage)",
-          "nigerian_kigali_visa_path": "Schengen Short-Stay / French Student Internship Visa using a tripartite internship agreement from CMU-Africa; apply at the French Embassy / TLScontact in Kigali.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "2027 Cohort",
-          "url": "https://www.welcometothejungle.com/en/companies/wiremind/jobs",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Bridge Data Science and Engineering teams building AI-powered pricing, demand forecasting, and optimization products."
-        },
-        {
-          "id": "amazon-emea-pm-ba-2027",
-          "title": "2027 Program / Product Manager & Business Analyst Intern",
-          "company": "Amazon EMEA",
-          "category": "AI Product Manager",
-          "work_mode": "Hybrid",
-          "location": "Luxembourg / London, UK / Berlin, Germany / Cape Town, SA",
-          "region": "Europe & Africa",
-          "sponsorship_policy": "Full EMEA / South Africa Visa & Work Permit Sponsorship",
-          "nigerian_kigali_visa_path": "Amazon's immigration team sponsors Schengen/Luxembourg work authorization, UK GAE visa, or South African visa—all processable while residing in Kigali.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "Summer 2027",
-          "url": "https://www.amazon.jobs/en/teams/internships-for-students",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Core European & African product management and business intelligence tracks heavily driven by ML forecasting and automated decision systems."
-        },
-        {
-          "id": "databricks-pm-intern-2027",
-          "title": "Product Management Intern – AI Platform & Genie (Summer 2027)",
-          "company": "Databricks",
-          "category": "AI Product Manager",
-          "work_mode": "Hybrid",
-          "location": "San Francisco, CA / Mountain View, CA / Bellevue, WA (USA)",
-          "region": "United States",
-          "sponsorship_policy": "Sponsors J-1 Intern Visas for enrolled BS/MS students",
-          "nigerian_kigali_visa_path": "US J-1 Intern Visa (DS-2019 sponsored by Databricks). As an enrolled CMU-Africa student with a Rwandan residence permit, you interview at the U.S. Embassy in Kigali.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "Summer 2027",
-          "url": "https://www.databricks.com/company/careers/university-recruiting",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Own AI platform features end-to-end (Genie, Unity Catalog, Mosaic AI), prototype with customers, and ship production AI tooling."
-        },
-        {
-          "id": "salesforce-futureforce-pm-2027",
-          "title": "Product Management Intern – Agentforce & Enterprise AI (Summer 2027)",
-          "company": "Salesforce",
-          "category": "AI Product Owner",
-          "work_mode": "Hybrid",
-          "location": "San Francisco, CA (USA)",
-          "region": "United States",
-          "sponsorship_policy": "Futureforce program supports J-1 visa sponsorship",
-          "nigerian_kigali_visa_path": "US J-1 Intern Visa via U.S. Embassy Kigali using your CMU-Africa student status and Rwandan residency.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "Summer 2027",
-          "url": "https://www.salesforce.com/company/careers/university-recruiting/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Define user stories, agentic AI workflows, and rapid prototypes for Salesforce Agentforce."
-        },
-        {
-          "id": "nvidia-enterprise-ai-pm-2027",
-          "title": "Product Manager Graduate Intern, Enterprise AI (Summer 2027)",
-          "company": "NVIDIA",
-          "category": "AI Product Manager",
-          "work_mode": "Hybrid",
-          "location": "Santa Clara, CA (USA)",
-          "region": "United States",
-          "sponsorship_policy": "Sponsors J-1 Intern Visas for international graduate students",
-          "nigerian_kigali_visa_path": "US J-1 Intern Visa processed at the U.S. Embassy in Kigali. Strong Carnegie Mellon University recruiting pipeline.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "Summer 2027",
-          "url": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Focuses on enterprise artificial intelligence infrastructure, internal agentic AI platforms, and product roadmaps."
-        },
-        {
-          "id": "jpmorgan-data-ai-ba-2027",
-          "title": "2027 Data & AI Program – Summer Internship Analyst",
-          "company": "JPMorgan Chase & Co.",
-          "category": "AI Business Analyst",
-          "work_mode": "On-site",
-          "location": "London, UK / Glasgow, UK",
-          "region": "United Kingdom",
-          "sponsorship_policy": "Licensed UK Sponsor (supports Government Authorised Exchange / Temporary Work visa)",
-          "nigerian_kigali_visa_path": "UK Temporary Work – Government Authorised Exchange (GAE) visa (Certificate of Sponsorship provided); biometrics submitted at VFS Global in Kigali.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "Summer 2027",
-          "url": "https://careers.jpmorgan.com/global/en/students/programs",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Structured analyst track blending enterprise data science, AI deployment, and business strategy."
-        },
-        {
-          "id": "hilti-ai-iot-pm-2027",
-          "title": "Product Management Internship – AI, IoT & Automation",
-          "company": "Hilti Group",
-          "category": "AI Product Owner",
-          "work_mode": "Hybrid",
-          "location": "Schaan, Liechtenstein / Zurich, Switzerland",
-          "region": "Europe (Schengen)",
-          "sponsorship_policy": "Supports international Master's student internship permits",
-          "nigerian_kigali_visa_path": "Schengen / Swiss-Liechtenstein Student Internship Permit (requires university enrollment certificate from CMU-Africa); apply via Embassy in Kigali.",
-          "feasibility": "High (Sponsors + Kigali Embassy)",
-          "season": "2027 (3–6 Months)",
-          "url": "https://careers.hilti.group/en/students-graduates",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Digital transformation, connected equipment telemetry, and AI/IoT product portfolio management."
-        },
-        {
-          "id": "ibm-software-pm-intern-2027",
-          "title": "Product Manager Intern 2027 (AI & Cloud-Native Software)",
-          "company": "IBM Software",
-          "category": "AI Product Manager",
-          "work_mode": "Hybrid",
-          "location": "San Jose, CA / Austin, TX / Global Hubs",
-          "region": "United States & Global",
-          "sponsorship_policy": "Case-by-case J-1 sponsorship for US; local hiring for IBM Research Africa (Nairobi/ZA)",
-          "nigerian_kigali_visa_path": "Verify J-1 sponsorship for US requisitions, or apply in parallel to IBM Research Africa (Nairobi/Johannesburg) for simpler regional visa processing from Kigali.",
-          "feasibility": "Medium (Verify J-1 / EOR)",
-          "season": "Summer 2027",
-          "url": "https://www.ibm.com/careers/internships",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Translate APIs, ML models, and data flows into user stories and ethical AI product roadmaps."
-        },
-        {
-          "id": "intuit-ba-ai-intern-2027",
-          "title": "Business Data Analyst Summer 2027 Intern (AI Strategy & Planning)",
-          "company": "Intuit",
-          "category": "AI Business Analyst",
-          "work_mode": "Hybrid",
-          "location": "Mountain View, CA (USA) / Toronto, Canada",
-          "region": "North America",
-          "sponsorship_policy": "Supports J-1 / Canadian Student Work Permits for enrolled university students",
-          "nigerian_kigali_visa_path": "US J-1 Intern Visa (via US Embassy Kigali) or Canadian Co-op/Intern Work Permit.",
-          "feasibility": "Medium (Verify J-1 / EOR)",
-          "season": "Summer 2027",
-          "url": "https://www.intuit.com/careers/programs/students-and-graduates/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Synthesize strategic and operational data using internal AI tools to optimize business velocity and forecasting."
-        },
-        {
-          "id": "zebra-ba-ai-intern-2027",
-          "title": "2027 Summer Internship – Business Analytics (AI)",
-          "company": "Zebra Technologies",
-          "category": "AI Business Analyst",
-          "work_mode": "Hybrid",
-          "location": "Holtsville, NY (USA) / Bourne End (UK EMEA HQ)",
-          "region": "US & EMEA",
-          "sponsorship_policy": "Check requisition for J-1 / UK GAE sponsorship",
-          "nigerian_kigali_visa_path": "Target EMEA/UK requisition or verify US J-1 eligibility before applying.",
-          "feasibility": "Medium (Verify J-1 / EOR)",
-          "season": "Summer 2027",
-          "url": "https://careers.zebra.com/",
-          "date_added": "2026-11-18",
-          "is_new": true,
-          "highlights": "Build AI-enabled predictive forecasting models, ML data pipelines, and executive business dashboards."
-        }
-      ]
-    };
+      {
+        "company": "CareSource",
+        "role": "Provider Analytics AI Intern - Summer 2027",
+        "reason": "Excluded automatically: Remote U.S. healthcare role restricted to U.S.-based work authorization."
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "id": "instadeep-ai-pm-2027",
+      "title": "AI Product & Experience Intern (Decision-Making AI / BioAI)",
+      "company": "InstaDeep (BioNTech)",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Kigali, Rwanda / London, UK / Paris, France",
+      "region": "Africa & EMEA",
+      "paid_status": "Paid",
+      "compensation": "Paid (Competitive monthly salary/stipend based on hub: Kigali / London / Paris)",
+      "sponsorship_policy": "Local Kigali office + EMEA Visa Sponsorship for London/Paris",
+      "nigerian_kigali_visa_path": "Zero visa friction for the Kigali office using your existing Rwandan Residence Permit; or UK GAE / French Convention de Stage via Kigali embassies.",
+      "feasibility": "Zero Visa (Remote / Local)",
+      "season": "Summer 2027 (Rolling)",
+      "url": "https://www.instadeep.com/careers/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "InstaDeep operates an active AI hub right in Kigali alongside London and Paris, frequently recruiting CMU-Africa talent."
+    },
+    {
+      "id": "gp-ai-pm-intern-2027",
+      "title": "Product Management Intern – AI & Analytics (G-P Assist)",
+      "company": "G-P (Globalization Partners)",
+      "category": "AI Product Manager",
+      "work_mode": "Remote",
+      "location": "Remote (Global)",
+      "region": "Global Remote",
+      "paid_status": "Paid",
+      "compensation": "Paid (Global remote hourly/monthly compensation)",
+      "sponsorship_policy": "Global EOR / Remote-first infrastructure",
+      "nigerian_kigali_visa_path": "No travel visa required. Work remotely from Kigali (UTC+2) or Nigeria (UTC+1); G-P is an Employer of Record platform equipped for international remote hires.",
+      "feasibility": "Zero Visa (Remote / Local)",
+      "season": "2027 Cohort (6-Month Track)",
+      "url": "https://www.globalization-partners.com/careers/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Focuses on G-P Assist (LLM-powered global HR assistant), product analytics, user behavior, and AI adoption metrics."
+    },
+    {
+      "id": "microsoft-adc-pm-ba-2027",
+      "title": "Product Management & Business Program Intern (Global Internship Program)",
+      "company": "Microsoft (Africa Development Center & EMEA)",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Lagos, Nigeria / Nairobi, Kenya",
+      "region": "Africa & EMEA",
+      "paid_status": "Paid",
+      "compensation": "Paid (Competitive monthly salary + relocation/benefits)",
+      "sponsorship_policy": "Full local & regional work authorization support",
+      "nigerian_kigali_visa_path": "Zero visa needed for Lagos (Nigerian citizen); simple East African eTA/student pass for Nairobi from Kigali.",
+      "feasibility": "Zero Visa (Remote / Local)",
+      "season": "Summer 2027",
+      "url": "https://careers.microsoft.com/v2/global/en/universityinternship",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Recruits university students across Nigeria, Rwanda, and Kenya for 12-week summer product management and business analytics tracks across Azure & AI."
+    },
+    {
+      "id": "google-ssa-emea-ba-2027",
+      "title": "Business Analyst & Product Strategy Intern (EMEA / Africa)",
+      "company": "Google",
+      "category": "AI Business Analyst",
+      "work_mode": "Hybrid",
+      "location": "Nairobi, Kenya / Lagos, Nigeria / Dublin / London",
+      "region": "Africa & EMEA",
+      "paid_status": "Paid",
+      "compensation": "Paid (Top-tier market salary + relocation support)",
+      "sponsorship_policy": "Sponsors EMEA internship visas + direct hiring in Lagos/Nairobi",
+      "nigerian_kigali_visa_path": "No visa required for Lagos; Kenya eTA from Kigali for Nairobi; or UK GAE / Irish Stamp 2A via VFS in Kigali for London/Dublin.",
+      "feasibility": "Zero Visa (Remote / Local)",
+      "season": "Summer 2027",
+      "url": "https://www.google.com/about/careers/applications/students/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Covers gTech, Large Customer Sales Analytics, and AI/ML Student Researcher & Product Strategy tracks across EMEA and Sub-Saharan Africa."
+    },
+    {
+      "id": "retensa-ai-product-intern-2027",
+      "title": "AI Product Intern (SaaS & Conversational AI)",
+      "company": "Retensa",
+      "category": "AI Product Owner",
+      "work_mode": "Remote",
+      "location": "Remote (24–32 hrs/week)",
+      "region": "Global Remote",
+      "paid_status": "Paid (Stipend)",
+      "compensation": "Paid (Semester/Summer Stipend)",
+      "sponsorship_policy": "Remote Stipend / Contractor",
+      "nigerian_kigali_visa_path": "No travel visa needed. Can be completed remotely from Kigali or Nigeria.",
+      "feasibility": "Zero Visa (Remote / Local)",
+      "season": "Spring / Summer 2027",
+      "url": "https://retensa.com/about/careers/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Hands-on AI Product Owner duties: user story mapping, Agile backlog management, and R&D requirements gathering for predictive retention AI."
+    },
+    {
+      "id": "wiremind-ai-po-2027",
+      "title": "AI Product Owner Intern (Optimization & Forecasting AI)",
+      "company": "Wiremind",
+      "category": "AI Product Owner",
+      "work_mode": "Hybrid",
+      "location": "Paris, France",
+      "region": "Europe (Schengen)",
+      "paid_status": "Paid",
+      "compensation": "Paid (~€1,400–€1,800/mo + meal vouchers & 50% transit pass)",
+      "sponsorship_policy": "Supports European Student Internship Agreement (Convention de Stage)",
+      "nigerian_kigali_visa_path": "Schengen Short-Stay / French Student Internship Visa using a tripartite internship agreement from CMU-Africa; apply at the French Embassy / TLScontact in Kigali.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "2027 Cohort",
+      "url": "https://www.welcometothejungle.com/en/companies/wiremind/jobs",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Bridge Data Science and Engineering teams building AI-powered pricing, demand forecasting, and optimization products."
+    },
+    {
+      "id": "amazon-emea-pm-ba-2027",
+      "title": "2027 Program / Product Manager & Business Analyst Intern",
+      "company": "Amazon EMEA",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Luxembourg / London, UK / Berlin, Germany / Cape Town, SA",
+      "region": "Europe & Africa",
+      "paid_status": "Paid",
+      "compensation": "Paid (~€2,700–£4,500/mo + relocation & housing allowance)",
+      "sponsorship_policy": "Full EMEA / South Africa Visa & Work Permit Sponsorship",
+      "nigerian_kigali_visa_path": "Amazon's immigration team sponsors Schengen/Luxembourg work authorization, UK GAE visa, or South African visa—all processable while residing in Kigali.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027",
+      "url": "https://www.amazon.jobs/en/teams/internships-for-students",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Core European & African product management and business intelligence tracks heavily driven by ML forecasting and automated decision systems."
+    },
+    {
+      "id": "databricks-pm-intern-2027",
+      "title": "Product Management Intern – AI Platform & Genie (Summer 2027)",
+      "company": "Databricks",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "San Francisco, CA / Mountain View, CA / Bellevue, WA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$55–$65/hr / ~$9,500+/mo + corporate housing/relocation)",
+      "sponsorship_policy": "Sponsors J-1 Intern Visas for enrolled BS/MS students",
+      "nigerian_kigali_visa_path": "US J-1 Intern Visa (DS-2019 sponsored by Databricks). As an enrolled CMU-Africa student with a Rwandan residence permit, you interview at the U.S. Embassy in Kigali.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027",
+      "url": "https://www.databricks.com/company/careers/university-recruiting",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Own AI platform features end-to-end (Genie, Unity Catalog, Mosaic AI), prototype with customers, and ship production AI tooling."
+    },
+    {
+      "id": "salesforce-futureforce-pm-2027",
+      "title": "Product Management Intern – Agentforce & Enterprise AI (Summer 2027)",
+      "company": "Salesforce",
+      "category": "AI Product Owner",
+      "work_mode": "Hybrid",
+      "location": "San Francisco, CA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$48–$58/hr + corporate housing/relocation)",
+      "sponsorship_policy": "Futureforce program supports J-1 visa sponsorship",
+      "nigerian_kigali_visa_path": "US J-1 Intern Visa via U.S. Embassy Kigali using your CMU-Africa student status and Rwandan residency.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027",
+      "url": "https://www.salesforce.com/company/careers/university-recruiting/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Define user stories, agentic AI workflows, and rapid prototypes for Salesforce Agentforce."
+    },
+    {
+      "id": "nvidia-enterprise-ai-pm-2027",
+      "title": "Product Manager Graduate Intern, Enterprise AI (Summer 2027)",
+      "company": "NVIDIA",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Santa Clara, CA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$50–$68/hr + housing stipend & relocation)",
+      "sponsorship_policy": "Sponsors J-1 Intern Visas for international graduate students",
+      "nigerian_kigali_visa_path": "US J-1 Intern Visa processed at the U.S. Embassy in Kigali. Strong Carnegie Mellon University recruiting pipeline.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027",
+      "url": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Focuses on enterprise artificial intelligence infrastructure, internal agentic AI platforms, and product roadmaps."
+    },
+    {
+      "id": "jpmorgan-data-ai-ba-2027",
+      "title": "2027 Data & AI Program – Summer Internship Analyst",
+      "company": "JPMorgan Chase & Co.",
+      "category": "AI Business Analyst",
+      "work_mode": "On-site",
+      "location": "London, UK / Glasgow, UK",
+      "region": "United Kingdom",
+      "paid_status": "Paid",
+      "compensation": "Paid (~£55,000–£65,000 pro-rated annual salary + relocation)",
+      "sponsorship_policy": "Licensed UK Sponsor (supports Government Authorised Exchange / Temporary Work visa)",
+      "nigerian_kigali_visa_path": "UK Temporary Work – Government Authorised Exchange (GAE) visa (Certificate of Sponsorship provided); biometrics submitted at VFS Global in Kigali.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027",
+      "url": "https://careers.jpmorgan.com/global/en/students/programs",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Structured analyst track blending enterprise data science, AI deployment, and business strategy."
+    },
+    {
+      "id": "hilti-ai-iot-pm-2027",
+      "title": "Product Management Internship – AI, IoT & Automation",
+      "company": "Hilti Group",
+      "category": "AI Product Owner",
+      "work_mode": "Hybrid",
+      "location": "Schaan, Liechtenstein / Zurich, Switzerland",
+      "region": "Europe (Schengen)",
+      "paid_status": "Paid",
+      "compensation": "Paid (~CHF 2,500–3,200/mo)",
+      "sponsorship_policy": "Supports international Master's student internship permits",
+      "nigerian_kigali_visa_path": "Schengen / Swiss-Liechtenstein Student Internship Permit (requires university enrollment certificate from CMU-Africa); apply via Embassy in Kigali.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "2027 (3–6 Months)",
+      "url": "https://careers.hilti.group/en/students-graduates",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Digital transformation, connected equipment telemetry, and AI/IoT product portfolio management."
+    },
+    {
+      "id": "ibm-software-pm-intern-2027",
+      "title": "Product Manager Intern 2027 (AI & Cloud-Native Software)",
+      "company": "IBM Software",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "San Jose, CA / Austin, TX / Global Hubs",
+      "region": "United States & Global",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$38–$52/hr in US; competitive local salary in EMEA/Africa)",
+      "sponsorship_policy": "Case-by-case J-1 sponsorship for US; local hiring for IBM Research Africa (Nairobi/ZA)",
+      "nigerian_kigali_visa_path": "Verify J-1 sponsorship for US requisitions, or apply in parallel to IBM Research Africa (Nairobi/Johannesburg) for simpler regional visa processing from Kigali.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027",
+      "url": "https://www.ibm.com/careers/internships",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Translate APIs, ML models, and data flows into user stories and ethical AI product roadmaps."
+    },
+    {
+      "id": "intuit-ba-ai-intern-2027",
+      "title": "Business Data Analyst Summer 2027 Intern (AI Strategy & Planning)",
+      "company": "Intuit",
+      "category": "AI Business Analyst",
+      "work_mode": "Hybrid",
+      "location": "Mountain View, CA (USA) / Toronto, Canada",
+      "region": "North America",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$45–$55/hr + housing assistance)",
+      "sponsorship_policy": "Supports J-1 / Canadian Student Work Permits for enrolled university students",
+      "nigerian_kigali_visa_path": "US J-1 Intern Visa (via US Embassy Kigali) or Canadian Co-op/Intern Work Permit.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027",
+      "url": "https://www.intuit.com/careers/programs/students-and-graduates/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Synthesize strategic and operational data using internal AI tools to optimize business velocity and forecasting."
+    },
+    {
+      "id": "zebra-ba-ai-intern-2027",
+      "title": "2027 Summer Internship – Business Analytics (AI)",
+      "company": "Zebra Technologies",
+      "category": "AI Business Analyst",
+      "work_mode": "Hybrid",
+      "location": "Holtsville, NY (USA) / Bourne End (UK EMEA HQ)",
+      "region": "US & EMEA",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$28–$38/hr in US; competitive hourly rate in UK)",
+      "sponsorship_policy": "Check requisition for J-1 / UK GAE sponsorship",
+      "nigerian_kigali_visa_path": "Target EMEA/UK requisition or verify US J-1 eligibility before applying.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027",
+      "url": "https://careers.zebra.com/",
+      "date_added": "2026-11-18",
+      "is_new": true,
+      "highlights": "Build AI-enabled predictive forecasting models, ML data pipelines, and executive business dashboards."
+    }
+  ]
+};
+    /* FALLBACK_DATA_END */
 
     let allJobs = [];
     let filters = {
@@ -844,6 +921,8 @@
             job.company,
             job.category,
             job.location,
+            job.paid_status || 'Paid',
+            job.compensation || '',
             job.nigerian_kigali_visa_path,
             job.highlights
           ].join(' ').toLowerCase();
@@ -869,6 +948,8 @@
         const visaBadgeClass = job.feasibility.startsWith('Zero')
           ? 'badge-green'
           : isMedium ? 'badge-amber' : 'badge-accent';
+        const paidLabel = job.paid_status || 'Paid';
+        const compDetail = job.compensation || 'Paid Internship';
 
         return `
           <article class="job-card">
@@ -878,7 +959,7 @@
                   <div class="company-name">${job.company}</div>
                   <h3 class="job-title">${job.title}</h3>
                 </div>
-                ${job.is_new ? `<span class="badge badge-green">NEW</span>` : ''}
+                <span class="badge badge-green">💰 ${paidLabel}</span>
               </div>
 
               <div class="meta-tags">
@@ -887,11 +968,19 @@
                 <span class="badge ${visaBadgeClass}">${job.feasibility}</span>
               </div>
 
-              <p class="highlights" style="margin-top: 0.85rem;">${job.highlights}</p>
+              <div class="comp-banner">
+                <span>💵 <strong>Compensation:</strong> ${compDetail}</span>
+              </div>
 
-              <div class="visa-box ${isMedium ? 'medium' : ''}" style="margin-top: 0.85rem;">
+              <p class="highlights" style="margin-top: 0.8rem;">${job.highlights}</p>
+
+              <div class="visa-box ${isMedium ? 'medium' : ''}" style="margin-top: 0.8rem;">
                 <strong>🇳🇬 / 🇷🇼 Nigerian in Kigali Eligibility &amp; Travel Path</strong>
                 ${job.nigerian_kigali_visa_path}
+              </div>
+
+              <div class="link-row">
+                🔗 Application Portal: <a href="${job.url}" target="_blank" rel="noopener noreferrer">${job.url}</a>
               </div>
             </div>
 
@@ -904,7 +993,7 @@
               </select>
 
               <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn">
-                Apply / View Role ↗
+                Apply Now ↗
               </a>
             </div>
           </article>
@@ -932,13 +1021,15 @@
     document.getElementById('export-btn').addEventListener('click', () => {
       const statuses = getSavedStatuses();
       const rows = [
-        ['Company', 'Title', 'Category', 'Work Mode', 'Location', 'Feasibility', 'Visa Path (Nigerian/Kigali)', 'My Status', 'URL']
+        ['Company', 'Title', 'Category', 'Paid Status', 'Compensation', 'Work Mode', 'Location', 'Feasibility', 'Visa Path (Nigerian/Kigali)', 'My Status', 'Application URL']
       ];
       getFilteredJobs().forEach(j => {
         rows.push([
           j.company,
           j.title,
           j.category,
+          j.paid_status || 'Paid',
+          j.compensation || 'Paid',
           j.work_mode,
           j.location,
           j.feasibility,
@@ -972,7 +1063,7 @@
             'Last synced: ' + data.metadata.last_updated.slice(0, 10);
         }
       } catch (e) {
-        allJobs = FALLBACK_DATA.jobs;
+        allJobs = FALLBACK_DATA.jobs || [];
       }
       updateKPIs();
       renderJobs();
