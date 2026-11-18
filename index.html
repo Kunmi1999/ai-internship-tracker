@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer 2027 AI Product & Business Analyst Internship Radar</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #131a2a;
+      --surface-hover: #1a2438;
+      --border: #23304c;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --green: #34d399;
+      --green-soft: rgba(52, 211, 153, 0.14);
+      --amber: #fbbf24;
+      --amber-soft: rgba(251, 191, 36, 0.14);
+      --purple: #a78bfa;
+      --purple-soft: rgba(167, 139, 250, 0.14);
+      --rose: #fb7185;
+      --rose-soft: rgba(251, 113, 133, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding-bottom: 4rem;
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111827 0%, #0f172a 55%, #1e1b4b 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2.25rem 0 1.75rem;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .title-group h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    .title-group p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .profile-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.32rem 0.72rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+    }
+
+    .badge-accent {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .badge-green {
+      background: var(--green-soft);
+      color: var(--green);
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    .badge-amber {
+      background: var(--amber-soft);
+      color: var(--amber);
+      border-color: rgba(251, 191, 36, 0.3);
+    }
+
+    .badge-purple {
+      background: var(--purple-soft);
+      color: var(--purple);
+      border-color: rgba(167, 139, 250, 0.3);
+    }
+
+    .sync-box {
+      text-align: right;
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: rgba(19, 26, 42, 0.8);
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+    }
+
+    .sync-box strong {
+      color: var(--green);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.85rem;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .kpi-card .kpi-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .kpi-card .kpi-val {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .kpi-card .kpi-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .controls {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: #0b0f19;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.68rem 1rem;
+      border-radius: 0.6rem;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+
+    .btn {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 0.6rem 1rem;
+      border-radius: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+    }
+
+    .filter-groups {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .filter-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-right: 0.25rem;
+    }
+
+    .chip {
+      background: #0b0f19;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      color: var(--text);
+      border-color: #3b4d71;
+    }
+
+    .chip.active {
+      background: var(--accent);
+      color: #0b0f19;
+      border-color: var(--accent);
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .job-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .job-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .company-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .job-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.35;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.65rem;
+    }
+
+    .visa-box {
+      background: rgba(11, 15, 25, 0.75);
+      border-left: 3px solid var(--green);
+      padding: 0.75rem 0.9rem;
+      border-radius: 0.45rem;
+      font-size: 0.83rem;
+    }
+
+    .visa-box.medium {
+      border-left-color: var(--amber);
+    }
+
+    .visa-box strong {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .highlights {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border);
+      gap: 0.5rem;
+    }
+
+    .status-select {
+      background: #0b0f19;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.42rem 0.65rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .playbook-section {
+      margin-top: 2.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.9rem;
+      padding: 1.5rem;
+    }
+
+    .playbook-section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .playbook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .playbook-card {
+      background: #0b0f19;
+      border: 1px solid var(--border);
+      border-radius: 0.7rem;
+      padding: 1rem;
+      font-size: 0.84rem;
+    }
+
+    .playbook-card h3 {
+      font-size: 0.92rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <div class="title-group">
+          <h1>Summer 2027 AI Product &amp; Business Analyst Radar</h1>
+          <p>Automated daily internship discovery &amp; visa eligibility tracker powered by Antigravity</p>
+          <div class="profile-badges">
+            <span class="badge badge-accent">🎓 CMU-Africa (Kigali, Rwanda)</span>
+            <span class="badge badge-green">🇳🇬 Nigerian Citizen + 🇷🇼 Rwanda Residence Permit</span>
+            <span class="badge badge-purple">🎯 AI PM • AI Product Owner • AI Business Analyst</span>
+          </div>
+        </div>
+        <div class="sync-box">
+          <strong>⚡ Daily Automation Active (8:00 AM CAT)</strong>
+          <span id="last-updated-text">Last synced: 2026-11-18</span>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Eligible Roles Tracked</div>
+          <div class="kpi-val" id="kpi-total">0</div>
+          <div class="kpi-sub">Pre-filtered for international students</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Zero-Visa / Local &amp; Remote</div>
+          <div class="kpi-val" id="kpi-zero-visa" style="color: var(--green);">0</div>
+          <div class="kpi-sub">Kigali, Lagos, Nairobi &amp; Global EOR Remote</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">High Visa Feasibility</div>
+          <div class="kpi-val" id="kpi-high-visa" style="color: var(--accent);">0</div>
+          <div class="kpi-sub">Sponsors J-1 / UK GAE / Schengen via Kigali</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Your Saved / Applied</div>
+          <div class="kpi-val" id="kpi-tracked" style="color: var(--purple);">0</div>
+          <div class="kpi-sub">Stored locally in your browser</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="search-row">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Search company, title, location (e.g. Kigali, London, Remote, Databricks, J-1)..."
+        />
+        <button class="btn" id="export-btn">⬇ Export CSV</button>
+      </div>
+
+      <div class="filter-groups">
+        <div class="filter-group" id="category-filters">
+          <span class="filter-label">Role:</span>
+          <button class="chip active" data-val="ALL">All</button>
+          <button class="chip" data-val="AI Product Manager">AI PM</button>
+          <button class="chip" data-val="AI Product Owner">AI Product Owner</button>
+          <button class="chip" data-val="AI Business Analyst">AI Business Analyst</button>
+        </div>
+
+        <div class="filter-group" id="mode-filters">
+          <span class="filter-label">Mode:</span>
+          <button class="chip active" data-val="ALL">All</button>
+          <button class="chip" data-val="Remote">Remote</button>
+          <button class="chip" data-val="Hybrid">Hybrid</button>
+          <button class="chip" data-val="On-site">On-site</button>
+        </div>
+
+        <div class="filter-group" id="visa-filters">
+          <span class="filter-label">Visa Tier:</span>
+          <button class="chip active" data-val="ALL">All</button>
+          <button class="chip" data-val="Zero Visa (Remote / Local)">Zero Visa / Local</button>
+          <button class="chip" data-val="High (Sponsors + Kigali Embassy)">High (Sponsors)</button>
+          <button class="chip" data-val="Medium (Verify J-1 / EOR)">Medium</button>
+        </div>
+
+        <div class="filter-group" id="status-filters">
+          <span class="filter-label">My Status:</span>
+          <button class="chip active" data-val="ALL">All</button>
+          <button class="chip" data-val="Saved">Saved ⭐</button>
+          <button class="chip" data-val="Applied">Applied ✅</button>
+          <button class="chip" data-val="Interviewing">Interviewing 🎯</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="jobs-grid" id="jobs-grid"></section>
+
+    <section class="playbook-section">
+      <h2>🧭 Nigerian Citizen + Kigali Resident Visa Playbook (Summer 2027)</h2>
+      <div class="playbook-grid">
+        <div class="playbook-card">
+          <h3>1. Local Kigali, Lagos &amp; East Africa (Zero Visa Friction)</h3>
+          <p>With your <strong>Nigerian passport</strong> and <strong>Rwandan residence permit</strong>, you can intern immediately in Kigali (e.g., InstaDeep) or Lagos (e.g., Microsoft ADC, Google) with zero visa delays, or travel to Nairobi via simple regional eTA.</p>
+        </div>
+        <div class="playbook-card">
+          <h3>2. Global Remote via EOR / Contractor</h3>
+          <p>Remote-first global companies using Deel, Remote.com, or G-P can onboard you directly in Kigali (<strong>UTC+2</strong>) or Nigeria (<strong>UTC+1</strong>), perfectly matching UK/European working hours without needing a travel visa.</p>
+        </div>
+        <div class="playbook-card">
+          <h3>3. US Internships (J-1 Intern Visa in Kigali)</h3>
+          <p>As an enrolled degree-seeking student at <strong>CMU-Africa</strong>, you qualify for the <strong>US J-1 Intern Visa</strong> when sponsored by companies like Databricks, NVIDIA, or Salesforce—and you can book your visa interview at the <strong>U.S. Embassy in Kigali</strong>.</p>
+        </div>
+        <div class="playbook-card">
+          <h3>4. UK &amp; Schengen Europe (Apply via VFS/TLS Kigali)</h3>
+          <p>For London roles (UK Temporary Work GAE visa) or Paris/Zurich/Berlin roles (Student Internship Agreement via CMU-Africa), your Rwandan residency allows you to submit biometrics right in <strong>Kigali</strong>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const FALLBACK_DATA = {
+      "metadata": {
+        "last_updated": "2026-11-18T15:46:00+02:00"
+      },
+      "jobs": [
+        {
+          "id": "instadeep-ai-pm-2027",
+          "title": "AI Product & Experience Intern (Decision-Making AI / BioAI)",
+          "company": "InstaDeep (BioNTech)",
+          "category": "AI Product Manager",
+          "work_mode": "Hybrid",
+          "location": "Kigali, Rwanda / London, UK / Paris, France",
+          "region": "Africa & EMEA",
+          "sponsorship_policy": "Local Kigali office + EMEA Visa Sponsorship for London/Paris",
+          "nigerian_kigali_visa_path": "Zero visa friction for the Kigali office using your existing Rwandan Residence Permit; or UK GAE / French Convention de Stage via Kigali embassies.",
+          "feasibility": "Zero Visa (Remote / Local)",
+          "season": "Summer 2027 (Rolling)",
+          "url": "https://www.instadeep.com/careers/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "InstaDeep operates an active AI hub right in Kigali alongside London and Paris, frequently recruiting CMU-Africa talent."
+        },
+        {
+          "id": "gp-ai-pm-intern-2027",
+          "title": "Product Management Intern – AI & Analytics (G-P Assist)",
+          "company": "G-P (Globalization Partners)",
+          "category": "AI Product Manager",
+          "work_mode": "Remote",
+          "location": "Remote (Global)",
+          "region": "Global Remote",
+          "sponsorship_policy": "Global EOR / Remote-first infrastructure",
+          "nigerian_kigali_visa_path": "No travel visa required. Work remotely from Kigali (UTC+2) or Nigeria (UTC+1); G-P is an Employer of Record platform equipped for international remote hires.",
+          "feasibility": "Zero Visa (Remote / Local)",
+          "season": "2027 Cohort (6-Month Track)",
+          "url": "https://www.globalization-partners.com/careers/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Focuses on G-P Assist (LLM-powered global HR assistant), product analytics, user behavior, and AI adoption metrics."
+        },
+        {
+          "id": "microsoft-adc-pm-ba-2027",
+          "title": "Product Management & Business Program Intern (Global Internship Program)",
+          "company": "Microsoft (Africa Development Center & EMEA)",
+          "category": "AI Product Manager",
+          "work_mode": "Hybrid",
+          "location": "Lagos, Nigeria / Nairobi, Kenya",
+          "region": "Africa & EMEA",
+          "sponsorship_policy": "Full local & regional work authorization support",
+          "nigerian_kigali_visa_path": "Zero visa needed for Lagos (Nigerian citizen); simple East African eTA/student pass for Nairobi from Kigali.",
+          "feasibility": "Zero Visa (Remote / Local)",
+          "season": "Summer 2027",
+          "url": "https://careers.microsoft.com/v2/global/en/universityinternship",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Recruits university students across Nigeria, Rwanda, and Kenya for 12-week summer product management and business analytics tracks across Azure & AI."
+        },
+        {
+          "id": "google-ssa-emea-ba-2027",
+          "title": "Business Analyst & Product Strategy Intern (EMEA / Africa)",
+          "company": "Google",
+          "category": "AI Business Analyst",
+          "work_mode": "Hybrid",
+          "location": "Nairobi, Kenya / Lagos, Nigeria / Dublin / London",
+          "region": "Africa & EMEA",
+          "sponsorship_policy": "Sponsors EMEA internship visas + direct hiring in Lagos/Nairobi",
+          "nigerian_kigali_visa_path": "No visa required for Lagos; Kenya eTA from Kigali for Nairobi; or UK GAE / Irish Stamp 2A via VFS in Kigali for London/Dublin.",
+          "feasibility": "Zero Visa (Remote / Local)",
+          "season": "Summer 2027",
+          "url": "https://careers.google.com/students/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Covers gTech, Large Customer Sales Analytics, and AI/ML Student Researcher & Product Strategy tracks across EMEA and Sub-Saharan Africa."
+        },
+        {
+          "id": "retensa-ai-product-intern-2027",
+          "title": "AI Product Intern (SaaS & Conversational AI)",
+          "company": "Retensa",
+          "category": "AI Product Owner",
+          "work_mode": "Remote",
+          "location": "Remote (24–32 hrs/week)",
+          "region": "Global Remote",
+          "sponsorship_policy": "Remote Stipend / Contractor",
+          "nigerian_kigali_visa_path": "No travel visa needed. Can be completed remotely from Kigali or Nigeria.",
+          "feasibility": "Zero Visa (Remote / Local)",
+          "season": "Spring / Summer 2027",
+          "url": "https://retensa.com/about/careers/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Hands-on AI Product Owner duties: user story mapping, Agile backlog management, and R&D requirements gathering for predictive retention AI."
+        },
+        {
+          "id": "wiremind-ai-po-2027",
+          "title": "AI Product Owner Intern (Optimization & Forecasting AI)",
+          "company": "Wiremind",
+          "category": "AI Product Owner",
+          "work_mode": "Hybrid",
+          "location": "Paris, France",
+          "region": "Europe (Schengen)",
+          "sponsorship_policy": "Supports European Student Internship Agreement (Convention de Stage)",
+          "nigerian_kigali_visa_path": "Schengen Short-Stay / French Student Internship Visa using a tripartite internship agreement from CMU-Africa; apply at the French Embassy / TLScontact in Kigali.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "2027 Cohort",
+          "url": "https://www.welcometothejungle.com/en/companies/wiremind/jobs",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Bridge Data Science and Engineering teams building AI-powered pricing, demand forecasting, and optimization products."
+        },
+        {
+          "id": "amazon-emea-pm-ba-2027",
+          "title": "2027 Program / Product Manager & Business Analyst Intern",
+          "company": "Amazon EMEA",
+          "category": "AI Product Manager",
+          "work_mode": "Hybrid",
+          "location": "Luxembourg / London, UK / Berlin, Germany / Cape Town, SA",
+          "region": "Europe & Africa",
+          "sponsorship_policy": "Full EMEA / South Africa Visa & Work Permit Sponsorship",
+          "nigerian_kigali_visa_path": "Amazon's immigration team sponsors Schengen/Luxembourg work authorization, UK GAE visa, or South African visa—all processable while residing in Kigali.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "Summer 2027",
+          "url": "https://www.amazon.jobs/en/teams/internships-for-students",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Core European & African product management and business intelligence tracks heavily driven by ML forecasting and automated decision systems."
+        },
+        {
+          "id": "databricks-pm-intern-2027",
+          "title": "Product Management Intern – AI Platform & Genie (Summer 2027)",
+          "company": "Databricks",
+          "category": "AI Product Manager",
+          "work_mode": "Hybrid",
+          "location": "San Francisco, CA / Mountain View, CA / Bellevue, WA (USA)",
+          "region": "United States",
+          "sponsorship_policy": "Sponsors J-1 Intern Visas for enrolled BS/MS students",
+          "nigerian_kigali_visa_path": "US J-1 Intern Visa (DS-2019 sponsored by Databricks). As an enrolled CMU-Africa student with a Rwandan residence permit, you interview at the U.S. Embassy in Kigali.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "Summer 2027",
+          "url": "https://www.databricks.com/company/careers/university-recruiting",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Own AI platform features end-to-end (Genie, Unity Catalog, Mosaic AI), prototype with customers, and ship production AI tooling."
+        },
+        {
+          "id": "salesforce-futureforce-pm-2027",
+          "title": "Product Management Intern – Agentforce & Enterprise AI (Summer 2027)",
+          "company": "Salesforce",
+          "category": "AI Product Owner",
+          "work_mode": "Hybrid",
+          "location": "San Francisco, CA (USA)",
+          "region": "United States",
+          "sponsorship_policy": "Futureforce program supports J-1 visa sponsorship",
+          "nigerian_kigali_visa_path": "US J-1 Intern Visa via U.S. Embassy Kigali using your CMU-Africa student status and Rwandan residency.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "Summer 2027",
+          "url": "https://www.salesforce.com/company/careers/university-recruiting/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Define user stories, agentic AI workflows, and rapid prototypes for Salesforce Agentforce."
+        },
+        {
+          "id": "nvidia-enterprise-ai-pm-2027",
+          "title": "Product Manager Graduate Intern, Enterprise AI (Summer 2027)",
+          "company": "NVIDIA",
+          "category": "AI Product Manager",
+          "work_mode": "Hybrid",
+          "location": "Santa Clara, CA (USA)",
+          "region": "United States",
+          "sponsorship_policy": "Sponsors J-1 Intern Visas for international graduate students",
+          "nigerian_kigali_visa_path": "US J-1 Intern Visa processed at the U.S. Embassy in Kigali. Strong Carnegie Mellon University recruiting pipeline.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "Summer 2027",
+          "url": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Focuses on enterprise artificial intelligence infrastructure, internal agentic AI platforms, and product roadmaps."
+        },
+        {
+          "id": "jpmorgan-data-ai-ba-2027",
+          "title": "2027 Data & AI Program – Summer Internship Analyst",
+          "company": "JPMorgan Chase & Co.",
+          "category": "AI Business Analyst",
+          "work_mode": "On-site",
+          "location": "London, UK / Glasgow, UK",
+          "region": "United Kingdom",
+          "sponsorship_policy": "Licensed UK Sponsor (supports Government Authorised Exchange / Temporary Work visa)",
+          "nigerian_kigali_visa_path": "UK Temporary Work – Government Authorised Exchange (GAE) visa (Certificate of Sponsorship provided); biometrics submitted at VFS Global in Kigali.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "Summer 2027",
+          "url": "https://careers.jpmorgan.com/global/en/students/programs",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Structured analyst track blending enterprise data science, AI deployment, and business strategy."
+        },
+        {
+          "id": "hilti-ai-iot-pm-2027",
+          "title": "Product Management Internship – AI, IoT & Automation",
+          "company": "Hilti Group",
+          "category": "AI Product Owner",
+          "work_mode": "Hybrid",
+          "location": "Schaan, Liechtenstein / Zurich, Switzerland",
+          "region": "Europe (Schengen)",
+          "sponsorship_policy": "Supports international Master's student internship permits",
+          "nigerian_kigali_visa_path": "Schengen / Swiss-Liechtenstein Student Internship Permit (requires university enrollment certificate from CMU-Africa); apply via Embassy in Kigali.",
+          "feasibility": "High (Sponsors + Kigali Embassy)",
+          "season": "2027 (3–6 Months)",
+          "url": "https://careers.hilti.group/en/students-graduates",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Digital transformation, connected equipment telemetry, and AI/IoT product portfolio management."
+        },
+        {
+          "id": "ibm-software-pm-intern-2027",
+          "title": "Product Manager Intern 2027 (AI & Cloud-Native Software)",
+          "company": "IBM Software",
+          "category": "AI Product Manager",
+          "work_mode": "Hybrid",
+          "location": "San Jose, CA / Austin, TX / Global Hubs",
+          "region": "United States & Global",
+          "sponsorship_policy": "Case-by-case J-1 sponsorship for US; local hiring for IBM Research Africa (Nairobi/ZA)",
+          "nigerian_kigali_visa_path": "Verify J-1 sponsorship for US requisitions, or apply in parallel to IBM Research Africa (Nairobi/Johannesburg) for simpler regional visa processing from Kigali.",
+          "feasibility": "Medium (Verify J-1 / EOR)",
+          "season": "Summer 2027",
+          "url": "https://www.ibm.com/careers/internships",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Translate APIs, ML models, and data flows into user stories and ethical AI product roadmaps."
+        },
+        {
+          "id": "intuit-ba-ai-intern-2027",
+          "title": "Business Data Analyst Summer 2027 Intern (AI Strategy & Planning)",
+          "company": "Intuit",
+          "category": "AI Business Analyst",
+          "work_mode": "Hybrid",
+          "location": "Mountain View, CA (USA) / Toronto, Canada",
+          "region": "North America",
+          "sponsorship_policy": "Supports J-1 / Canadian Student Work Permits for enrolled university students",
+          "nigerian_kigali_visa_path": "US J-1 Intern Visa (via US Embassy Kigali) or Canadian Co-op/Intern Work Permit.",
+          "feasibility": "Medium (Verify J-1 / EOR)",
+          "season": "Summer 2027",
+          "url": "https://www.intuit.com/careers/programs/students-and-graduates/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Synthesize strategic and operational data using internal AI tools to optimize business velocity and forecasting."
+        },
+        {
+          "id": "zebra-ba-ai-intern-2027",
+          "title": "2027 Summer Internship – Business Analytics (AI)",
+          "company": "Zebra Technologies",
+          "category": "AI Business Analyst",
+          "work_mode": "Hybrid",
+          "location": "Holtsville, NY (USA) / Bourne End (UK EMEA HQ)",
+          "region": "US & EMEA",
+          "sponsorship_policy": "Check requisition for J-1 / UK GAE sponsorship",
+          "nigerian_kigali_visa_path": "Target EMEA/UK requisition or verify US J-1 eligibility before applying.",
+          "feasibility": "Medium (Verify J-1 / EOR)",
+          "season": "Summer 2027",
+          "url": "https://careers.zebra.com/",
+          "date_added": "2026-11-18",
+          "is_new": true,
+          "highlights": "Build AI-enabled predictive forecasting models, ML data pipelines, and executive business dashboards."
+        }
+      ]
+    };
+
+    let allJobs = [];
+    let filters = {
+      search: '',
+      category: 'ALL',
+      mode: 'ALL',
+      visa: 'ALL',
+      status: 'ALL'
+    };
+
+    function getSavedStatuses() {
+      try {
+        return JSON.parse(localStorage.getItem('ai_intern_statuses_2027') || '{}');
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function setJobStatus(id, status) {
+      const statuses = getSavedStatuses();
+      if (!status || status === 'None') {
+        delete statuses[id];
+      } else {
+        statuses[id] = status;
+      }
+      localStorage.setItem('ai_intern_statuses_2027', JSON.stringify(statuses));
+      updateKPIs();
+      renderJobs();
+    }
+
+    function updateKPIs() {
+      const statuses = getSavedStatuses();
+      document.getElementById('kpi-total').textContent = allJobs.length;
+      document.getElementById('kpi-zero-visa').textContent = allJobs.filter(
+        j => j.feasibility === 'Zero Visa (Remote / Local)'
+      ).length;
+      document.getElementById('kpi-high-visa').textContent = allJobs.filter(
+        j => j.feasibility === 'High (Sponsors + Kigali Embassy)'
+      ).length;
+      document.getElementById('kpi-tracked').textContent = Object.keys(statuses).length;
+    }
+
+    function getFilteredJobs() {
+      const statuses = getSavedStatuses();
+      return allJobs.filter(job => {
+        const jobStatus = statuses[job.id] || 'None';
+        if (filters.category !== 'ALL' && job.category !== filters.category) return false;
+        if (filters.mode !== 'ALL' && job.work_mode !== filters.mode) return false;
+        if (filters.visa !== 'ALL' && job.feasibility !== filters.visa) return false;
+        if (filters.status !== 'ALL' && jobStatus !== filters.status) return false;
+
+        if (filters.search) {
+          const q = filters.search.toLowerCase();
+          const hay = [
+            job.title,
+            job.company,
+            job.category,
+            job.location,
+            job.nigerian_kigali_visa_path,
+            job.highlights
+          ].join(' ').toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+    }
+
+    function renderJobs() {
+      const grid = document.getElementById('jobs-grid');
+      const statuses = getSavedStatuses();
+      const filtered = getFilteredJobs();
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-state">No internships match your current filter combination. Try resetting one of the filters above.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(job => {
+        const status = statuses[job.id] || 'None';
+        const isMedium = job.feasibility.startsWith('Medium');
+        const visaBadgeClass = job.feasibility.startsWith('Zero')
+          ? 'badge-green'
+          : isMedium ? 'badge-amber' : 'badge-accent';
+
+        return `
+          <article class="job-card">
+            <div>
+              <div class="job-header">
+                <div>
+                  <div class="company-name">${job.company}</div>
+                  <h3 class="job-title">${job.title}</h3>
+                </div>
+                ${job.is_new ? `<span class="badge badge-green">NEW</span>` : ''}
+              </div>
+
+              <div class="meta-tags">
+                <span class="badge badge-purple">${job.category}</span>
+                <span class="badge">${job.work_mode} • ${job.location}</span>
+                <span class="badge ${visaBadgeClass}">${job.feasibility}</span>
+              </div>
+
+              <p class="highlights" style="margin-top: 0.85rem;">${job.highlights}</p>
+
+              <div class="visa-box ${isMedium ? 'medium' : ''}" style="margin-top: 0.85rem;">
+                <strong>🇳🇬 / 🇷🇼 Nigerian in Kigali Eligibility &amp; Travel Path</strong>
+                ${job.nigerian_kigali_visa_path}
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <select class="status-select" onchange="setJobStatus('${job.id}', this.value)">
+                <option value="None" ${status === 'None' ? 'selected' : ''}>Status: Not Tracked</option>
+                <option value="Saved" ${status === 'Saved' ? 'selected' : ''}>⭐ Saved</option>
+                <option value="Applied" ${status === 'Applied' ? 'selected' : ''}>✅ Applied</option>
+                <option value="Interviewing" ${status === 'Interviewing' ? 'selected' : ''}>🎯 Interviewing</option>
+              </select>
+
+              <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn">
+                Apply / View Role ↗
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function bindFilterGroup(groupId, filterKey) {
+      const container = document.getElementById(groupId);
+      container.querySelectorAll('.chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          container.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          filters[filterKey] = btn.getAttribute('data-val');
+          renderJobs();
+        });
+      });
+    }
+
+    document.getElementById('search-input').addEventListener('input', e => {
+      filters.search = e.target.value.trim();
+      renderJobs();
+    });
+
+    document.getElementById('export-btn').addEventListener('click', () => {
+      const statuses = getSavedStatuses();
+      const rows = [
+        ['Company', 'Title', 'Category', 'Work Mode', 'Location', 'Feasibility', 'Visa Path (Nigerian/Kigali)', 'My Status', 'URL']
+      ];
+      getFilteredJobs().forEach(j => {
+        rows.push([
+          j.company,
+          j.title,
+          j.category,
+          j.work_mode,
+          j.location,
+          j.feasibility,
+          j.nigerian_kigali_visa_path,
+          statuses[j.id] || 'Not Tracked',
+          j.url
+        ]);
+      });
+      const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'summer_2027_ai_internships.csv';
+      a.click();
+    });
+
+    bindFilterGroup('category-filters', 'category');
+    bindFilterGroup('mode-filters', 'mode');
+    bindFilterGroup('visa-filters', 'visa');
+    bindFilterGroup('status-filters', 'status');
+
+    async function init() {
+      try {
+        const res = await fetch('./jobs.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Fallback to inline JSON');
+        const data = await res.json();
+        allJobs = data.jobs || [];
+        if (data.metadata && data.metadata.last_updated) {
+          document.getElementById('last-updated-text').textContent =
+            'Last synced: ' + data.metadata.last_updated.slice(0, 10);
+        }
+      } catch (e) {
+        allJobs = FALLBACK_DATA.jobs;
+      }
+      updateKPIs();
+      renderJobs();
+    }
+
+    init();
+  </script>
+</body>
+</html>
