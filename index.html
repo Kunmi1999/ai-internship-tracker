@@ -624,7 +624,10 @@
           </div>
 
           <div style="display:flex; flex-direction:column; gap:0.5rem;">
-            <button class="btn btn-primary" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+            <button class="btn btn-primary" style="justify-content:center; padding:0.65rem;" onclick="downloadCVAsDocx()">
+              📝 Download as Word (.docx)
+            </button>
+            <button class="btn btn-ghost" style="justify-content:center; padding:0.6rem;" onclick="window.print()">
               🖨️ Save / Print as 1-Page PDF
             </button>
             <button class="btn" style="justify-content:center;" onclick="copyCleanCVText()">
@@ -1424,6 +1427,201 @@
       const sheet = document.getElementById('cv-paper-sheet');
       navigator.clipboard.writeText(sheet.innerText);
       alert('Copied your tailored 1-page CV text to the clipboard!');
+    }
+
+    function xmlEscape(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+    }
+
+    // Pure-JS CRC32 & Uncompressed ZIP builder for native OpenXML .docx generation
+    function crc32Bytes(bytes) {
+      let c = 0xffffffff;
+      for (let i = 0; i < bytes.length; i++) {
+        c ^= bytes[i];
+        for (let k = 0; k < 8; k++) {
+          c = (c >>> 1) ^ (c & 1 ? 0xedb88320 : 0);
+        }
+      }
+      return (c ^ 0xffffffff) >>> 0;
+    }
+
+    function buildZipBlob(files) {
+      const enc = new TextEncoder();
+      const localParts = [];
+      const centralParts = [];
+      let offset = 0;
+
+      files.forEach(f => {
+        const nameBytes = enc.encode(f.name);
+        const dataBytes = enc.encode(f.content);
+        const crc = crc32Bytes(dataBytes);
+        const len = dataBytes.length;
+
+        const localHeader = new Uint8Array(30 + nameBytes.length);
+        const lv = new DataView(localHeader.buffer);
+        lv.setUint32(0, 0x04034b50, true);
+        lv.setUint16(4, 20, true);
+        lv.setUint16(6, 0, true);
+        lv.setUint16(8, 0, true);
+        lv.setUint16(10, 0, true);
+        lv.setUint16(12, 0x21, true);
+        lv.setUint32(14, crc, true);
+        lv.setUint32(18, len, true);
+        lv.setUint32(22, len, true);
+        lv.setUint16(26, nameBytes.length, true);
+        lv.setUint16(28, 0, true);
+        localHeader.set(nameBytes, 30);
+
+        const centralHeader = new Uint8Array(46 + nameBytes.length);
+        const cv = new DataView(centralHeader.buffer);
+        cv.setUint32(0, 0x02014b50, true);
+        cv.setUint16(4, 20, true);
+        cv.setUint16(6, 20, true);
+        cv.setUint16(8, 0, true);
+        cv.setUint16(10, 0, true);
+        cv.setUint16(12, 0, true);
+        cv.setUint16(14, 0x21, true);
+        cv.setUint32(16, crc, true);
+        cv.setUint32(20, len, true);
+        cv.setUint32(24, len, true);
+        cv.setUint16(28, nameBytes.length, true);
+        cv.setUint16(30, 0, true);
+        cv.setUint16(32, 0, true);
+        cv.setUint16(34, 0, true);
+        cv.setUint16(36, 0, true);
+        cv.setUint32(38, 0, true);
+        cv.setUint32(42, offset, true);
+        centralHeader.set(nameBytes, 46);
+
+        localParts.push(localHeader, dataBytes);
+        centralParts.push(centralHeader);
+        offset += localHeader.length + dataBytes.length;
+      });
+
+      const centralSize = centralParts.reduce((s, p) => s + p.length, 0);
+      const eocd = new Uint8Array(22);
+      const ev = new DataView(eocd.buffer);
+      ev.setUint32(0, 0x06054b50, true);
+      ev.setUint16(4, 0, true);
+      ev.setUint16(6, 0, true);
+      ev.setUint16(8, files.length, true);
+      ev.setUint16(10, files.length, true);
+      ev.setUint32(12, centralSize, true);
+      ev.setUint32(16, offset, true);
+      ev.setUint16(20, 0, true);
+
+      return new Blob([...localParts, ...centralParts, eocd], {
+        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      });
+    }
+
+    function downloadCVAsDocx() {
+      const sheet = document.getElementById('cv-paper-sheet');
+      const sel = document.getElementById('cv-role-select');
+      const job = allJobs.find(j => j.id === (sel ? sel.value : '')) || allJobs[0];
+
+      const paragraphs = [];
+
+      function addPara(text, opts = {}) {
+        const align = opts.align ? `<w:jc w:val="${opts.align}"/>` : '';
+        const border = opts.bottomBorder
+          ? `<w:pBdr><w:bottom w:val="single" w:sz="8" w:space="2" w:color="111827"/></w:pBdr>`
+          : '';
+        const indent = opts.bullet
+          ? `<w:ind w:left="320" w:hanging="180"/>`
+          : '';
+        const spacing = `<w:spacing w:before="${opts.before || 40}" w:after="${opts.after || 40}" w:line="250" w:lineRule="auto"/>`;
+        const size = opts.size || 20; // half-points (20 = 10pt)
+        const bold = opts.bold ? '<w:b/>' : '';
+        const color = opts.color ? `<w:color w:val="${opts.color}"/>` : '';
+
+        const prefix = opts.bullet ? '• ' : '';
+        paragraphs.push(`
+          <w:p>
+            <w:pPr>${align}${border}${indent}${spacing}</w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Georgia" w:hAnsi="Georgia" w:cs="Georgia"/>
+                ${bold}${color}
+                <w:sz w:val="${size}"/><w:szCs w:val="${size}"/>
+              </w:rPr>
+              <w:t xml:space="preserve">${xmlEscape(prefix + text)}</w:t>
+            </w:r>
+          </w:p>
+        `);
+      }
+
+      // Parse live DOM inside #cv-paper-sheet so any edits the user typed on the sheet are included
+      Array.from(sheet.children).forEach(el => {
+        const tag = el.tagName;
+        const txt = el.innerText.replace(/\s+/g, ' ').trim();
+        if (!txt) return;
+
+        if (tag === 'H1') {
+          addPara(txt, { align: 'center', bold: true, size: 28, before: 0, after: 40 });
+        } else if (el.classList.contains('cv-contact')) {
+          addPara(txt, { align: 'center', size: 18, before: 0, after: 30, color: '374151' });
+        } else if (el.classList.contains('cv-visa-line')) {
+          addPara(txt, { align: 'center', bold: true, size: 18, before: 0, after: 100, color: '1D4ED8' });
+        } else if (el.classList.contains('cv-sec-title')) {
+          addPara(txt, { bold: true, size: 20, bottomBorder: true, before: 140, after: 60 });
+        } else if (el.classList.contains('cv-row-head')) {
+          const spans = el.querySelectorAll('span');
+          const line = spans.length === 2
+            ? `${spans[0].innerText.trim()}    —    ${spans[1].innerText.trim()}`
+            : txt;
+          addPara(line, { bold: true, size: 20, before: 80, after: 30 });
+        } else if (tag === 'UL') {
+          Array.from(el.querySelectorAll('li')).forEach(li => {
+            addPara(li.innerText.replace(/\s+/g, ' ').trim(), { bullet: true, size: 19, before: 20, after: 30 });
+          });
+        } else {
+          addPara(txt, { size: 19, before: 30, after: 40 });
+        }
+      });
+
+      const contentTypesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`;
+
+      const relsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`;
+
+      const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    ${paragraphs.join('\n')}
+    <w:sectPr>
+      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720" w:header="360" w:footer="360" w:gutter="0"/>
+    </w:sectPr>
+  </w:body>
+</w:document>`;
+
+      const blob = buildZipBlob([
+        { name: '[Content_Types].xml', content: contentTypesXml },
+        { name: '_rels/.rels', content: relsXml },
+        { name: 'word/document.xml', content: documentXml }
+      ]);
+
+      const safeCompany = job ? job.company.replace(/[^a-zA-Z0-9]+/g, '_') : 'Tailored';
+      const safeCat = job ? job.category.replace(/[^a-zA-Z0-9]+/g, '_') : 'AI_Intern';
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Bukunmi_Ogunkoya_CV_${safeCompany}_${safeCat}.docx`;
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
     document.getElementById('search-input').addEventListener('input', renderTable);
