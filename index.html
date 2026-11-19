@@ -1347,16 +1347,11 @@
       const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI TEMITOPE OGUNKOYA';
       const savedContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
 
-      // Company & JD-specific focus phrase
-      const jdContextNote = job.highlights
-        ? job.highlights.replace(/^Direct [^.]+\.\s*/i, '').replace(/^Pre-filtered [^.]+\.\s*/i, '')
-        : '';
-
       const profileText = isPM
-        ? `<strong>AI Product Manager</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience shipping AI-powered digital banking products, agentic workflows, and enterprise platforms. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, driving <span class="hl-change">weighted backlog prioritization</span>, and leading cross-functional engineering and data science teams across 30+ product releases—cutting operational turnaround time by 45%. Combines <span class="hl-change">Python, SQL, and Pendo product analytics</span> with deep expertise in LLM/OCR system design to deliver measurable product impact for <strong>${job.company}</strong> (${job.title}).`
+        ? `<strong>AI Product Manager</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience shipping AI-powered digital banking products, agentic workflows, and enterprise platforms. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, driving <span class="hl-change">weighted backlog prioritization</span>, and leading cross-functional engineering and data science teams across 30+ product releases—cutting operational turnaround time by 45%. Combines <span class="hl-change">Python, SQL, and Pendo product analytics</span> with deep expertise in LLM/OCR system design to deliver measurable product and operational impact.`
         : isPO
-        ? `<strong>Technical AI Product Owner</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of Agile product ownership and automation delivery in financial services. Adept at translating complex AI/ML, OCR, and API architectures into clear <span class="hl-change">Product Requirements Documents (PRDs), user stories, acceptance criteria, and prioritized Jira backlogs</span>. Led end-to-end delivery of 30+ enterprise workflows from discovery and sprint planning through UAT and release—reducing operational turnaround by 45%. Tailored for <strong>${job.company}</strong> (${job.title}).`
-        : `<strong>AI Business Analyst</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience in process intelligence, enterprise workflow re-engineering, and AI-driven business transformation. Proven ability to pair <span class="hl-change">PRDs, backlog prioritization, and ROI cost-benefit modeling</span> with <span class="hl-change">SQL, Python, UiPath RPA, and Agentic AI</span> to eliminate operational bottlenecks—cutting turnaround times by 45% across 30+ enterprise banking workflows. Tailored for <strong>${job.company}</strong> (${job.title}).`;
+        ? `<strong>Technical AI Product Owner</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of Agile product ownership and automation delivery in financial services. Adept at translating complex AI/ML, OCR, and API architectures into clear <span class="hl-change">Product Requirements Documents (PRDs), user stories, acceptance criteria, and prioritized Jira backlogs</span>. Led end-to-end delivery of 30+ enterprise workflows from discovery and sprint planning through UAT and release—reducing operational turnaround by 45%.`
+        : `<strong>AI Business Analyst</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience in process intelligence, enterprise workflow re-engineering, and AI-driven business transformation. Proven ability to pair <span class="hl-change">PRDs, backlog prioritization, and ROI cost-benefit modeling</span> with <span class="hl-change">SQL, Python, UiPath RPA, and Agentic AI</span> to eliminate operational bottlenecks—cutting turnaround times by 45% across 30+ enterprise banking workflows.`;
 
       const sterlingBullets = isPM
         ? `
@@ -1380,7 +1375,7 @@
         `;
 
       const extraSignalStr = jdSignals.length
-        ? ` • <em>Role-Matched Focus:</em> <span class="hl-change">${jdSignals.join(', ')}</span>`
+        ? `, <span class="hl-change">${jdSignals.join(', ')}</span>`
         : '';
 
       const sheet = document.getElementById('cv-paper-sheet');
@@ -1448,7 +1443,7 @@
           <span>2026</span>
         </div>
         <ul class="cv-bullets">
-          <li>Designed and benchmarked a multi-step Agentic AI, OCR, and <span class="hl-change">Python/SQL</span> validation pipeline for real-time KYC document verification, evaluating model precision, latency trade-offs, and automated exception-routing rules${jdContextNote ? ' (' + jdContextNote + ')' : ''}.</li>
+          <li>Designed and benchmarked a multi-step Agentic AI, OCR, and <span class="hl-change">Python/SQL</span> validation pipeline for real-time KYC document verification, evaluating model precision, latency trade-offs, and automated exception-routing rules.</li>
         </ul>
 
         <div class="cv-sec-title">SKILLS, TOOLS &amp; CERTIFICATIONS</div>
