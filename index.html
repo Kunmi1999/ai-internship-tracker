@@ -628,7 +628,7 @@
               <li><strong>Sterling Bank PRDs &amp; Backlog Prioritization:</strong> Explicitly highlights your PRD authoring, Agile backlog prioritization, and project management across 30+ workflows.</li>
               <li><strong>Fixed Typo:</strong> Fixed <em>"account pening"</em> → <em>"Account Opening"</em> in Sterling Bank bullet #1.</li>
               <li><strong>Cost Savings Preserved:</strong> Restored your exact <code>~₦1M quarterly</code> and <code>~₦600,000 monthly</code> cost savings alongside your 45% turnaround reduction.</li>
-              <li><strong>Removed Duplicate Project:</strong> Merged duplicate 2025 KYC project and added your CMU-Africa AI/Python evaluation pipeline.</li>
+              <li><strong>Portfolio Projects &amp; Links:</strong> Merged your Agentic AI validation details into Sterling Bank, added your <em>Automated Loan Eligibility System</em> project, and auto-linked <code>LinkedIn</code> &amp; <code>Portfolio</code>.</li>
             </ul>
           </div>
 
@@ -1345,7 +1345,10 @@
       const isPO = job.category === 'AI Product Owner';
 
       const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI TEMITOPE OGUNKOYA';
-      const savedContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
+      const rawContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
+      const savedContact = rawContact
+        .replace(/\bLinkedIn\b/gi, '<a href="https://www.linkedin.com/in/bukunmiogunkoya" target="_blank" rel="noopener noreferrer" style="color:#1d4ed8; text-decoration:underline;">LinkedIn</a>')
+        .replace(/\bPortfolio\b/gi, '<a href="https://bukunmi.pages.dev" target="_blank" rel="noopener noreferrer" style="color:#1d4ed8; text-decoration:underline;">Portfolio</a>');
 
       const profileText = isPM
         ? `<strong>AI Product Manager</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience shipping AI-powered digital banking products, agentic workflows, and enterprise platforms. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, driving <span class="hl-change">weighted backlog prioritization</span>, and leading cross-functional engineering and data science teams across 30+ product releases—cutting operational turnaround time by 45%. Combines <span class="hl-change">Python, SQL, and Pendo product analytics</span> with deep expertise in LLM/OCR system design to deliver measurable product and operational impact.`
@@ -1355,22 +1358,22 @@
 
       const sterlingBullets = isPM
         ? `
-          <li><strong>AI Product Strategy &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">Product Requirements Documents (PRDs)</span> and workflow logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + API cross-validation), accelerating customer onboarding.</li>
+          <li><strong>AI Product Strategy &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">Product Requirements Documents (PRDs)</span> and workflow logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + Python/SQL API validation), benchmarking precision/latency trade-offs and accelerating customer onboarding.</li>
           <li><strong>Backlog Prioritization &amp; Cross-Functional PM Leadership:</strong> Owned <span class="hl-change">product backlog prioritization, roadmap sequencing, and end-to-end project management</span> for 30+ enterprise automation workflows, leading engineering, QA, and operations teams from discovery through UAT, pilot, and production launch.</li>
-          <li><strong>AI Platform Re-Engineering:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by spearheading end-to-end product re-engineering of an AI-enabled Customer Address Verification (CAV) portal, reducing manual intervention and verification delays.</li>
+          <li><strong>AI Platform Re-Engineering:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by spearheading end-to-end product re-engineering of an AI-enabled Customer Address Verification (CAV) portal with confidence-threshold routing and automated exception-handling rules, reducing manual intervention and verification delays.</li>
           <li><strong>45% Turnaround Reduction:</strong> Reduced operational turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM platforms by translating complex business and regulatory problems into prioritized PRDs, API specifications, and user stories.</li>
         `
         : isPO
         ? `
-          <li><strong>Technical Product Ownership &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> as Product Owner by authoring <span class="hl-change">PRDs, user stories, and acceptance criteria</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + real-time API validation).</li>
+          <li><strong>Technical Product Ownership &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> as Product Owner by authoring <span class="hl-change">PRDs, user stories, and acceptance criteria</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + Python/SQL API validation), benchmarking precision and latency for real-time KYC checks.</li>
           <li><strong>Agile Backlog Prioritization &amp; Release Delivery:</strong> Owned <span class="hl-change">Jira backlog grooming, weighted sprint prioritization, and end-to-end project management</span> across the migration of 30+ enterprise workflows, driving sprint ceremonies, UAT sign-off, pilot testing, and production releases.</li>
-          <li><strong>Workflow &amp; Exception Re-Engineering:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by re-engineering the AI-enabled Customer Address Verification (CAV) portal from backlog definition to launch, reducing manual intervention and verification delays.</li>
+          <li><strong>Workflow &amp; Exception Re-Engineering:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by re-engineering the AI-enabled Customer Address Verification (CAV) portal from backlog definition to launch, defining confidence-threshold and exception-routing rules that reduced manual intervention and verification delays.</li>
           <li><strong>45% Faster Delivery &amp; Turnaround:</strong> Cut end-to-end operational turnaround time by 45% across Token OTP, Loan Eligibility, and CRM systems by translating complex banking rules into developer-ready user stories and testable acceptance criteria.</li>
         `
         : `
-          <li><strong>AI Business Systems Analysis &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">PRDs, functional specifications, and workflow logic</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Verification Co-Pilot (Agentic AI + OCR + API cross-checks) for faster customer onboarding.</li>
+          <li><strong>AI Business Systems Analysis &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">PRDs, functional specifications, and workflow logic</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Verification Co-Pilot (Agentic AI + OCR + Python/SQL API validation), evaluating precision, latency, and automated exception-routing rules.</li>
           <li><strong>Backlog Prioritization &amp; Enterprise Project Governance:</strong> Led <span class="hl-change">backlog prioritization, business-impact scoring, and end-to-end project management</span> for the migration of 30+ enterprise workflows, coordinating cross-functional teams across requirements, process mapping (Visio), UAT, and production deployment.</li>
-          <li><strong>Process Intelligence &amp; Cost Elimination:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal, reducing manual intervention and verification delays.</li>
+          <li><strong>Process Intelligence &amp; Cost Elimination:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal with automated exception-handling rules, reducing manual intervention and verification delays.</li>
           <li><strong>45% Operational Efficiency Gain:</strong> Reduced operational turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM workflows by translating complex business processes into automation-ready system requirements and user stories.</li>
         `;
 
@@ -1439,11 +1442,11 @@
         </ul>
 
         <div class="cv-row-head">
-          <span>CMU-Africa Agentic AI &amp; Document Intelligence Evaluation Pipeline (M.S. Engineering AI)</span>
-          <span>2026</span>
+          <span>Automated Loan Eligibility &amp; Recommendation System (Decision Engine &amp; Business Analysis)</span>
+          <span>2025</span>
         </div>
         <ul class="cv-bullets">
-          <li>Designed and benchmarked a multi-step Agentic AI, OCR, and <span class="hl-change">Python/SQL</span> validation pipeline for real-time KYC document verification, evaluating model precision, latency trade-offs, and automated exception-routing rules.</li>
+          <li>Replaced a 3-day manual spreadsheet process with a real-time rules and decision engine for Portfolio Managers; gathered requirements across credit, operations, and business teams and translated loan policy into decision logic, BVN/watchlist checks, statement inflow/outflow analysis, and repayment breakdowns with a full audit trail through UAT and launch.</li>
         </ul>
 
         <div class="cv-sec-title">SKILLS, TOOLS &amp; CERTIFICATIONS</div>
@@ -1603,6 +1606,55 @@
         `);
       }
 
+      const externalLinks = [];
+
+      function addContactParaWithLinks(el) {
+        const runsXml = [];
+        el.childNodes.forEach(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const t = node.textContent;
+            if (t) {
+              runsXml.push(`
+                <w:r>
+                  <w:rPr>
+                    <w:rFonts w:ascii="Georgia" w:hAnsi="Georgia" w:cs="Georgia"/>
+                    <w:color w:val="374151"/>
+                    <w:sz w:val="18"/><w:szCs w:val="18"/>
+                  </w:rPr>
+                  <w:t xml:space="preserve">${xmlEscape(t)}</w:t>
+                </w:r>
+              `);
+            }
+          } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'A') {
+            const href = node.getAttribute('href') || '';
+            const label = node.innerText.trim();
+            if (href && label) {
+              const rId = `rIdExt${externalLinks.length + 1}`;
+              externalLinks.push({ rId, url: href });
+              runsXml.push(`
+                <w:hyperlink r:id="${rId}">
+                  <w:r>
+                    <w:rPr>
+                      <w:rFonts w:ascii="Georgia" w:hAnsi="Georgia" w:cs="Georgia"/>
+                      <w:color w:val="1D4ED8"/>
+                      <w:u w:val="single"/>
+                      <w:sz w:val="18"/><w:szCs w:val="18"/>
+                    </w:rPr>
+                    <w:t xml:space="preserve">${xmlEscape(label)}</w:t>
+                  </w:r>
+                </w:hyperlink>
+              `);
+            }
+          }
+        });
+        paragraphs.push(`
+          <w:p>
+            <w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="80" w:line="250" w:lineRule="auto"/></w:pPr>
+            ${runsXml.join('')}
+          </w:p>
+        `);
+      }
+
       // Parse live DOM inside #cv-paper-sheet so any edits the user typed on the sheet are included
       Array.from(sheet.children).forEach(el => {
         const tag = el.tagName;
@@ -1612,7 +1664,7 @@
         if (tag === 'H1') {
           addPara(txt, { align: 'center', bold: true, size: 28, before: 0, after: 40 });
         } else if (el.classList.contains('cv-contact')) {
-          addPara(txt, { align: 'center', size: 18, before: 0, after: 30, color: '374151' });
+          addContactParaWithLinks(el);
         } else if (el.classList.contains('cv-visa-line')) {
           addPara(txt, { align: 'center', bold: true, size: 18, before: 0, after: 100, color: '1D4ED8' });
         } else if (el.classList.contains('cv-sec-title')) {
@@ -1644,8 +1696,13 @@
   <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
 </Relationships>`;
 
+      const docRelsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  ${externalLinks.map(l => `<Relationship Id="${l.rId}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${xmlEscape(l.url)}" TargetMode="External"/>`).join('\n  ')}
+</Relationships>`;
+
       const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
   <w:body>
     ${paragraphs.join('\n')}
     <w:sectPr>
@@ -1658,15 +1715,14 @@
       const blob = buildZipBlob([
         { name: '[Content_Types].xml', content: contentTypesXml },
         { name: '_rels/.rels', content: relsXml },
+        { name: 'word/_rels/document.xml.rels', content: docRelsXml },
         { name: 'word/document.xml', content: documentXml }
       ]);
 
-      const safeCompany = job ? job.company.replace(/[^a-zA-Z0-9]+/g, '_') : 'Tailored';
-      const safeCat = job ? job.category.replace(/[^a-zA-Z0-9]+/g, '_') : 'AI_Intern';
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Bukunmi_Ogunkoya_CV_${safeCompany}_${safeCat}.docx`;
+      a.download = 'Bukunmi.docx';
       a.click();
       URL.revokeObjectURL(url);
     }
