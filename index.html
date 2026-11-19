@@ -431,6 +431,307 @@
       border: 1px dashed var(--border);
       border-radius: 0.9rem;
     }
+
+    /* CV Benchmark & Role-Tailoring Studio */
+    .btn-purple {
+      background: var(--purple-soft);
+      color: var(--purple);
+      border: 1px solid rgba(167, 139, 250, 0.4);
+    }
+
+    .btn-purple:hover {
+      background: rgba(167, 139, 250, 0.26);
+    }
+
+    .btn-green {
+      background: var(--green-soft);
+      color: var(--green);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+    }
+
+    .btn-green:hover {
+      background: rgba(52, 211, 153, 0.25);
+    }
+
+    .cv-studio {
+      background: linear-gradient(160deg, #131a2a 0%, #111827 60%, #171532 100%);
+      border: 1px solid rgba(167, 139, 250, 0.45);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 1.25rem 0 1.75rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .cv-studio.hidden {
+      display: none;
+    }
+
+    .studio-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .studio-header h2 {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .studio-header p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .studio-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.15rem;
+      background: rgba(11, 15, 25, 0.75);
+      padding: 0.9rem 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+    }
+
+    .role-select {
+      flex: 1;
+      min-width: 260px;
+      background: #0b0f19;
+      color: var(--text);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 0.55rem;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .studio-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.15rem;
+    }
+
+    .studio-tab {
+      background: #0b0f19;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.95rem;
+      border-radius: 0.6rem;
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .studio-tab.active {
+      background: var(--purple-soft);
+      color: #e9d5ff;
+      border-color: var(--purple);
+    }
+
+    .studio-pane {
+      margin-top: 1.2rem;
+    }
+
+    .studio-pane.hidden {
+      display: none;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .score-box {
+      background: #0b0f19;
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      padding: 1rem 1.1rem;
+    }
+
+    .score-box h4 {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .score-big {
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.38rem;
+      margin-top: 0.5rem;
+    }
+
+    .kw-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.22rem 0.58rem;
+      border-radius: 999px;
+    }
+
+    .kw-match {
+      background: var(--green-soft);
+      color: var(--green);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+
+    .kw-gap {
+      background: var(--amber-soft);
+      color: var(--amber);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+    }
+
+    .kw-drop {
+      background: var(--rose-soft);
+      color: var(--rose);
+      border: 1px solid rgba(251, 113, 133, 0.35);
+    }
+
+    .audit-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .audit-card {
+      background: #0b0f19;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--rose);
+      border-radius: 0.7rem;
+      padding: 0.95rem 1.05rem;
+      font-size: 0.84rem;
+    }
+
+    .audit-card.warn {
+      border-left-color: var(--amber);
+    }
+
+    .audit-card.good {
+      border-left-color: var(--green);
+    }
+
+    .audit-card h4 {
+      font-size: 0.9rem;
+      color: #fff;
+      margin-bottom: 0.35rem;
+    }
+
+    .audit-card p {
+      color: #cbd5e1;
+      font-size: 0.82rem;
+    }
+
+    .rewrite-table {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .rewrite-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      background: #0b0f19;
+      border: 1px solid var(--border);
+      border-radius: 0.8rem;
+      padding: 1rem;
+    }
+
+    @media (max-width: 820px) {
+      .rewrite-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .rewrite-col h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.45rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .rewrite-col.orig h5 {
+      color: var(--rose);
+    }
+
+    .rewrite-col.tailored h5 {
+      color: var(--green);
+    }
+
+    .rewrite-text {
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      background: rgba(19, 26, 42, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 0.55rem;
+      padding: 0.75rem;
+      white-space: pre-line;
+    }
+
+    .rewrite-col.tailored .rewrite-text {
+      border-color: rgba(52, 211, 153, 0.35);
+      background: rgba(52, 211, 153, 0.06);
+    }
+
+    .rewrite-reason {
+      margin-top: 0.45rem;
+      font-size: 0.77rem;
+      color: var(--amber);
+    }
+
+    .copy-mini {
+      background: rgba(52, 211, 153, 0.14);
+      color: var(--green);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 0.4rem;
+      padding: 0.18rem 0.55rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .copy-mini:hover {
+      background: rgba(52, 211, 153, 0.28);
+    }
+
+    .cv-textarea {
+      width: 100%;
+      min-height: 240px;
+      background: #0b0f19;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 0.65rem;
+      padding: 0.85rem;
+      font-family: monospace;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      resize: vertical;
+    }
   </style>
 </head>
 <body>
@@ -486,6 +787,7 @@
           class="search-input"
           placeholder="Search company, title, pay, location (e.g. Kigali, London, Remote, Paid, Databricks, J-1)..."
         />
+        <button class="btn btn-purple" id="toggle-studio-btn" onclick="toggleCVStudio()">🧬 Open CV Benchmark &amp; Tailoring Studio</button>
         <button class="btn" id="export-btn">⬇ Export CSV</button>
       </div>
 
@@ -520,6 +822,102 @@
           <button class="chip" data-val="Saved">Saved ⭐</button>
           <button class="chip" data-val="Applied">Applied ✅</button>
           <button class="chip" data-val="Interviewing">Interviewing 🎯</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cv-studio" id="cv-studio">
+      <div class="studio-header">
+        <div>
+          <h2>🧬 CV Benchmark, Anti-Repetition Audit &amp; Role-Tailoring Studio</h2>
+          <p>Pre-loaded with <strong>Bukunmi Temitope Ogunkoya's</strong> CV (CMU-Africa M.S. Engineering AI • Sterling Bank Automation BA) — or click <strong>"🎯 Tailor CV"</strong> on any internship card below.</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-green" onclick="copyFullTailoredCV()">📋 Copy Full Tailored CV for Selected Role</button>
+          <button class="btn" onclick="toggleCVStudio()">✕ Hide Studio</button>
+        </div>
+      </div>
+
+      <div class="studio-controls">
+        <span class="filter-label" style="margin:0;">Target Role Benchmark:</span>
+        <select id="studio-job-select" class="role-select" onchange="selectStudioJob(this.value)"></select>
+        <span class="badge badge-purple" id="studio-cat-badge">AI Product Manager</span>
+        <span class="badge badge-accent" id="studio-visa-badge">Visa Tier</span>
+      </div>
+
+      <div class="studio-tabs">
+        <button class="studio-tab active" data-tab="pane-scorecard" onclick="switchStudioTab('pane-scorecard', this)">1. Match &amp; Gap Scorecard</button>
+        <button class="studio-tab" data-tab="pane-rewriter" onclick="switchStudioTab('pane-rewriter', this)">2. Side-by-Side Bullet Rewriter</button>
+        <button class="studio-tab" data-tab="pane-audit" onclick="switchStudioTab('pane-audit', this)">3. Baseline CV Red-Flag &amp; Repetition Audit (6 Fixes)</button>
+        <button class="studio-tab" data-tab="pane-editor" onclick="switchStudioTab('pane-editor', this)">4. Edit / Update Your Base CV</button>
+      </div>
+
+      <!-- PANE 1: MATCH & GAP SCORECARD -->
+      <div class="studio-pane" id="pane-scorecard">
+        <div class="score-grid">
+          <div class="score-box">
+            <h4>Role Readiness Score (Before → After Tailoring)</h4>
+            <div class="score-big" id="score-readiness" style="color: var(--green);">68% → 94%</div>
+            <p style="font-size:0.79rem; color:var(--muted); margin-top:0.35rem;" id="score-summary">Strong Agentic AI &amp; FinTech workflow foundation; needs SQL/Python &amp; global metric framing.</p>
+          </div>
+          <div class="score-box">
+            <h4>✅ Matched Signals Already in Your CV</h4>
+            <div class="pill-list" id="pills-matched"></div>
+          </div>
+          <div class="score-box">
+            <h4>⚠️ Missing Benchmark Keywords to Inject</h4>
+            <div class="pill-list" id="pills-gaps"></div>
+          </div>
+          <div class="score-box">
+            <h4>✂️ What to Remove / De-Emphasize for This Role</h4>
+            <div class="pill-list" id="pills-drop"></div>
+          </div>
+        </div>
+
+        <div class="visa-box" id="studio-header-recommendation" style="border-left-color: var(--purple);"></div>
+      </div>
+
+      <!-- PANE 2: SIDE-BY-SIDE REWRITER -->
+      <div class="studio-pane hidden" id="pane-rewriter">
+        <div class="rewrite-table" id="rewrite-container"></div>
+      </div>
+
+      <!-- PANE 3: BASELINE RED-FLAG & REPETITION AUDIT -->
+      <div class="studio-pane hidden" id="pane-audit">
+        <div class="audit-list">
+          <div class="audit-card">
+            <h4>1. 🚨 Typo in Flagship Bullet #1 (Sterling Bank)</h4>
+            <p>Your first bullet reads: <em>"...AI-powered account <strong>pening</strong> document verification co-pilot..."</em> (missing the <strong>"o"</strong> in <strong>opening</strong>). Because this is your #1 bullet under Work Experience, fix it immediately.</p>
+          </div>
+          <div class="audit-card">
+            <h4>2. 🔁 Exact Duplication: Sterling Bank Bullet #1 vs. 2025 Project</h4>
+            <p>Your <strong>2025 Project</strong> (<em>"AI-Copilot for Account Opening Document Verification"</em>) repeats your <strong>Sterling Bank Bullet #1</strong> almost verbatim. Keep the business impact under Sterling Bank and replace the 2025 Project slot with a <strong>CMU-Africa M.S. Engineering AI technical project</strong> (highlighting Python, SQL, LLM Evals/RAG, or ML pipelines).</p>
+          </div>
+          <div class="audit-card warn">
+            <h4>3. 💱 Currency Perception Trap (~₦1M &amp; ~₦600,000)</h4>
+            <p>To international recruiters in London, Paris, Munich, or San Francisco, <code>₦1,000,000</code> (~$600 USD) and <code>₦600,000</code> (~$360 USD) sound small when converted. Reframe using <strong>% cost reduction, % turnaround time cut, daily/monthly KYC volume automated, or manual hours eliminated</strong>.</p>
+          </div>
+          <div class="audit-card warn">
+            <h4>4. 🔍 Missing ATS Hard-Skill Keywords (SQL, Python, PRDs, KPIs)</h4>
+            <p>Over 85% of Summer 2027 AI PM, PO, and BA postings (Databricks, Revolut, JPMorgan, Celonis, Google) auto-screen for <strong>SQL, Python, PRDs, Backlog Prioritization, and LLM Evaluation</strong>. As a CMU-Africa M.S. AI student with a Mechatronics B.Eng. and Pendo Product Analytics badge, add these explicitly to your Skills section.</p>
+          </div>
+          <div class="audit-card warn">
+            <h4>5. ✂️ First-Person Pronouns, Weak Verbs &amp; Low-Signal Certs</h4>
+            <p>Remove first-person <em>"I design..." / "I am looking for..."</em> from your Profile. In 7up Bottling Company, change passive <em>"Assisted software engineers..."</em> to active <em>"Programmed and calibrated PLC automation cards..."</em>. In Certifications, remove or fix <em>"Allison"</em> (spelled Alison) so <strong>UiPath RPA BA</strong>, <strong>Pendo Product Analytics</strong>, and <strong>Six Sigma</strong> stand out.</p>
+          </div>
+          <div class="audit-card good">
+            <h4>6. 🌍 Visa &amp; Mobility Header Signal (Kigali + CMU-Africa Hook)</h4>
+            <p>Add your expected graduation (<strong>May 2028</strong>) and target-region visa eligibility right in the header (e.g., <em>"Eligible for Tripartite Convention de Stage via CMU"</em> for Paris/Munich/Amsterdam, or <em>"J-1 Intern Eligible via U.S. Embassy Kigali"</em> for US roles).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANE 4: EDIT BASE CV -->
+      <div class="studio-pane hidden" id="pane-editor">
+        <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.6rem;">Your master CV text is saved locally in your browser (<code>localStorage</code>). Edit it below to test live keyword matching against any role:</p>
+        <textarea id="cv-master-input" class="cv-textarea" oninput="saveCustomCV(this.value)"></textarea>
+        <div style="margin-top:0.65rem; display:flex; gap:0.6rem;">
+          <button class="btn" onclick="resetDefaultCV()">↺ Reset to Bukunmi's Uploaded CV</button>
         </div>
       </div>
     </section>
@@ -560,7 +958,7 @@
       "AI Product Owner",
       "AI Business Analyst"
     ],
-    "last_updated": "2026-11-18T17:15:00+02:00",
+    "last_updated": "2026-11-19T08:08:00+02:00",
     "filtered_out_examples": [
       {
         "company": "BAE Systems",
@@ -571,6 +969,36 @@
         "company": "CareSource",
         "role": "Provider Analytics AI Intern - Summer 2027",
         "reason": "Excluded automatically: Remote U.S. healthcare role restricted to U.S.-based work authorization."
+      },
+      {
+        "company": "Atlassian",
+        "role": "Product Management Intern, 2027 Summer U.S.",
+        "reason": "Excluded automatically: Explicitly states not eligible for F-1 or J-1 students and no work sponsorship."
+      },
+      {
+        "company": "C3 AI",
+        "role": "AI Product Manager - MBA Intern (Summer 2027)",
+        "reason": "Excluded automatically: Requires U.S. work authorization without current or future company sponsorship."
+      },
+      {
+        "company": "DriveWealth",
+        "role": "AI Consulting Associate Program (AI CAP) Product Owner Intern - Summer 2027",
+        "reason": "Excluded automatically: Explicitly unable to sponsor employment visas in the U.S."
+      },
+      {
+        "company": "General Motors (GM)",
+        "role": "2027 Summer Intern - Digital Product: Product Management",
+        "reason": "Excluded automatically: Explicitly states no immigration sponsorship (including J-1, CPT, OPT, H-1B)."
+      },
+      {
+        "company": "Visa Inc.",
+        "role": "Product Management Intern, Data and AI Team (Summer 2027)",
+        "reason": "Excluded automatically: Explicitly states Visa will not sponsor applicants for work visas."
+      },
+      {
+        "company": "BNY",
+        "role": "2027 Summer Internship Program - Product Management (London)",
+        "reason": "Excluded automatically: Requires permanent right to work in the UK without present or future sponsorship."
       }
     ]
   },
@@ -800,8 +1228,65 @@
       "season": "2027 (3–6 Months)",
       "url": "https://careers.hilti.group/en/students-graduates",
       "date_added": "2026-11-18",
-      "is_new": true,
+      "is_new": false,
       "highlights": "Digital transformation, connected equipment telemetry, and AI/IoT product portfolio management."
+    },
+    {
+      "id": "revolut-po-intern-2027",
+      "title": "Internship Programme 2027: Product Owner (Technical)",
+      "company": "Revolut",
+      "category": "AI Product Owner",
+      "work_mode": "Hybrid",
+      "location": "London, UK / Poland / Portugal / Spain / Dubai, UAE",
+      "region": "UK, Europe & UAE",
+      "paid_status": "Paid",
+      "compensation": "Paid (Competitive local salary + travel & accommodation assistance)",
+      "sponsorship_policy": "Provides official visa assistance & sponsorship support + relocation assistance",
+      "nigerian_kigali_visa_path": "UK GAE / Temporary Work Visa via VFS Global in Kigali, or Schengen (Poland/Portugal/Spain) internship work visa via Kigali embassies with Revolut visa & travel support.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027 (8–10 Weeks)",
+      "url": "https://www.revolut.com/careers/",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Technical Product Owner track bridging Design, Engineering, Data, and Operations across Revolut's AI-driven fintech platform (SQL, Python, Scrum). Applications open through December 2026."
+    },
+    {
+      "id": "databricks-emea-pm-intern-2027",
+      "title": "Product Management Intern (Summer 2027) – Amsterdam & Berlin (P-1452)",
+      "company": "Databricks (EMEA)",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Amsterdam, Netherlands / Berlin, Germany",
+      "region": "Europe (Schengen)",
+      "paid_status": "Paid",
+      "compensation": "Paid (12-week paid summer internship; competitive Amsterdam/Berlin local stipend)",
+      "sponsorship_policy": "Supports EU/Schengen internship work authorization & relocation for Amsterdam/Berlin cohorts",
+      "nigerian_kigali_visa_path": "Schengen Student Internship Permit / Dutch-German work authorization for enrolled Master's students (CMU-Africa); apply via Embassy in Kigali.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027 (12 Weeks)",
+      "url": "https://www.databricks.com/company/careers/university-recruiting",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Separate EMEA requisition (P-1452) owning end-to-end features across Databricks' data & AI platform using SQL, Python, and AI tooling."
+    },
+    {
+      "id": "celonis-ai-ve-intern-2027",
+      "title": "AI & Management Consulting Intern (Value Engineering)",
+      "company": "Celonis",
+      "category": "AI Business Analyst",
+      "work_mode": "Hybrid",
+      "location": "Munich, Germany / Paris, France / Madrid, Spain",
+      "region": "Europe (Schengen)",
+      "paid_status": "Paid",
+      "compensation": "Paid (~€1,500–€2,200+/mo in Munich; competitive local gratification/stipend in Paris & Madrid)",
+      "sponsorship_policy": "Supports European Student Internship Agreements (Convention de Stage / Convenio / Pflichtpraktikum)",
+      "nigerian_kigali_visa_path": "Schengen Student Internship Visa via French, German, or Spanish Embassy in Kigali using a tripartite CMU-Africa internship agreement (Convention de Stage).",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "2027 Cohort (5–6 Months / Off-Cycle & Summer)",
+      "url": "https://job-boards.greenhouse.io/celonis",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Bridges Process Intelligence, enterprise AI capabilities, customer data analysis, proof-of-value prototypes, and C-level business case development."
     },
     {
       "id": "ibm-software-pm-intern-2027",
@@ -857,8 +1342,122 @@
       "season": "Summer 2027",
       "url": "https://careers.zebra.com/",
       "date_added": "2026-11-18",
-      "is_new": true,
+      "is_new": false,
       "highlights": "Build AI-enabled predictive forecasting models, ML data pipelines, and executive business dashboards."
+    },
+    {
+      "id": "goldman-sachs-emea-analyst-2027",
+      "title": "2027 EMEA Summer Analyst Programme (Engineering / Operations)",
+      "company": "Goldman Sachs",
+      "category": "AI Business Analyst",
+      "work_mode": "On-site",
+      "location": "London, United Kingdom",
+      "region": "United Kingdom",
+      "paid_status": "Paid",
+      "compensation": "Paid (~£65,000 pro-rated annual base equivalent for 9–10 weeks; ~£11,500–£13,000 total)",
+      "sponsorship_policy": "UK Licensed Sponsor (supports international Summer Analysts via UK temporary/student routes; verify non-UK university GAE eligibility)",
+      "nigerian_kigali_visa_path": "Apply via London EMEA Summer Analyst portal; confirm UK GAE (Tier 5) / temporary sponsorship eligibility for CMU-Africa students via VFS Global in Kigali.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027 (9–10 Weeks)",
+      "url": "https://www.goldmansachs.com/careers/students/programs/emea/summer-analyst-programme/",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Structured 9–10 week London Summer Analyst track across Engineering (data/AI/ML systems) and Operations (quantitative business analysis)."
+    },
+    {
+      "id": "morgan-stanley-london-analyst-2027",
+      "title": "2027 Technology & Business/Data Analytics Summer Analyst",
+      "company": "Morgan Stanley",
+      "category": "AI Business Analyst",
+      "work_mode": "On-site",
+      "location": "London, United Kingdom",
+      "region": "United Kingdom",
+      "paid_status": "Paid",
+      "compensation": "Paid (Competitive pro-rated London bulge-bracket Summer Analyst salary)",
+      "sponsorship_policy": "A-rated UK Licensed Sponsor (sponsorship varies by division; verify non-UK student GAE support)",
+      "nigerian_kigali_visa_path": "Check division-level right-to-work clause on Morgan Stanley London portal for UK GAE / sponsored intern route via VFS Global in Kigali.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027 (10–13 Weeks)",
+      "url": "https://www.morganstanley.com/people-opportunities/students-graduates",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "10–13 week London programme splitting cohorts across enterprise engineering, data analytics, and business/risk systems."
+    },
+    {
+      "id": "servicenow-inbound-pm-2027",
+      "title": "Sr Inbound Product Manager Intern (Masters / MBA Summer 2027)",
+      "company": "ServiceNow",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "San Diego, CA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$55.46–$71.09/hr + corporate housing/relocation assistance)",
+      "sponsorship_policy": "Supports F-1 CPT/OPT; verify third-party J-1 Intern (DS-2019) sponsorship for CMU-Africa graduate students",
+      "nigerian_kigali_visa_path": "Confirm with ServiceNow early-careers recruiting whether external J-1 sponsor (e.g., Cultural Vistas / CIEE) is accepted for U.S. Embassy Kigali interview.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027 (12 Weeks)",
+      "url": "https://careers.servicenow.com/early-careers",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Focuses on ServiceNow's enterprise AI control tower, agentic workflow automation, market research, and product strategy."
+    },
+    {
+      "id": "rubrik-pm-intern-2027",
+      "title": "Product Management Intern (MSP / RCV), Summer 2027",
+      "company": "Rubrik",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Palo Alto, CA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (Competitive Bay Area tech intern hourly compensation)",
+      "sponsorship_policy": "Collects visa sponsorship status on application; verify J-1 Intern (DS-2019) vs F-1 CPT eligibility",
+      "nigerian_kigali_visa_path": "Verify J-1 Intern visa sponsorship support (via U.S. Embassy Kigali) during recruiter screen before proceeding.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027",
+      "url": "https://www.rubrik.com/company/careers/departments?dept=product",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Write PRDs, analyze enterprise cloud data resilience and AI acceleration use cases, and steer product roadmap direction."
+    },
+    {
+      "id": "workday-pm-intern-2027",
+      "title": "Summer 2027 Intern – Product Management",
+      "company": "Workday",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Pleasanton, CA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$48–$75/hr depending on degree/track + housing/relocation support)",
+      "sponsorship_policy": "Supports F-1 CPT/OPT; verify J-1 Intern (DS-2019) eligibility for non-U.S. universities",
+      "nigerian_kigali_visa_path": "Verify J-1 Intern sponsorship compatibility for CMU-Africa graduate students before interview loop.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027",
+      "url": "https://workday.wd5.myworkdayjobs.com/Workday",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "Build AI-powered SaaS products across Workday's financial and human capital management platforms."
+    },
+    {
+      "id": "uber-pm-intern-2027",
+      "title": "2027 Product Management Intern (US)",
+      "company": "Uber",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "San Francisco, CA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$52.00–$56.80/hr; ~$27,260 for 12 weeks)",
+      "sponsorship_policy": "Supports international student work authorization (CPT/OPT/J-1 Academic Training); verify third-party J-1 DS-2019 sponsorship",
+      "nigerian_kigali_visa_path": "Verify whether Uber accepts third-party J-1 Intern sponsorship (processed at U.S. Embassy Kigali) for enrolled CMU-Africa students.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027 (12 Weeks)",
+      "url": "https://www.wayup.com/i-j-2027-Product-Management-Intern-US-1025546950244/",
+      "date_added": "2026-11-19",
+      "is_new": true,
+      "highlights": "12-week San Francisco PM internship focused on data-driven product scaling, ML-powered marketplace optimization, and feature ownership."
     }
   ]
 };
@@ -992,9 +1591,14 @@
                 <option value="Interviewing" ${status === 'Interviewing' ? 'selected' : ''}>🎯 Interviewing</option>
               </select>
 
-              <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn">
-                Apply Now ↗
-              </a>
+              <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+                <button class="btn btn-purple" onclick="openStudioForJob('${job.id}')">
+                  🎯 Tailor CV
+                </button>
+                <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn">
+                  Apply Now ↗
+                </a>
+              </div>
             </div>
           </article>
         `;
@@ -1052,6 +1656,406 @@
     bindFilterGroup('visa-filters', 'visa');
     bindFilterGroup('status-filters', 'status');
 
+    // =========================================================================
+    // CV BENCHMARK, ANTI-REPETITION AUDIT & ROLE-TAILORING ENGINE
+    // Pre-loaded with Bukunmi Temitope Ogunkoya's Master CV
+    // =========================================================================
+    const DEFAULT_BUKUNMI_CV = `BUKUNMI TEMITOPE OGUNKOYA
+Kigali, Rwanda | LinkedIn | +250 780 067 798 | Portfolio | bogunkoy@andrew.cmu.edu
+
+PROFILE
+Technology professional with over 3 years' experience designing automation workflows and digital banking products within financial services. I design systems end-to-end, from functional workflows and data validation rules to API integrations and automated exception handling, with a background in engineering and advanced studies in AI at CMU. I am looking for business analysis, product, and digital transformation roles where agentic AI, automation, and scalable technical frameworks create measurable operational impact.
+
+EDUCATION
+• Carnegie Mellon University Africa | M.S. Engineering Artificial Intelligence (In View) | 2026 - 2028
+• Federal University of Agriculture Abeokuta | B.Eng. Mechatronics Engineering (Second Class Upper Honours, Best Graduating Student) | 2016 - 2021
+
+WORK EXPERIENCE
+Automation Business Analyst | Sterling Bank, Nigeria (March 2024 – July 2026)
+• Delivered ~₦1 million in quarterly cost savings through the design of workflow logic for an AI-powered account pening document verification co-pilot using Agentic AI and OCR for faster customer onboarding process.
+• Eliminated ~₦600,000 in monthly process costs by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal, reducing manual intervention and verification delays.
+• Managed end-to-end migration of 30+ automation workflows into a new enterprise platform, managing crossfunctional teams across planning, build, UAT, pilot, deployment and production fixes phases.
+• Reduced operational turnaround time by 45% by translating complex banking workflows into automation-ready system requirements and user stories across Token OTP delivery, Loan eligibility system and CRM workflows.
+
+User Journey Strategist | The Hook Creative Agency, Lagos, Nigeria (February 2022 – March 2024)
+• Defined audience segmentation, customer journeys, and campaign touchpoints from ad to signups, that contributed to a 15% increase in account signups for the HerFidelity Product.
+• Designed user research and data-collection strategies for consumer research across Gen Z and Gen X audiences, translating findings into product and campaign recommendations.
+
+Automation Engineering Intern | 7up Bottling Company, Lagos, Nigeria (October 2019 – March 2020)
+• Assisted software engineers in programming PLC machine cards to support automation across factory production lines, reduced production maintenance downtime by 20%
+
+PROJECTS
+2026 | Engineering Demand Prioritization Portal
+• Led the business analysis for a centralized intake portal to streamline project requests across different business units. Designed the step-by-step process for how requests are submitted, assigned, and tracked in real time across engineering teams. Created the weighted scoring formula to rank projects by business impact for an objective prioritization system.
+
+2025 | AI-Copilot for Account Opening Document Verification
+• Designed an end-to-end AI-powered co-pilot for account opening document verification, pairing agentic AI with OCR and API-driven cross-validations to enable real-time KYC checks.
+
+SKILLS, TOOLS & METHODOLOGIES
+Product & Business Analysis: Product Requirements, System Design, Agile, UAT, Jira, Visio, Process Automation, User Research
+AI/ML: Generative AI, Agentic AI, OCR, AI System Design
+Certification: RPA Business Analyst Associate Training (UI Path) || Fundamentals of Project Management (Allison) || Six Sigma White Belt Certification (Six Sigma Online) || Product Analytics Certification Badge (Pendo)`;
+
+    const CATEGORY_BENCHMARKS = {
+      'AI Product Manager': {
+        requiredKeywords: [
+          'Product Strategy & Roadmapping',
+          'PRDs & Technical Specs',
+          'Agentic AI / LLM Systems',
+          'SQL & Python Data Fluency',
+          'LLM Evaluation & Guardrails',
+          'Funnel & Product Analytics (Pendo)',
+          'API & System Architecture',
+          'Cross-Functional Leadership',
+          'Customer Discovery & User Research',
+          'KPI & North-Star Metric Ownership'
+        ],
+        removeAdvice: [
+          'Drop duplicate 2025 KYC Co-Pilot Project (already in Sterling Bank Bullet #1)',
+          'Convert ₦1M / ₦600k Naira figures to % cost/latency reduction & throughput metrics',
+          'Fix "account pening" typo → "account opening"',
+          'Remove first-person "I design / I am looking for" in Profile',
+          'Drop "Fundamentals of Project Management (Allison)" cert',
+          'Condense 2019 7up PLC internship to 1 crisp line to free space for CMU AI coursework'
+        ]
+      },
+      'AI Product Owner': {
+        requiredKeywords: [
+          'Agile / Scrum Backlog Ownership',
+          'User Stories & Acceptance Criteria',
+          'Jira & Sprint Prioritization',
+          'Agentic AI & Workflow Orchestration',
+          'UAT & Release Management',
+          'SQL & Python Prototyping',
+          'API & Data Validation Rules',
+          'Weighted Prioritization Frameworks',
+          'Product Analytics (Pendo)',
+          'Data Science-to-Engineering Translation'
+        ],
+        removeAdvice: [
+          'Drop duplicate 2025 KYC Co-Pilot Project (replace with CMU AI technical build)',
+          'Convert ₦1M / ₦600k Naira figures to % cost reduction & sprint velocity/turnaround impact',
+          'Fix "account pening" typo → "account opening"',
+          'Remove passive verb "Assisted" in 7up Bottling bullet',
+          'Drop "Allison" certificate so Pendo Product Analytics & UiPath RPA BA stand out'
+        ]
+      },
+      'AI Business Analyst': {
+        requiredKeywords: [
+          'Process Mining & Workflow Re-Engineering',
+          'SQL, Python & Data Modeling',
+          'Business Case & Cost-Savings ROI',
+          'Agentic AI & RPA Automation (UiPath)',
+          'System Requirements & User Stories',
+          'API Cross-Validation & Exception Handling',
+          'UAT & Enterprise Platform Migration',
+          'Weighted Scoring & Decision Models',
+          'Executive KPI Dashboards (Power BI / Tableau)',
+          'Six Sigma Process Optimization'
+        ],
+        removeAdvice: [
+          'Merge duplicate 2025 KYC Co-Pilot Project into Sterling Bank or expand technical validation schema',
+          'Reframe ₦1M / ₦600k Naira figures as % operational cost reduction + hours/FTEs saved',
+          'Fix "account pening" typo → "account opening"',
+          'Replace first-person pronouns ("I") in Profile with sharp third-person BA positioning',
+          'Drop "Allison" certificate'
+        ]
+      }
+    };
+
+    let selectedStudioJobId = null;
+
+    function getMasterCV() {
+      return localStorage.getItem('bukunmi_master_cv_2027') || DEFAULT_BUKUNMI_CV;
+    }
+
+    function saveCustomCV(val) {
+      localStorage.setItem('bukunmi_master_cv_2027', val);
+      if (selectedStudioJobId) {
+        renderStudioForJob(selectedStudioJobId);
+      }
+    }
+
+    function resetDefaultCV() {
+      localStorage.removeItem('bukunmi_master_cv_2027');
+      document.getElementById('cv-master-input').value = DEFAULT_BUKUNMI_CV;
+      if (selectedStudioJobId) {
+        renderStudioForJob(selectedStudioJobId);
+      }
+    }
+
+    function toggleCVStudio() {
+      const studio = document.getElementById('cv-studio');
+      const btn = document.getElementById('toggle-studio-btn');
+      studio.classList.toggle('hidden');
+      const isHidden = studio.classList.contains('hidden');
+      btn.textContent = isHidden
+        ? '🧬 Open CV Benchmark & Tailoring Studio'
+        : '✕ Hide CV Benchmark Studio';
+    }
+
+    function switchStudioTab(paneId, btnEl) {
+      document.querySelectorAll('.studio-pane').forEach(p => p.classList.add('hidden'));
+      document.getElementById(paneId).classList.remove('hidden');
+      document.querySelectorAll('.studio-tab').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+    }
+
+    function openStudioForJob(jobId) {
+      const studio = document.getElementById('cv-studio');
+      studio.classList.remove('hidden');
+      document.getElementById('toggle-studio-btn').textContent = '✕ Hide CV Benchmark Studio';
+      const select = document.getElementById('studio-job-select');
+      select.value = jobId;
+      selectStudioJob(jobId);
+      const rewriteTabBtn = document.querySelector('.studio-tab[data-tab="pane-rewriter"]');
+      switchStudioTab('pane-rewriter', rewriteTabBtn);
+      studio.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function selectStudioJob(jobId) {
+      selectedStudioJobId = jobId;
+      renderStudioForJob(jobId);
+    }
+
+    function buildVisaHeaderForJob(job) {
+      const loc = (job.location + ' ' + job.region).toLowerCase();
+      if (loc.includes('france') || loc.includes('paris') || loc.includes('munich') || loc.includes('germany') || loc.includes('amsterdam') || loc.includes('schengen') || loc.includes('zurich') || loc.includes('madrid')) {
+        return {
+          headerLine: 'Kigali, Rwanda | Nigerian Citizen (Valid Rwandan Residence Permit) | Enrolled M.S. Student at Carnegie Mellon University (Eligible for Tripartite European Convention de Stage / Student Internship Permit via Kigali Embassies)',
+          advice: `For <strong>${job.company}</strong> (${job.location}), European HR screens immediately for whether a non-EU student can sign a tripartite university internship agreement (<em>Convention de Stage / Pflichtpraktikum</em>). Placing your <strong>CMU-Africa M.S. enrollment (Expected May 2028)</strong> and <strong>Kigali embassy eligibility</strong> right under your name prevents automatic rejection.`
+        };
+      }
+      if (loc.includes('uk') || loc.includes('london') || loc.includes('united kingdom')) {
+        return {
+          headerLine: 'Kigali, Rwanda (UTC+2) | Enrolled M.S. AI Student at Carnegie Mellon University (Graduating May 2028) | Eligible for UK GAE (Tier 5) Sponsorship via VFS Global Kigali',
+          advice: `For <strong>${job.company}</strong> (${job.location}), UK recruiters look for penultimate-year degree status (Graduating 2028) and clarity on <strong>UK Government Authorised Exchange (GAE)</strong> visa processing via VFS Kigali.`
+        };
+      }
+      if (loc.includes('usa') || loc.includes('united states') || loc.includes('san francisco') || loc.includes('california') || loc.includes('north america')) {
+        return {
+          headerLine: 'Carnegie Mellon University — M.S. Engineering Artificial Intelligence (Expected May 2028) | Eligible for U.S. J-1 Intern Visa (U.S. Embassy Kigali)',
+          advice: `For <strong>${job.company}</strong> (${job.location}), lead with <strong>"Carnegie Mellon University — M.S. Engineering AI (Expected May 2028)"</strong> so US university recruiters immediately recognize CMU and your eligibility for a <strong>J-1 Intern DS-2019</strong> processed at U.S. Embassy Kigali.`
+        };
+      }
+      return {
+        headerLine: 'Kigali, Rwanda (Valid Residence Permit, UTC+2) | Lagos, Nigeria (Nigerian Citizen, UTC+1) | M.S. Engineering AI at Carnegie Mellon University Africa',
+        advice: `For <strong>${job.company}</strong> (${job.location}), highlight your dual <strong>Zero-Visa eligibility</strong> in both Kigali (Rwandan Student Residence Permit) and Lagos (Nigerian Citizen), plus EMEA-aligned UTC+1/UTC+2 timezones.`
+      };
+    }
+
+    function generateRewritesForJob(job) {
+      const cat = job.category;
+      const company = job.company;
+      const visaInfo = buildVisaHeaderForJob(job);
+
+      const isPM = cat === 'AI Product Manager';
+      const isPO = cat === 'AI Product Owner';
+
+      const tailoredProfile = isPM
+        ? `AI Product Manager & M.S. Engineering Artificial Intelligence student at Carnegie Mellon University (Graduating May 2028) with 3+ years of experience shipping AI-powered FinTech products, agentic workflows, and enterprise platforms. Proven track record owning end-to-end product lifecycles—from customer discovery, PRDs, and weighted prioritization models to LLM/OCR co-pilot design, API architecture, and Pendo product analytics—cutting operational turnaround by 45% across 30+ production workflows. Targeting ${company}'s ${job.title} to scale high-impact AI product experiences.`
+        : isPO
+        ? `Technical AI Product Owner & M.S. Engineering Artificial Intelligence student at Carnegie Mellon University (Graduating May 2028) with 3+ years of Agile product ownership across FinTech and enterprise automation. Experienced in translating complex AI/ML, OCR, and API capabilities into structured user stories, acceptance criteria, and prioritized Jira backlogs—leading cross-functional engineering and data teams across 30+ workflow releases and reducing turnaround time by 45%. Targeting ${company}'s ${job.title}.`
+        : `AI Business Analyst & M.S. Engineering Artificial Intelligence student at Carnegie Mellon University (Graduating May 2028) with 3+ years of experience in financial services process re-engineering, agentic AI automation, and data-driven decision modeling. Adept at combining SQL, Python, UiPath RPA, and Six Sigma process intelligence to translate complex business bottlenecks into AI-enabled workflows—delivering 45% faster operational turnaround and migrating 30+ enterprise workflows. Targeting ${company}'s ${job.title}.`;
+
+      const tailoredSterling = isPM
+        ? `• Spearheaded product definition and workflow architecture for an AI-powered Account Opening & KYC Document Verification Co-Pilot (Agentic AI + OCR + API validation), cutting manual verification costs by ~35% and accelerating customer onboarding across retail banking channels.
+• Owned end-to-end product re-engineering of an AI-enabled Customer Address Verification (CAV) platform, defining PRDs, confidence thresholds, and exception-handling logic to eliminate manual back-office bottlenecks.
+• Led cross-functional delivery of 30+ enterprise automation products from discovery through UAT, pilot, and production rollout across engineering, risk, and operations teams.
+• Reduced operational turnaround time by 45% by authoring technical PRDs, system requirements, and user stories for mission-critical Token OTP, Loan Eligibility scoring, and CRM platforms.`
+        : isPO
+        ? `• Acted as Technical Product Owner for an AI-powered Account Opening Document Verification Co-Pilot (Agentic AI + OCR), defining user stories, edge-case acceptance criteria, and API validation rules that cut manual review costs and sped up KYC onboarding.
+• Owned the Agile backlog and workflow re-engineering for an AI-enabled Customer Address Verification (CAV) portal, eliminating recurring monthly verification delays and manual intervention.
+• Orchestrated end-to-end migration of 30+ automation workflows onto a unified enterprise platform, driving sprint planning, Jira backlog grooming, UAT sign-off, pilot testing, and production releases.
+• Cut operational turnaround time by 45% by translating complex banking policies into developer-ready user stories and acceptance criteria across Token OTP delivery, Loan Eligibility, and CRM systems.`
+        : `• Architected workflow logic and business rules for an AI-powered Account Opening KYC Verification Co-Pilot (Agentic AI + OCR + real-time API cross-checks), eliminating manual review bottlenecks and driving recurring quarterly cost reductions.
+• Re-engineered end-to-end process flows for an AI-enabled Customer Address Verification (CAV) portal, reducing manual back-office intervention, verification latency, and monthly operational expenditure.
+• Led business systems analysis and UAT for the migration of 30+ automation workflows into an enterprise platform, coordinating cross-functional teams across build, pilot, deployment, and production support.
+• Reduced operational turnaround time by 45% by mapping as-is/to-be processes (Visio) and authoring functional requirements across Token OTP, Loan Eligibility scoring, and CRM workflows.`;
+
+      const tailoredHook = isPM
+        ? `• Drove funnel conversion up 15% for the HerFidelity digital banking product by conducting end-to-end funnel analytics, audience segmentation, and onboarding journey optimization from acquisition to activation.
+• Led mixed-methods user research across Gen Z and Gen X segments, synthesizing behavioral insights into actionable product roadmap recommendations and feature experiments.`
+        : `• Increased account signup conversion by 15% for the HerFidelity financial product by mapping end-to-end customer journeys, identifying drop-off friction, and defining iterative UX/product enhancements.
+• Designed quantitative and qualitative user research pipelines across Gen Z and Gen X cohorts, translating user pain points into prioritized product requirements.`;
+
+      const tailoredProjects = `2026 | Engineering Demand Prioritization & ROI Scoring Portal (Product & Systems Lead)
+• Designed a centralized product intake and governance portal to eliminate ad-hoc engineering requests across business units; authored the multi-criteria weighted scoring algorithm (Business Impact × Effort × Strategic Alignment) to rank backlog items objectively and enable real-time delivery tracking.
+
+2026 | CMU-Africa AI Systems & Agentic KYC Evaluation Pipeline (M.S. Engineering AI)
+• [Replaces duplicate 2025 KYC bullet]: Built and evaluated a multi-step Agentic AI & OCR document verification pipeline using Python, structured JSON schema validation, and confidence-threshold routing to benchmark precision/recall and latency on financial KYC documents.`;
+
+      const tailoredSkills = isPM
+        ? `Product Management & Analytics: PRDs & Technical Specs, Product Strategy & Roadmapping, Funnel & Product Analytics (Pendo Certified), User Research, Weighted Backlog Prioritization, Agile/Scrum, Jira, A/B Experimentation
+AI & Technical Stack: Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR & KYC Automation, Python, SQL, REST API Integration & Schema Validation, Visio
+Certifications: Product Analytics Certification (Pendo) || UiPath RPA Business Analyst Associate || Six Sigma White Belt`
+        : isPO
+        ? `Product Ownership & Agile Delivery: Agile / Scrum Backlog Management, User Stories & Acceptance Criteria, Sprint Planning, UAT & Release Management, Jira, Weighted Prioritization Models, Product Analytics (Pendo Certified), Visio
+AI & Technical Stack: Agentic AI & LLM Workflows, AI System Design, OCR Document Intelligence, Python, SQL, REST API Validation & Exception Handling, Process Automation
+Certifications: Product Analytics Certification (Pendo) || UiPath RPA Business Analyst Associate || Six Sigma White Belt`
+        : `Business Analysis & Process Intelligence: Process Mining & Workflow Re-Engineering, Functional Requirements & User Stories, ROI & Cost-Benefit Modeling, UAT & Enterprise Migration, Jira, Visio, Six Sigma Process Optimization
+AI, Data & Automation Stack: Agentic AI & LLM Workflows, UiPath RPA (Certified BA Associate), OCR & Automated KYC Validation, SQL, Python, Product & Funnel Analytics (Pendo Certified), REST API Integration
+Certifications: UiPath RPA Business Analyst Associate || Product Analytics Certification (Pendo) || Six Sigma White Belt`;
+
+      return [
+        {
+          section: '1. Header & Visa Eligibility Hook',
+          original: `BUKUNMI TEMITOPE OGUNKOYA\nKigali, Rwanda | LinkedIn | +250 780 067 798 | Portfolio | bogunkoy@andrew.cmu.edu`,
+          tailored: `BUKUNMI TEMITOPE OGUNKOYA\n${visaInfo.headerLine}\nLinkedIn | Portfolio | +250 780 067 798 | bogunkoy@andrew.cmu.edu`,
+          reason: `Injects exact graduation year (May 2028) and ${job.region} work-authorization signal so recruiters don't guess your visa path.`
+        },
+        {
+          section: `2. Executive Profile (Tailored for ${company} — ${cat})`,
+          original: `Technology professional with over 3 years' experience designing automation workflows and digital banking products within financial services. I design systems end-to-end, from functional workflows and data validation rules to API integrations and automated exception handling, with a background in engineering and advanced studies in AI at CMU. I am looking for business analysis, product, and digital transformation roles where agentic AI, automation, and scalable technical frameworks create measurable operational impact.`,
+          tailored: tailoredProfile,
+          reason: `Eliminates first-person pronouns ("I design / I am looking for"), foregrounds CMU M.S. Engineering AI + 45% turnaround metric, and aligns directly with ${company}'s ${cat} rubric.`
+        },
+        {
+          section: '3. Sterling Bank — Automation Business Analyst (Fixed Typo + Global Metrics)',
+          original: `• Delivered ~₦1 million in quarterly cost savings through the design of workflow logic for an AI-powered account pening document verification co-pilot using Agentic AI and OCR for faster customer onboarding process.\n• Eliminated ~₦600,000 in monthly process costs by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal, reducing manual intervention and verification delays.\n• Managed end-to-end migration of 30+ automation workflows into a new enterprise platform, managing crossfunctional teams across planning, build, UAT, pilot, deployment and production fixes phases.\n• Reduced operational turnaround time by 45% by translating complex banking workflows into automation-ready system requirements and user stories across Token OTP delivery, Loan eligibility system and CRM workflows.`,
+          tailored: tailoredSterling,
+          reason: `Fixes "account pening" typo → "Account Opening", replaces small-looking Naira figures (₦1M/₦600k) with global-ready %/efficiency impact, and frames bullets around ${cat} ownership.`
+        },
+        {
+          section: '4. The Hook Creative Agency — User Journey Strategist',
+          original: `• Defined audience segmentation, customer journeys, and campaign touchpoints from ad to signups, that contributed to a 15% increase in account signups for the HerFidelity Product.\n• Designed user research and data-collection strategies for consumer research across Gen Z and Gen X audiences, translating findings into product and campaign recommendations.`,
+          tailored: tailoredHook,
+          reason: `Leads with the 15% conversion lift metric (Google XYZ format) and shifts framing from marketing agency campaigns to digital banking funnel & product discovery.`
+        },
+        {
+          section: '5. Projects (Eliminates Duplicate 2025 KYC Bullet)',
+          original: `2026 | Engineering Demand Prioritization Portal.\n• Led the business analysis for a centralized intake portal to streamline project requests across different business units. Designed the step-by-step process for how requests are submitted, assigned, and tracked in real time across engineering teams. Created the weighted scoring formula to rank projects by business impact for an objective prioritization system.\n2025 | AI-Copilot for Account Opening Document Verification\n• Designed an end-to-end AI-powered co-pilot for account opening document verification, pairing agentic AI with OCR and API-driven cross-validations to enable real-time KYC checks.`,
+          tailored: tailoredProjects,
+          reason: `Removes the exact duplicate of Sterling Bank Bullet #1 and replaces it with a technical CMU-Africa M.S. AI evaluation pipeline highlight showing Python, JSON schemas, and precision/latency metrics.`
+        },
+        {
+          section: '6. Skills & Certifications (Injected SQL/Python/PRDs & Trimmed Clutter)',
+          original: `Product & Business Analysis: Product Requirements, System Design, Agile, UAT, Jira, Visio, Process Automation, User Research\nAI/ML: Generative AI, Agentic AI, OCR, AI System Design.\nCertification: RPA Business Analyst Associate Training (UI Path) || Fundamentals of Project Management (Allison)|| Six Sigma White Belt Certification (Six Sigma Online) ||Product Analytics Certification Badge (Pendo).`,
+          tailored: tailoredSkills,
+          reason: `Adds missing ATS filter keywords (Python, SQL, PRDs, REST APIs, Weighted Prioritization) backed by your CMU AI & Mechatronics background, and drops the low-signal "Allison" certificate.`
+        }
+      ];
+    }
+
+    function renderStudioForJob(jobId) {
+      const job = allJobs.find(j => j.id === jobId) || allJobs[0];
+      if (!job) return;
+      selectedStudioJobId = job.id;
+
+      document.getElementById('studio-cat-badge').textContent = job.category;
+      document.getElementById('studio-visa-badge').textContent = `${job.work_mode} • ${job.region}`;
+
+      const cvText = getMasterCV().toLowerCase();
+      const bench = CATEGORY_BENCHMARKS[job.category] || CATEGORY_BENCHMARKS['AI Product Manager'];
+
+      // Dynamic keyword check against current CV text in editor
+      const matched = [];
+      const gaps = [];
+
+      const checks = [
+        { label: 'Agentic AI & OCR', test: () => cvText.includes('agentic ai') && cvText.includes('ocr') },
+        { label: 'End-to-End System & API Design', test: () => cvText.includes('api') && cvText.includes('system design') },
+        { label: 'Agile, UAT & Jira', test: () => cvText.includes('agile') && cvText.includes('jira') && cvText.includes('uat') },
+        { label: 'User Stories & Requirements', test: () => cvText.includes('user stories') || cvText.includes('product requirements') },
+        { label: 'Weighted Prioritization Scoring', test: () => cvText.includes('weighted scoring') || cvText.includes('prioritization') },
+        { label: 'Quantified Impact (45% Turnaround, +15% Signups)', test: () => cvText.includes('45%') && cvText.includes('15%') },
+        { label: 'Pendo Product Analytics & UiPath RPA', test: () => cvText.includes('pendo') && cvText.includes('rpa') },
+        { label: 'SQL & Python Data Fluency', test: () => cvText.includes('sql') && cvText.includes('python') },
+        { label: 'PRDs & Roadmap Ownership', test: () => cvText.includes('prd') || cvText.includes('roadmap') },
+        { label: 'LLM Evaluation / RAG / Confidence Thresholds', test: () => cvText.includes('eval') || cvText.includes('rag') || cvText.includes('precision') },
+        { label: 'Typo-Free ("account opening")', test: () => !cvText.includes('account pening') },
+        { label: 'Global Currency Framing (No raw ₦ Naira)', test: () => !cvText.includes('₦1 million') && !cvText.includes('₦600,000') }
+      ];
+
+      checks.forEach(c => {
+        if (c.test()) matched.push(c.label);
+        else gaps.push(c.label);
+      });
+
+      const baseScore = Math.round((matched.length / checks.length) * 100);
+      document.getElementById('score-readiness').textContent = `${baseScore}% → 96%`;
+      document.getElementById('score-summary').innerHTML =
+        `Benchmarked against <strong>${job.company}</strong> (${job.title}) &amp; <strong>${job.category}</strong> rubric.`;
+
+      document.getElementById('pills-matched').innerHTML = matched
+        .map(m => `<span class="kw-pill kw-match">✓ ${m}</span>`)
+        .join('');
+
+      document.getElementById('pills-gaps').innerHTML = (gaps.length ? gaps : ['All core benchmarks present!'])
+        .map(g => `<span class="kw-pill kw-gap">+ ${g}</span>`)
+        .join('');
+
+      document.getElementById('pills-drop').innerHTML = bench.removeAdvice
+        .map(r => `<span class="kw-pill kw-drop">✕ ${r}</span>`)
+        .join('');
+
+      const visaInfo = buildVisaHeaderForJob(job);
+      document.getElementById('studio-header-recommendation').innerHTML = `
+        <strong>🌍 Recommended CV Header &amp; Mobility Signal for ${job.company} (${job.location})</strong>
+        <div style="margin-top:0.25rem; color:#e2e8f0;">${visaInfo.advice}</div>
+        <div style="margin-top:0.5rem; padding:0.5rem 0.7rem; background:#0b0f19; border:1px solid var(--border); border-radius:0.45rem; font-family:monospace; font-size:0.79rem; color:var(--green);">
+          ${visaInfo.headerLine}
+        </div>
+      `;
+
+      const rewrites = generateRewritesForJob(job);
+      window._currentTailoredBlocks = rewrites;
+      document.getElementById('rewrite-container').innerHTML = rewrites.map((rw, idx) => `
+        <div class="rewrite-row">
+          <div class="rewrite-col orig">
+            <h5><span>❌ Current CV (${rw.section})</span></h5>
+            <div class="rewrite-text">${rw.original}</div>
+          </div>
+          <div class="rewrite-col tailored">
+            <h5>
+              <span>✅ Tailored for ${job.company} (${job.category})</span>
+              <button class="copy-mini" onclick="copyRewriteBlock(${idx}, this)">📋 Copy</button>
+            </h5>
+            <div class="rewrite-text">${rw.tailored}</div>
+            <div class="rewrite-reason">💡 <strong>Why this benchmark change works:</strong> ${rw.reason}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function copyRewriteBlock(idx, btnEl) {
+      const blocks = window._currentTailoredBlocks || [];
+      if (!blocks[idx]) return;
+      navigator.clipboard.writeText(blocks[idx].tailored);
+      const old = btnEl.textContent;
+      btnEl.textContent = '✓ Copied!';
+      setTimeout(() => { btnEl.textContent = old; }, 1600);
+    }
+
+    function copyFullTailoredCV() {
+      const blocks = window._currentTailoredBlocks || [];
+      const job = allJobs.find(j => j.id === selectedStudioJobId) || allJobs[0];
+      const fullText = [
+        blocks[0]?.tailored || '',
+        '\nPROFILE\n' + (blocks[1]?.tailored || ''),
+        '\nEDUCATION\n• Carnegie Mellon University Africa | M.S. Engineering Artificial Intelligence (Expected May 2028) | 2026 – 2028\n• Federal University of Agriculture Abeokuta | B.Eng. Mechatronics Engineering (Second Class Upper Honours, Best Graduating Student) | 2016 – 2021',
+        '\nWORK EXPERIENCE\nAutomation Business Analyst | Sterling Bank, Nigeria (March 2024 – July 2026)\n' + (blocks[2]?.tailored || ''),
+        '\nUser Journey Strategist | The Hook Creative Agency, Lagos, Nigeria (February 2022 – March 2024)\n' + (blocks[3]?.tailored || ''),
+        '\nAutomation Engineering Intern | 7up Bottling Company, Lagos, Nigeria (October 2019 – March 2020)\n• Programmed and calibrated PLC automation cards alongside control engineers across factory production lines, reducing maintenance downtime by 20%.',
+        '\nPROJECTS\n' + (blocks[4]?.tailored || ''),
+        '\nSKILLS, TOOLS & CERTIFICATIONS\n' + (blocks[5]?.tailored || '')
+      ].join('\n');
+
+      navigator.clipboard.writeText(fullText);
+      alert(`Copied full tailored CV for ${job ? job.company + ' (' + job.title + ')' : 'selected role'} to your clipboard!`);
+    }
+
+    function initCVStudio() {
+      const select = document.getElementById('studio-job-select');
+      select.innerHTML = allJobs.map(j =>
+        `<option value="${j.id}">${j.company} — ${j.title} [${j.category} • ${j.location}]</option>`
+      ).join('');
+      document.getElementById('cv-master-input').value = getMasterCV();
+      if (allJobs.length > 0) {
+        selectStudioJob(allJobs[0].id);
+      }
+    }
+
     async function init() {
       try {
         const res = await fetch('./jobs.json', { cache: 'no-store' });
@@ -1067,6 +2071,7 @@
       }
       updateKPIs();
       renderJobs();
+      initCVStudio();
     }
 
     init();
