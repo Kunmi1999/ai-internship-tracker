@@ -8,6 +8,30 @@ README_PATH = BASE_DIR / "README.md"
 INDEX_PATH = BASE_DIR / "index.html"
 
 
+def short_pay(job):
+    c = job.get("compensation") or job.get("paid_status") or "Paid"
+    c = re.sub(r"^Paid\s*\(", "", c, flags=re.IGNORECASE)
+    return c.rstrip(")")
+
+
+def short_visa(job):
+    f = job.get("feasibility", "")
+    loc = (job.get("location", "") + " " + job.get("region", "")).lower()
+    if f.startswith("Zero"):
+        if job.get("work_mode") == "Remote":
+            return "🟢 **No Visa Needed** (Remote from Kigali/Nigeria)"
+        return "🟢 **Zero Visa** (Rwanda Permit / Nigerian Citizen)"
+    if any(k in loc for k in ["uk", "london", "united kingdom", "glasgow"]):
+        prefix = "🔵 **UK GAE Visa (Sponsored)**" if f.startswith("High") else "🟡 **Verify UK GAE**"
+        return f"{prefix} via VFS Kigali"
+    if any(k in loc for k in ["france", "paris", "germany", "berlin", "munich", "amsterdam", "zurich", "schengen"]):
+        return "🔵 **Schengen Student Permit** (CMU Agreement via Kigali Embassy)"
+    if any(k in loc for k in ["usa", "united states", "san francisco", "california", "palo alto", "santa clara", "pleasanton"]):
+        prefix = "🔵 **US J-1 Intern (Sponsored)**" if f.startswith("High") else "🟡 **Verify US J-1**"
+        return f"{prefix} via U.S. Embassy Kigali"
+    return "🔵 **Visa Sponsored** (Apply from Kigali)"
+
+
 def generate_readme():
     raw_json = JOBS_PATH.read_text(encoding="utf-8")
     data = json.loads(raw_json)
@@ -15,80 +39,19 @@ def generate_readme():
     meta = data.get("metadata", {})
     last_updated = meta.get("last_updated", "")[:10]
 
-    zero_visa = [j for j in jobs if j["feasibility"].startswith("Zero")]
-    high_visa = [j for j in jobs if j["feasibility"].startswith("High")]
-    med_visa = [j for j in jobs if j["feasibility"].startswith("Medium")]
-
     lines = [
-        "# 🚀 Summer 2027 AI Product & Business Analyst Internship Radar",
+        "# Summer 2027 AI Internship Tracker (At a Glance)",
         "",
-        f"> **Last Automated Sync:** `{last_updated}` (Runs daily at **8:00 AM CAT / Africa/Kigali** via Antigravity Scheduled Automation)",
-        ">",
-        f"> **Candidate Profile:** `{meta.get('candidate_profile', '')}`",
+        f"**Last Synced:** `{last_updated}` • **Total Paid Roles:** `{len(jobs)}` • **Dashboard & 1-Page CV Generator:** Open [`index.html`](./index.html)",
         "",
-        "## 🌐 Live Interactive Dashboard (GitHub Pages)",
-        "- **Live Site:** **[https://kunmi1999.github.io/ai-internship-tracker/](https://kunmi1999.github.io/ai-internship-tracker/)**"
-        " *(or open [`index.html`](./index.html) locally)*",
-        "",
-        "---",
-        "",
-        "## 🟢 Tier 1: Zero Travel Visa Friction (Kigali, Lagos, Nairobi & Global Remote EOR)",
-        "",
-        "| Company | Role | Category | Paid / Compensation | Mode & Location | Nigerian + Kigali Residency Path | Application Link |",
-        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+        "| Company & Role | Track | Location & Mode | Pay | Your Visa Path (Nigerian in Kigali) | Apply |",
+        "| :--- | :--- | :--- | :--- | :--- | :--- |",
     ]
 
-    for j in zero_visa:
-        comp = j.get("compensation", j.get("paid_status", "Paid"))
+    for j in jobs:
         lines.append(
-            f"| **{j['company']}** | {j['title']} | `{j['category']}` | 💰 **{comp}** | {j['work_mode']} ({j['location']}) | {j['nigerian_kigali_visa_path']} | [Apply Here ↗]({j['url']}) |"
+            f"| **{j['company']}** — {j['title']} | `{j['category']}` | {j['location']} ({j['work_mode']}) | 💰 {short_pay(j)} | {short_visa(j)} | [Apply ↗]({j['url']}) |"
         )
-
-    lines.extend([
-        "",
-        "---",
-        "",
-        "## 🔵 Tier 2: High Visa Feasibility (Sponsors J-1 / UK GAE / Schengen via Kigali Embassies)",
-        "",
-        "| Company | Role | Category | Paid / Compensation | Mode & Location | Nigerian + Kigali Residency Path | Application Link |",
-        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
-    ])
-
-    for j in high_visa:
-        comp = j.get("compensation", j.get("paid_status", "Paid"))
-        lines.append(
-            f"| **{j['company']}** | {j['title']} | `{j['category']}` | 💰 **{comp}** | {j['work_mode']} ({j['location']}) | {j['nigerian_kigali_visa_path']} | [Apply Here ↗]({j['url']}) |"
-        )
-
-    lines.extend([
-        "",
-        "---",
-        "",
-        "## 🟡 Tier 3: Medium Feasibility (Verify J-1 / Regional Hub Eligibility)",
-        "",
-        "| Company | Role | Category | Paid / Compensation | Mode & Location | Nigerian + Kigali Residency Path | Application Link |",
-        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
-    ])
-
-    for j in med_visa:
-        comp = j.get("compensation", j.get("paid_status", "Paid"))
-        lines.append(
-            f"| **{j['company']}** | {j['title']} | `{j['category']}` | 💰 **{comp}** | {j['work_mode']} ({j['location']}) | {j['nigerian_kigali_visa_path']} | [Apply Here ↗]({j['url']}) |"
-        )
-
-    filtered_out = meta.get("filtered_out_examples", [])
-    if filtered_out:
-        lines.extend([
-            "",
-            "---",
-            "",
-            "## 🚫 Automatically Filtered Out (Ineligible Citizenship / Security Clearance)",
-            "",
-            "| Company | Role | Reason Excluded |",
-            "| :--- | :--- | :--- |",
-        ])
-        for f in filtered_out:
-            lines.append(f"| {f['company']} | {f['role']} | {f['reason']} |")
 
     lines.append("")
     README_PATH.write_text("\n".join(lines), encoding="utf-8")

@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Summer 2027 AI Product & Business Analyst Internship Radar</title>
+  <title>Summer 2027 AI Internship Tracker &amp; CV Generator</title>
   <style>
     :root {
-      --bg: #0b0f19;
-      --surface: #131a2a;
-      --surface-hover: #1a2438;
-      --border: #23304c;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.14);
-      --green: #34d399;
-      --green-soft: rgba(52, 211, 153, 0.14);
-      --amber: #fbbf24;
-      --amber-soft: rgba(251, 191, 36, 0.14);
-      --purple: #a78bfa;
-      --purple-soft: rgba(167, 139, 250, 0.14);
-      --rose: #fb7185;
-      --rose-soft: rgba(251, 113, 133, 0.14);
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --green-bg: #ecfdf5;
+      --green-text: #047857;
+      --green-border: #a7f3d0;
+      --blue-bg: #eff6ff;
+      --blue-text: #1d4ed8;
+      --blue-border: #bfdbfe;
+      --amber-bg: #fffbeb;
+      --amber-text: #b45309;
+      --amber-border: #fde68a;
+      --purple-bg: #f5f3ff;
+      --purple-text: #6d28d9;
+      --purple-border: #ddd6fe;
     }
 
     * {
@@ -34,914 +37,585 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.55;
-      padding-bottom: 4rem;
+      line-height: 1.5;
+      font-size: 14px;
+      padding-bottom: 3rem;
     }
 
     .container {
-      max-width: 1220px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding: 0 1.5rem;
     }
 
+    /* Top Bar */
     header {
-      background: linear-gradient(135deg, #111827 0%, #0f172a 55%, #1e1b4b 100%);
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 2.25rem 0 1.75rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
 
-    .header-top {
+    .nav-bar {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .title-group h1 {
-      font-size: 1.75rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-      margin-bottom: 0.4rem;
-    }
-
-    .title-group p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .profile-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .badge {
-      display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 0.32rem 0.72rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.04);
-      color: #e2e8f0;
-    }
-
-    .badge-accent {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border-color: rgba(56, 189, 248, 0.3);
-    }
-
-    .badge-green {
-      background: var(--green-soft);
-      color: var(--green);
-      border-color: rgba(52, 211, 153, 0.3);
-    }
-
-    .badge-amber {
-      background: var(--amber-soft);
-      color: var(--amber);
-      border-color: rgba(251, 191, 36, 0.3);
-    }
-
-    .badge-purple {
-      background: var(--purple-soft);
-      color: var(--purple);
-      border-color: rgba(167, 139, 250, 0.3);
-    }
-
-    .sync-box {
-      text-align: right;
-      font-size: 0.82rem;
-      color: var(--muted);
-      background: rgba(19, 26, 42, 0.8);
-      padding: 0.75rem 1rem;
-      border-radius: 0.75rem;
-      border: 1px solid var(--border);
-    }
-
-    .sync-box strong {
-      color: var(--green);
-      display: block;
-      margin-bottom: 0.15rem;
-    }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      height: 64px;
       gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .kpi-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0.85rem;
-      padding: 1.1rem 1.25rem;
-    }
-
-    .kpi-card .kpi-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-
-    .kpi-card .kpi-val {
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .kpi-card .kpi-sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    .controls {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0.9rem;
-      padding: 1.2rem;
-      margin: 1.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .search-row {
-      display: flex;
       flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
       gap: 0.75rem;
     }
 
-    .search-input {
+    .brand h1 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .brand span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: #f1f5f9;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .main-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: #f1f5f9;
+      padding: 0.25rem;
+      border-radius: 0.5rem;
+    }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: 0.38rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+
+    /* Filter Bar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.25rem 0 1rem;
+    }
+
+    .search-box {
       flex: 1;
       min-width: 240px;
-      background: #0b0f19;
+      max-width: 380px;
+      padding: 0.5rem 0.85rem;
       border: 1px solid var(--border);
+      border-radius: 0.45rem;
+      background: var(--surface);
+      font-size: 0.85rem;
       color: var(--text);
-      padding: 0.68rem 1rem;
-      border-radius: 0.6rem;
-      font-size: 0.92rem;
       outline: none;
     }
 
-    .search-input:focus {
-      border-color: var(--accent);
+    .search-box:focus {
+      border-color: var(--primary);
+    }
+
+    .filters-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .select-filter {
+      padding: 0.48rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 0.45rem;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
     }
 
     .btn {
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      padding: 0.6rem 1rem;
-      border-radius: 0.6rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.35rem;
+      padding: 0.46rem 0.8rem;
+      border-radius: 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      transition: all 0.12s;
+      white-space: nowrap;
     }
 
     .btn:hover {
-      background: rgba(56, 189, 248, 0.25);
+      background: #f1f5f9;
     }
 
-    .filter-groups {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      align-items: center;
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
     }
 
-    .filter-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.4rem;
+    .btn-primary:hover {
+      background: #1d4ed8;
     }
 
-    .filter-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-right: 0.25rem;
+    .btn-ghost {
+      background: var(--purple-bg);
+      color: var(--purple-text);
+      border-color: var(--purple-border);
     }
 
-    .chip {
-      background: #0b0f19;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
+    .btn-ghost:hover {
+      background: #ede9fe;
     }
 
-    .chip:hover {
-      color: var(--text);
-      border-color: #3b4d71;
-    }
-
-    .chip.active {
-      background: var(--accent);
-      color: #0b0f19;
-      border-color: var(--accent);
-    }
-
-    .jobs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1.15rem;
-    }
-
-    .job-card {
+    /* Clean Scannable Table */
+    .table-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 0.9rem;
-      padding: 1.3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 1rem;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      border-radius: 0.65rem;
+      overflow-x: auto;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
 
-    .job-card:hover {
-      border-color: #38bdf8;
-      transform: translateY(-2px);
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
     }
 
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .company-name {
-      font-size: 0.82rem;
+    th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 0.73rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
 
-    .job-title {
-      font-size: 1.08rem;
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #fcfdff;
+    }
+
+    .company-cell {
       font-weight: 700;
-      color: #ffffff;
-      line-height: 1.35;
+      color: var(--text);
+      font-size: 0.9rem;
     }
 
-    .meta-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.65rem;
+    .role-cell {
+      color: #334155;
+      font-size: 0.84rem;
+      margin-top: 0.12rem;
     }
 
-    .comp-banner {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      margin-top: 0.75rem;
-      padding: 0.55rem 0.75rem;
-      background: rgba(52, 211, 153, 0.1);
-      border: 1px solid rgba(52, 211, 153, 0.28);
-      border-radius: 0.5rem;
-      font-size: 0.82rem;
-      color: #a7f3d0;
+    .pill {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.73rem;
       font-weight: 600;
+      border: 1px solid transparent;
+      white-space: nowrap;
     }
 
-    .visa-box {
-      background: rgba(11, 15, 25, 0.75);
-      border-left: 3px solid var(--green);
-      padding: 0.75rem 0.9rem;
-      border-radius: 0.45rem;
+    .pill-green {
+      background: var(--green-bg);
+      color: var(--green-text);
+      border-color: var(--green-border);
+    }
+
+    .pill-blue {
+      background: var(--blue-bg);
+      color: var(--blue-text);
+      border-color: var(--blue-border);
+    }
+
+    .pill-amber {
+      background: var(--amber-bg);
+      color: var(--amber-text);
+      border-color: var(--amber-border);
+    }
+
+    .pill-purple {
+      background: var(--purple-bg);
+      color: var(--purple-text);
+      border-color: var(--purple-border);
+    }
+
+    .pay-text {
+      font-weight: 600;
+      color: var(--green-text);
       font-size: 0.83rem;
     }
 
-    .visa-box.medium {
-      border-left-color: var(--amber);
-    }
-
-    .visa-box strong {
+    .visa-sub {
       display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      margin-bottom: 0.2rem;
-    }
-
-    .highlights {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-    }
-
-    .link-row {
-      margin-top: 0.6rem;
-      font-size: 0.78rem;
-      color: var(--muted);
-      word-break: break-all;
-    }
-
-    .link-row a {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 0.85rem;
-      border-top: 1px solid var(--border);
-      gap: 0.5rem;
-    }
-
-    .status-select {
-      background: #0b0f19;
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      padding: 0.42rem 0.65rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .playbook-section {
-      margin-top: 2.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0.9rem;
-      padding: 1.5rem;
-    }
-
-    .playbook-section h2 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-
-    .playbook-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-
-    .playbook-card {
-      background: #0b0f19;
-      border: 1px solid var(--border);
-      border-radius: 0.7rem;
-      padding: 1rem;
-      font-size: 0.84rem;
-    }
-
-    .playbook-card h3 {
-      font-size: 0.92rem;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-    }
-
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 3rem;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px dashed var(--border);
-      border-radius: 0.9rem;
-    }
-
-    /* CV Benchmark & Role-Tailoring Studio */
-    .btn-purple {
-      background: var(--purple-soft);
-      color: var(--purple);
-      border: 1px solid rgba(167, 139, 250, 0.4);
-    }
-
-    .btn-purple:hover {
-      background: rgba(167, 139, 250, 0.26);
-    }
-
-    .btn-green {
-      background: var(--green-soft);
-      color: var(--green);
-      border: 1px solid rgba(52, 211, 153, 0.4);
-    }
-
-    .btn-green:hover {
-      background: rgba(52, 211, 153, 0.25);
-    }
-
-    .cv-studio {
-      background: linear-gradient(160deg, #131a2a 0%, #111827 60%, #171532 100%);
-      border: 1px solid rgba(167, 139, 250, 0.45);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin: 1.25rem 0 1.75rem;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-    }
-
-    .cv-studio.hidden {
-      display: none;
-    }
-
-    .studio-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding-bottom: 1.1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .studio-header h2 {
-      font-size: 1.28rem;
-      font-weight: 800;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .studio-header p {
-      font-size: 0.86rem;
+      font-size: 0.74rem;
       color: var(--muted);
       margin-top: 0.2rem;
+      max-width: 250px;
     }
 
-    .studio-controls {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem;
-      margin-top: 1.15rem;
-      background: rgba(11, 15, 25, 0.75);
-      padding: 0.9rem 1rem;
-      border-radius: 0.75rem;
-      border: 1px solid var(--border);
-    }
-
-    .role-select {
-      flex: 1;
-      min-width: 260px;
-      background: #0b0f19;
-      color: var(--text);
-      border: 1px solid rgba(56, 189, 248, 0.45);
-      border-radius: 0.55rem;
-      padding: 0.6rem 0.85rem;
-      font-size: 0.9rem;
+    .loc-text {
       font-weight: 600;
-      outline: none;
-    }
-
-    .studio-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.15rem;
-    }
-
-    .studio-tab {
-      background: #0b0f19;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.5rem 0.95rem;
-      border-radius: 0.6rem;
       font-size: 0.83rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      color: var(--text);
     }
 
-    .studio-tab.active {
-      background: var(--purple-soft);
-      color: #e9d5ff;
-      border-color: var(--purple);
-    }
-
-    .studio-pane {
-      margin-top: 1.2rem;
-    }
-
-    .studio-pane.hidden {
-      display: none;
-    }
-
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.15rem;
-    }
-
-    .score-box {
-      background: #0b0f19;
-      border: 1px solid var(--border);
-      border-radius: 0.8rem;
-      padding: 1rem 1.1rem;
-    }
-
-    .score-box h4 {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .mode-sub {
+      font-size: 0.74rem;
       color: var(--muted);
-      margin-bottom: 0.4rem;
     }
 
-    .score-big {
-      font-size: 1.9rem;
-      font-weight: 800;
-      line-height: 1.1;
-    }
-
-    .pill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.38rem;
-      margin-top: 0.5rem;
-    }
-
-    .kw-pill {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.22rem 0.58rem;
-      border-radius: 999px;
-    }
-
-    .kw-match {
-      background: var(--green-soft);
-      color: var(--green);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-    }
-
-    .kw-gap {
-      background: var(--amber-soft);
-      color: var(--amber);
-      border: 1px solid rgba(251, 191, 36, 0.35);
-    }
-
-    .kw-drop {
-      background: var(--rose-soft);
-      color: var(--rose);
-      border: 1px solid rgba(251, 113, 133, 0.35);
-    }
-
-    .audit-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 0.9rem;
-    }
-
-    .audit-card {
-      background: #0b0f19;
+    .status-mini {
+      padding: 0.32rem 0.5rem;
       border: 1px solid var(--border);
-      border-left: 4px solid var(--rose);
-      border-radius: 0.7rem;
-      padding: 0.95rem 1.05rem;
-      font-size: 0.84rem;
+      border-radius: 0.38rem;
+      font-size: 0.76rem;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
     }
 
-    .audit-card.warn {
-      border-left-color: var(--amber);
-    }
-
-    .audit-card.good {
-      border-left-color: var(--green);
-    }
-
-    .audit-card h4 {
-      font-size: 0.9rem;
-      color: #fff;
-      margin-bottom: 0.35rem;
-    }
-
-    .audit-card p {
-      color: #cbd5e1;
-      font-size: 0.82rem;
-    }
-
-    .rewrite-table {
+    .actions-cell {
       display: flex;
-      flex-direction: column;
-      gap: 0.95rem;
+      align-items: center;
+      gap: 0.4rem;
+      justify-content: flex-end;
     }
 
-    .rewrite-row {
+    /* CV Generator View */
+    .hidden {
+      display: none !important;
+    }
+
+    .cv-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      background: #0b0f19;
-      border: 1px solid var(--border);
-      border-radius: 0.8rem;
-      padding: 1rem;
+      grid-template-columns: 330px 1fr;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      align-items: start;
     }
 
-    @media (max-width: 820px) {
-      .rewrite-row {
+    @media (max-width: 920px) {
+      .cv-layout {
         grid-template-columns: 1fr;
       }
     }
 
-    .rewrite-col h5 {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.45rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .rewrite-col.orig h5 {
-      color: var(--rose);
-    }
-
-    .rewrite-col.tailored h5 {
-      color: var(--green);
-    }
-
-    .rewrite-text {
-      font-size: 0.84rem;
-      color: #e2e8f0;
-      background: rgba(19, 26, 42, 0.7);
-      border: 1px solid var(--border);
-      border-radius: 0.55rem;
-      padding: 0.75rem;
-      white-space: pre-line;
-    }
-
-    .rewrite-col.tailored .rewrite-text {
-      border-color: rgba(52, 211, 153, 0.35);
-      background: rgba(52, 211, 153, 0.06);
-    }
-
-    .rewrite-reason {
-      margin-top: 0.45rem;
-      font-size: 0.77rem;
-      color: var(--amber);
-    }
-
-    .copy-mini {
-      background: rgba(52, 211, 153, 0.14);
-      color: var(--green);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-      border-radius: 0.4rem;
-      padding: 0.18rem 0.55rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .copy-mini:hover {
-      background: rgba(52, 211, 153, 0.28);
-    }
-
-    .cv-textarea {
-      width: 100%;
-      min-height: 240px;
-      background: #0b0f19;
-      color: var(--text);
+    .cv-sidebar {
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 0.65rem;
-      padding: 0.85rem;
-      font-family: monospace;
+      padding: 1.15rem;
+      position: sticky;
+      top: 80px;
+    }
+
+    .cv-sidebar h3 {
+      font-size: 0.92rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .cv-sidebar p {
+      font-size: 0.79rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .cv-sidebar label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .cv-sidebar select {
+      width: 100%;
+      padding: 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 0.45rem;
+      font-size: 0.83rem;
+      margin-bottom: 1rem;
+    }
+
+    .upgrades-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 0.8rem;
+      font-size: 0.78rem;
+      margin-bottom: 1rem;
+    }
+
+    .upgrades-box h4 {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+    }
+
+    .upgrades-box ul {
+      padding-left: 1.1rem;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    /* 1-Page Printable CV Sheet */
+    .cv-paper {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 2.5rem 2.75rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      color: #111827;
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.42;
+      font-size: 13.2px;
+    }
+
+    .cv-paper h1 {
+      text-align: center;
+      font-size: 1.45rem;
+      letter-spacing: 0.03em;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: #000;
+    }
+
+    .cv-contact {
+      text-align: center;
       font-size: 0.82rem;
-      line-height: 1.5;
-      resize: vertical;
+      color: #374151;
+      margin-bottom: 0.2rem;
+    }
+
+    .cv-visa-line {
+      text-align: center;
+      font-size: 0.79rem;
+      font-weight: 700;
+      color: #1d4ed8;
+      margin-bottom: 0.9rem;
+    }
+
+    .cv-sec-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1.5px solid #111827;
+      padding-bottom: 0.15rem;
+      margin: 0.85rem 0 0.45rem;
+      color: #000;
+    }
+
+    .cv-row-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      margin-top: 0.45rem;
+      margin-bottom: 0.18rem;
+    }
+
+    .cv-bullets {
+      padding-left: 1.25rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .cv-bullets li {
+      margin-bottom: 0.22rem;
+    }
+
+    .hl-change {
+      background: #fef9c3;
+      padding: 0 0.18rem;
+      border-radius: 2px;
+    }
+
+    @media print {
+      header, .cv-sidebar, .toolbar, #view-tracker {
+        display: none !important;
+      }
+      body, .container {
+        background: #fff;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+      }
+      .cv-layout {
+        display: block;
+        margin: 0;
+      }
+      .cv-paper {
+        border: none;
+        box-shadow: none;
+        padding: 0.3in 0.4in;
+      }
+      .hl-change {
+        background: transparent;
+        padding: 0;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <div class="header-top">
-        <div class="title-group">
-          <h1>Summer 2027 AI Product &amp; Business Analyst Radar</h1>
-          <p>Automated daily internship discovery, pay verification &amp; visa eligibility tracker powered by Antigravity</p>
-          <div class="profile-badges">
-            <span class="badge badge-accent">🎓 CMU-Africa (Kigali, Rwanda)</span>
-            <span class="badge badge-green">🇳🇬 Nigerian Citizen + 🇷🇼 Rwanda Residence Permit</span>
-            <span class="badge badge-purple">💰 100% Paid Roles w/ Direct Links</span>
-          </div>
-        </div>
-        <div class="sync-box">
-          <strong>⚡ Daily Automation Active (8:00 AM CAT)</strong>
-          <span id="last-updated-text">Last synced: 2026-11-18</span>
-        </div>
+    <div class="container nav-bar">
+      <div class="brand">
+        <h1>Summer 2027 AI Internship Tracker</h1>
+        <span id="count-pill">24 Roles • Auto-Synced 8:00 AM CAT</span>
       </div>
 
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Eligible Paid Roles</div>
-          <div class="kpi-val" id="kpi-total">0</div>
-          <div class="kpi-sub">All roles verified paid / stipend</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Zero-Visa / Local &amp; Remote</div>
-          <div class="kpi-val" id="kpi-zero-visa" style="color: var(--green);">0</div>
-          <div class="kpi-sub">Kigali, Lagos, Nairobi &amp; Global EOR Remote</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">High Visa Feasibility</div>
-          <div class="kpi-val" id="kpi-high-visa" style="color: var(--accent);">0</div>
-          <div class="kpi-sub">Sponsors J-1 / UK GAE / Schengen via Kigali</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Your Saved / Applied</div>
-          <div class="kpi-val" id="kpi-tracked" style="color: var(--purple);">0</div>
-          <div class="kpi-sub">Stored locally in your browser</div>
-        </div>
+      <div class="main-tabs">
+        <button class="tab-btn active" id="tab-tracker-btn" onclick="switchMainView('tracker')">
+          📋 Internship Table
+        </button>
+        <button class="tab-btn" id="tab-cv-btn" onclick="switchMainView('cv')">
+          📄 My Tailored 1-Page CV (PRDs &amp; Backlog Built-In)
+        </button>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="controls">
-      <div class="search-row">
+    <!-- VIEW 1: CLEAN SCANNABLE TABLE -->
+    <section id="view-tracker">
+      <div class="toolbar">
         <input
           type="text"
           id="search-input"
-          class="search-input"
-          placeholder="Search company, title, pay, location (e.g. Kigali, London, Remote, Paid, Databricks, J-1)..."
+          class="search-box"
+          placeholder="Filter by company, role, city, or visa (e.g. London, Kigali, Remote, J-1)..."
         />
-        <button class="btn btn-purple" id="toggle-studio-btn" onclick="toggleCVStudio()">🧬 Open CV Benchmark &amp; Tailoring Studio</button>
-        <button class="btn" id="export-btn">⬇ Export CSV</button>
-      </div>
 
-      <div class="filter-groups">
-        <div class="filter-group" id="category-filters">
-          <span class="filter-label">Role:</span>
-          <button class="chip active" data-val="ALL">All</button>
-          <button class="chip" data-val="AI Product Manager">AI PM</button>
-          <button class="chip" data-val="AI Product Owner">AI Product Owner</button>
-          <button class="chip" data-val="AI Business Analyst">AI Business Analyst</button>
-        </div>
+        <div class="filters-inline">
+          <select id="filter-category" class="select-filter" onchange="renderTable()">
+            <option value="ALL">All Roles (PM / PO / BA)</option>
+            <option value="AI Product Manager">AI Product Manager</option>
+            <option value="AI Product Owner">AI Product Owner</option>
+            <option value="AI Business Analyst">AI Business Analyst</option>
+          </select>
 
-        <div class="filter-group" id="mode-filters">
-          <span class="filter-label">Mode:</span>
-          <button class="chip active" data-val="ALL">All</button>
-          <button class="chip" data-val="Remote">Remote</button>
-          <button class="chip" data-val="Hybrid">Hybrid</button>
-          <button class="chip" data-val="On-site">On-site</button>
-        </div>
+          <select id="filter-mode" class="select-filter" onchange="renderTable()">
+            <option value="ALL">All Modes</option>
+            <option value="Remote">Remote</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="On-site">On-site</option>
+          </select>
 
-        <div class="filter-group" id="visa-filters">
-          <span class="filter-label">Visa Tier:</span>
-          <button class="chip active" data-val="ALL">All</button>
-          <button class="chip" data-val="Zero Visa (Remote / Local)">Zero Visa / Local</button>
-          <button class="chip" data-val="High (Sponsors + Kigali Embassy)">High (Sponsors)</button>
-          <button class="chip" data-val="Medium (Verify J-1 / EOR)">Medium</button>
-        </div>
+          <select id="filter-visa" class="select-filter" onchange="renderTable()">
+            <option value="ALL">All Visa Tiers</option>
+            <option value="Zero">🟢 Zero Visa (Kigali / Lagos / Remote)</option>
+            <option value="High">🔵 High (Company Sponsors via Kigali)</option>
+            <option value="Medium">🟡 Medium (Verify J-1 / UK GAE)</option>
+          </select>
 
-        <div class="filter-group" id="status-filters">
-          <span class="filter-label">My Status:</span>
-          <button class="chip active" data-val="ALL">All</button>
-          <button class="chip" data-val="Saved">Saved ⭐</button>
-          <button class="chip" data-val="Applied">Applied ✅</button>
-          <button class="chip" data-val="Interviewing">Interviewing 🎯</button>
-        </div>
-      </div>
-    </section>
+          <select id="filter-status" class="select-filter" onchange="renderTable()">
+            <option value="ALL">All Statuses</option>
+            <option value="Saved">⭐ Saved</option>
+            <option value="Applied">✅ Applied</option>
+            <option value="Interviewing">🎯 Interviewing</option>
+          </select>
 
-    <section class="cv-studio" id="cv-studio">
-      <div class="studio-header">
-        <div>
-          <h2>🧬 CV Benchmark, Anti-Repetition Audit &amp; Role-Tailoring Studio</h2>
-          <p>Pre-loaded with <strong>Bukunmi Temitope Ogunkoya's</strong> CV (CMU-Africa M.S. Engineering AI • Sterling Bank Automation BA) — or click <strong>"🎯 Tailor CV"</strong> on any internship card below.</p>
-        </div>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-          <button class="btn btn-green" onclick="copyFullTailoredCV()">📋 Copy Full Tailored CV for Selected Role</button>
-          <button class="btn" onclick="toggleCVStudio()">✕ Hide Studio</button>
+          <button class="btn" id="export-btn">⬇ CSV</button>
         </div>
       </div>
 
-      <div class="studio-controls">
-        <span class="filter-label" style="margin:0;">Target Role Benchmark:</span>
-        <select id="studio-job-select" class="role-select" onchange="selectStudioJob(this.value)"></select>
-        <span class="badge badge-purple" id="studio-cat-badge">AI Product Manager</span>
-        <span class="badge badge-accent" id="studio-visa-badge">Visa Tier</span>
-      </div>
-
-      <div class="studio-tabs">
-        <button class="studio-tab active" data-tab="pane-scorecard" onclick="switchStudioTab('pane-scorecard', this)">1. Match &amp; Gap Scorecard</button>
-        <button class="studio-tab" data-tab="pane-rewriter" onclick="switchStudioTab('pane-rewriter', this)">2. Side-by-Side Bullet Rewriter</button>
-        <button class="studio-tab" data-tab="pane-audit" onclick="switchStudioTab('pane-audit', this)">3. Baseline CV Red-Flag &amp; Repetition Audit (6 Fixes)</button>
-        <button class="studio-tab" data-tab="pane-editor" onclick="switchStudioTab('pane-editor', this)">4. Edit / Update Your Base CV</button>
-      </div>
-
-      <!-- PANE 1: MATCH & GAP SCORECARD -->
-      <div class="studio-pane" id="pane-scorecard">
-        <div class="score-grid">
-          <div class="score-box">
-            <h4>Role Readiness Score (Before → After Tailoring)</h4>
-            <div class="score-big" id="score-readiness" style="color: var(--green);">68% → 94%</div>
-            <p style="font-size:0.79rem; color:var(--muted); margin-top:0.35rem;" id="score-summary">Strong Agentic AI &amp; FinTech workflow foundation; needs SQL/Python &amp; global metric framing.</p>
-          </div>
-          <div class="score-box">
-            <h4>✅ Matched Signals Already in Your CV</h4>
-            <div class="pill-list" id="pills-matched"></div>
-          </div>
-          <div class="score-box">
-            <h4>⚠️ Missing Benchmark Keywords to Inject</h4>
-            <div class="pill-list" id="pills-gaps"></div>
-          </div>
-          <div class="score-box">
-            <h4>✂️ What to Remove / De-Emphasize for This Role</h4>
-            <div class="pill-list" id="pills-drop"></div>
-          </div>
-        </div>
-
-        <div class="visa-box" id="studio-header-recommendation" style="border-left-color: var(--purple);"></div>
-      </div>
-
-      <!-- PANE 2: SIDE-BY-SIDE REWRITER -->
-      <div class="studio-pane hidden" id="pane-rewriter">
-        <div class="rewrite-table" id="rewrite-container"></div>
-      </div>
-
-      <!-- PANE 3: BASELINE RED-FLAG & REPETITION AUDIT -->
-      <div class="studio-pane hidden" id="pane-audit">
-        <div class="audit-list">
-          <div class="audit-card">
-            <h4>1. 🚨 Typo in Flagship Bullet #1 (Sterling Bank)</h4>
-            <p>Your first bullet reads: <em>"...AI-powered account <strong>pening</strong> document verification co-pilot..."</em> (missing the <strong>"o"</strong> in <strong>opening</strong>). Because this is your #1 bullet under Work Experience, fix it immediately.</p>
-          </div>
-          <div class="audit-card">
-            <h4>2. 🔁 Exact Duplication: Sterling Bank Bullet #1 vs. 2025 Project</h4>
-            <p>Your <strong>2025 Project</strong> (<em>"AI-Copilot for Account Opening Document Verification"</em>) repeats your <strong>Sterling Bank Bullet #1</strong> almost verbatim. Keep the business impact under Sterling Bank and replace the 2025 Project slot with a <strong>CMU-Africa M.S. Engineering AI technical project</strong> (highlighting Python, SQL, LLM Evals/RAG, or ML pipelines).</p>
-          </div>
-          <div class="audit-card warn">
-            <h4>3. 💱 Currency Perception Trap (~₦1M &amp; ~₦600,000)</h4>
-            <p>To international recruiters in London, Paris, Munich, or San Francisco, <code>₦1,000,000</code> (~$600 USD) and <code>₦600,000</code> (~$360 USD) sound small when converted. Reframe using <strong>% cost reduction, % turnaround time cut, daily/monthly KYC volume automated, or manual hours eliminated</strong>.</p>
-          </div>
-          <div class="audit-card warn">
-            <h4>4. 🔍 Missing ATS Hard-Skill Keywords (SQL, Python, PRDs, KPIs)</h4>
-            <p>Over 85% of Summer 2027 AI PM, PO, and BA postings (Databricks, Revolut, JPMorgan, Celonis, Google) auto-screen for <strong>SQL, Python, PRDs, Backlog Prioritization, and LLM Evaluation</strong>. As a CMU-Africa M.S. AI student with a Mechatronics B.Eng. and Pendo Product Analytics badge, add these explicitly to your Skills section.</p>
-          </div>
-          <div class="audit-card warn">
-            <h4>5. ✂️ First-Person Pronouns, Weak Verbs &amp; Low-Signal Certs</h4>
-            <p>Remove first-person <em>"I design..." / "I am looking for..."</em> from your Profile. In 7up Bottling Company, change passive <em>"Assisted software engineers..."</em> to active <em>"Programmed and calibrated PLC automation cards..."</em>. In Certifications, remove or fix <em>"Allison"</em> (spelled Alison) so <strong>UiPath RPA BA</strong>, <strong>Pendo Product Analytics</strong>, and <strong>Six Sigma</strong> stand out.</p>
-          </div>
-          <div class="audit-card good">
-            <h4>6. 🌍 Visa &amp; Mobility Header Signal (Kigali + CMU-Africa Hook)</h4>
-            <p>Add your expected graduation (<strong>May 2028</strong>) and target-region visa eligibility right in the header (e.g., <em>"Eligible for Tripartite Convention de Stage via CMU"</em> for Paris/Munich/Amsterdam, or <em>"J-1 Intern Eligible via U.S. Embassy Kigali"</em> for US roles).</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANE 4: EDIT BASE CV -->
-      <div class="studio-pane hidden" id="pane-editor">
-        <p style="font-size:0.83rem; color:var(--muted); margin-bottom:0.6rem;">Your master CV text is saved locally in your browser (<code>localStorage</code>). Edit it below to test live keyword matching against any role:</p>
-        <textarea id="cv-master-input" class="cv-textarea" oninput="saveCustomCV(this.value)"></textarea>
-        <div style="margin-top:0.65rem; display:flex; gap:0.6rem;">
-          <button class="btn" onclick="resetDefaultCV()">↺ Reset to Bukunmi's Uploaded CV</button>
-        </div>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Role &amp; Company</th>
+              <th>Location &amp; Mode</th>
+              <th>Pay (At a Glance)</th>
+              <th>Your Visa Path (Nigerian in Kigali)</th>
+              <th style="text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="jobs-tbody"></tbody>
+        </table>
       </div>
     </section>
 
-    <section class="jobs-grid" id="jobs-grid"></section>
+    <!-- VIEW 2: 1-PAGE TAILORED CV GENERATOR -->
+    <section id="view-cv" class="hidden">
+      <div class="cv-layout">
+        <aside class="cv-sidebar">
+          <h3>Tailor Bukunmi's CV</h3>
+          <p>Select any role from the tracker to automatically adjust your CV framing, keywords, and visa header.</p>
 
-    <section class="playbook-section">
-      <h2>🧭 Nigerian Citizen + Kigali Resident Visa Playbook (Summer 2027)</h2>
-      <div class="playbook-grid">
-        <div class="playbook-card">
-          <h3>1. Local Kigali, Lagos &amp; East Africa (Zero Visa Friction)</h3>
-          <p>With your <strong>Nigerian passport</strong> and <strong>Rwandan residence permit</strong>, you can intern immediately in Kigali (e.g., InstaDeep) or Lagos (e.g., Microsoft ADC, Google) with zero visa delays, or travel to Nairobi via simple regional eTA.</p>
-        </div>
-        <div class="playbook-card">
-          <h3>2. Global Remote via EOR / Contractor</h3>
-          <p>Remote-first global companies using Deel, Remote.com, or G-P can onboard you directly in Kigali (<strong>UTC+2</strong>) or Nigeria (<strong>UTC+1</strong>), perfectly matching UK/European working hours without needing a travel visa.</p>
-        </div>
-        <div class="playbook-card">
-          <h3>3. US Internships (J-1 Intern Visa in Kigali)</h3>
-          <p>As an enrolled degree-seeking student at <strong>CMU-Africa</strong>, you qualify for the <strong>US J-1 Intern Visa</strong> when sponsored by companies like Databricks, NVIDIA, or Salesforce—and you can book your visa interview at the <strong>U.S. Embassy in Kigali</strong>.</p>
-        </div>
-        <div class="playbook-card">
-          <h3>4. UK &amp; Schengen Europe (Apply via VFS/TLS Kigali)</h3>
-          <p>For London roles (UK Temporary Work GAE visa) or Paris/Zurich/Berlin roles (Student Internship Agreement via CMU-Africa), your Rwandan residency allows you to submit biometrics right in <strong>Kigali</strong>.</p>
+          <label for="cv-role-select">Tailor For Role:</label>
+          <select id="cv-role-select" onchange="renderCVPreview(this.value)"></select>
+
+          <div class="upgrades-box">
+            <h4>✅ Built Into Your Generated CV:</h4>
+            <ul>
+              <li><strong>Sterling Bank PRDs &amp; Backlog Prioritization:</strong> Explicitly highlights your PRD authoring, Agile backlog prioritization, and project management across 30+ workflows.</li>
+              <li><strong>Fixed Typo:</strong> Fixed <em>"account pening"</em> → <em>"Account Opening"</em> in Sterling Bank bullet #1.</li>
+              <li><strong>Global Impact Metrics:</strong> Replaced raw <code>₦1M / ₦600k</code> Naira figures with global % cost &amp; 45% turnaround reductions.</li>
+              <li><strong>Removed Duplicate Project:</strong> Merged duplicate 2025 KYC project and added your CMU-Africa AI/Python evaluation pipeline.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.5rem;">
+            <button class="btn btn-primary" style="justify-content:center; padding:0.65rem;" onclick="window.print()">
+              🖨️ Save / Print as 1-Page PDF
+            </button>
+            <button class="btn" style="justify-content:center;" onclick="copyCleanCVText()">
+              📋 Copy Plain Text
+            </button>
+          </div>
+        </aside>
+
+        <div class="cv-paper" id="cv-paper-sheet" contenteditable="true" spellcheck="true" title="Click anywhere on the CV to make quick edits before printing to PDF">
         </div>
       </div>
     </section>
@@ -1464,15 +1138,8 @@
     /* FALLBACK_DATA_END */
 
     let allJobs = [];
-    let filters = {
-      search: '',
-      category: 'ALL',
-      mode: 'ALL',
-      visa: 'ALL',
-      status: 'ALL'
-    };
 
-    function getSavedStatuses() {
+    function getStatuses() {
       try {
         return JSON.parse(localStorage.getItem('ai_intern_statuses_2027') || '{}');
       } catch (e) {
@@ -1480,164 +1147,270 @@
       }
     }
 
-    function setJobStatus(id, status) {
-      const statuses = getSavedStatuses();
-      if (!status || status === 'None') {
-        delete statuses[id];
-      } else {
-        statuses[id] = status;
-      }
-      localStorage.setItem('ai_intern_statuses_2027', JSON.stringify(statuses));
-      updateKPIs();
-      renderJobs();
+    function setJobStatus(id, val) {
+      const s = getStatuses();
+      if (!val || val === 'None') delete s[id];
+      else s[id] = val;
+      localStorage.setItem('ai_intern_statuses_2027', JSON.stringify(s));
+      renderTable();
     }
 
-    function updateKPIs() {
-      const statuses = getSavedStatuses();
-      document.getElementById('kpi-total').textContent = allJobs.length;
-      document.getElementById('kpi-zero-visa').textContent = allJobs.filter(
-        j => j.feasibility === 'Zero Visa (Remote / Local)'
-      ).length;
-      document.getElementById('kpi-high-visa').textContent = allJobs.filter(
-        j => j.feasibility === 'High (Sponsors + Kigali Embassy)'
-      ).length;
-      document.getElementById('kpi-tracked').textContent = Object.keys(statuses).length;
+    function switchMainView(view) {
+      const isTracker = view === 'tracker';
+      document.getElementById('view-tracker').classList.toggle('hidden', !isTracker);
+      document.getElementById('view-cv').classList.toggle('hidden', isTracker);
+      document.getElementById('tab-tracker-btn').classList.toggle('active', isTracker);
+      document.getElementById('tab-cv-btn').classList.toggle('active', !isTracker);
+    }
+
+    function shortPay(job) {
+      const c = job.compensation || job.paid_status || 'Paid';
+      return c.replace(/^Paid\s*\(/i, '').replace(/\)$/, '');
+    }
+
+    function shortVisaBadge(job) {
+      const f = job.feasibility || '';
+      const loc = (job.location + ' ' + job.region).toLowerCase();
+      if (f.startsWith('Zero')) {
+        if (job.work_mode === 'Remote') {
+          return { badge: '🟢 No Visa Needed (Remote)', cls: 'pill-green', sub: 'Work from Kigali (UTC+2) or Nigeria (UTC+1)' };
+        }
+        return { badge: '🟢 Local Permit / Citizen', cls: 'pill-green', sub: 'Rwanda Residence Permit (Kigali) or Nigerian Citizen (Lagos)' };
+      }
+      if (loc.includes('uk') || loc.includes('london') || loc.includes('united kingdom')) {
+        return {
+          badge: f.startsWith('High') ? '🔵 UK GAE Visa (Sponsored)' : '🟡 Verify UK GAE Sponsorship',
+          cls: f.startsWith('High') ? 'pill-blue' : 'pill-amber',
+          sub: 'Apply at VFS Global in Kigali'
+        };
+      }
+      if (loc.includes('france') || loc.includes('paris') || loc.includes('germany') || loc.includes('berlin') || loc.includes('munich') || loc.includes('amsterdam') || loc.includes('zurich') || loc.includes('schengen')) {
+        return {
+          badge: '🔵 Schengen Student Permit',
+          cls: 'pill-blue',
+          sub: 'CMU-Africa Internship Agreement via Kigali Embassy'
+        };
+      }
+      if (loc.includes('usa') || loc.includes('united states') || loc.includes('san francisco') || loc.includes('california') || loc.includes('palo alto') || loc.includes('santa clara') || loc.includes('pleasanton')) {
+        return {
+          badge: f.startsWith('High') ? '🔵 US J-1 Intern (Sponsored)' : '🟡 Verify US J-1 Sponsorship',
+          cls: f.startsWith('High') ? 'pill-blue' : 'pill-amber',
+          sub: 'CMU-Africa Student → Interview at U.S. Embassy Kigali'
+        };
+      }
+      return {
+        badge: f.startsWith('High') ? '🔵 Visa Sponsored' : '🟡 Verify Sponsorship',
+        cls: f.startsWith('High') ? 'pill-blue' : 'pill-amber',
+        sub: 'Processable from Kigali, Rwanda'
+      };
     }
 
     function getFilteredJobs() {
-      const statuses = getSavedStatuses();
-      return allJobs.filter(job => {
-        const jobStatus = statuses[job.id] || 'None';
-        if (filters.category !== 'ALL' && job.category !== filters.category) return false;
-        if (filters.mode !== 'ALL' && job.work_mode !== filters.mode) return false;
-        if (filters.visa !== 'ALL' && job.feasibility !== filters.visa) return false;
-        if (filters.status !== 'ALL' && jobStatus !== filters.status) return false;
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const cat = document.getElementById('filter-category').value;
+      const mode = document.getElementById('filter-mode').value;
+      const visa = document.getElementById('filter-visa').value;
+      const st = document.getElementById('filter-status').value;
+      const statuses = getStatuses();
 
-        if (filters.search) {
-          const q = filters.search.toLowerCase();
-          const hay = [
-            job.title,
-            job.company,
-            job.category,
-            job.location,
-            job.paid_status || 'Paid',
-            job.compensation || '',
-            job.nigerian_kigali_visa_path,
-            job.highlights
-          ].join(' ').toLowerCase();
+      return allJobs.filter(j => {
+        if (cat !== 'ALL' && j.category !== cat) return false;
+        if (mode !== 'ALL' && j.work_mode !== mode) return false;
+        if (visa !== 'ALL' && !j.feasibility.startsWith(visa)) return false;
+        const jobSt = statuses[j.id] || 'None';
+        if (st !== 'ALL' && jobSt !== st) return false;
+        if (q) {
+          const hay = `${j.company} ${j.title} ${j.category} ${j.location} ${j.compensation} ${j.nigerian_kigali_visa_path}`.toLowerCase();
           if (!hay.includes(q)) return false;
         }
         return true;
       });
     }
 
-    function renderJobs() {
-      const grid = document.getElementById('jobs-grid');
-      const statuses = getSavedStatuses();
-      const filtered = getFilteredJobs();
+    function renderTable() {
+      const tbody = document.getElementById('jobs-tbody');
+      const statuses = getStatuses();
+      const jobs = getFilteredJobs();
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div class="empty-state">No internships match your current filter combination. Try resetting one of the filters above.</div>`;
+      document.getElementById('count-pill').textContent = `${jobs.length} of ${allJobs.length} Roles • Auto-Synced 8:00 AM CAT`;
+
+      if (jobs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:2.5rem; color:var(--muted);">No roles match that filter.</td></tr>`;
         return;
       }
 
-      grid.innerHTML = filtered.map(job => {
-        const status = statuses[job.id] || 'None';
-        const isMedium = job.feasibility.startsWith('Medium');
-        const visaBadgeClass = job.feasibility.startsWith('Zero')
-          ? 'badge-green'
-          : isMedium ? 'badge-amber' : 'badge-accent';
-        const paidLabel = job.paid_status || 'Paid';
-        const compDetail = job.compensation || 'Paid Internship';
-
+      tbody.innerHTML = jobs.map(j => {
+        const v = shortVisaBadge(j);
+        const st = statuses[j.id] || 'None';
         return `
-          <article class="job-card">
-            <div>
-              <div class="job-header">
-                <div>
-                  <div class="company-name">${job.company}</div>
-                  <h3 class="job-title">${job.title}</h3>
-                </div>
-                <span class="badge badge-green">💰 ${paidLabel}</span>
+          <tr>
+            <td>
+              <div class="company-cell">${j.company}</div>
+              <div class="role-cell">${j.title}</div>
+              <div style="margin-top:0.25rem;">
+                <span class="pill pill-purple">${j.category}</span>
               </div>
-
-              <div class="meta-tags">
-                <span class="badge badge-purple">${job.category}</span>
-                <span class="badge">${job.work_mode} • ${job.location}</span>
-                <span class="badge ${visaBadgeClass}">${job.feasibility}</span>
+            </td>
+            <td>
+              <div class="loc-text">${j.location}</div>
+              <div class="mode-sub">${j.work_mode}</div>
+            </td>
+            <td>
+              <div class="pay-text">💰 ${shortPay(j)}</div>
+            </td>
+            <td>
+              <span class="pill ${v.cls}">${v.badge}</span>
+              <span class="visa-sub">${v.sub}</span>
+            </td>
+            <td>
+              <div class="actions-cell">
+                <select class="status-mini" onchange="setJobStatus('${j.id}', this.value)">
+                  <option value="None" ${st === 'None' ? 'selected' : ''}>Track...</option>
+                  <option value="Saved" ${st === 'Saved' ? 'selected' : ''}>⭐ Saved</option>
+                  <option value="Applied" ${st === 'Applied' ? 'selected' : ''}>✅ Applied</option>
+                  <option value="Interviewing" ${st === 'Interviewing' ? 'selected' : ''}>🎯 Interview</option>
+                </select>
+                <button class="btn btn-ghost" onclick="jumpToCVForJob('${j.id}')">📄 Tailor CV</button>
+                <a class="btn btn-primary" href="${j.url}" target="_blank" rel="noopener noreferrer">Apply ↗</a>
               </div>
-
-              <div class="comp-banner">
-                <span>💵 <strong>Compensation:</strong> ${compDetail}</span>
-              </div>
-
-              <p class="highlights" style="margin-top: 0.8rem;">${job.highlights}</p>
-
-              <div class="visa-box ${isMedium ? 'medium' : ''}" style="margin-top: 0.8rem;">
-                <strong>🇳🇬 / 🇷🇼 Nigerian in Kigali Eligibility &amp; Travel Path</strong>
-                ${job.nigerian_kigali_visa_path}
-              </div>
-
-              <div class="link-row">
-                🔗 Application Portal: <a href="${job.url}" target="_blank" rel="noopener noreferrer">${job.url}</a>
-              </div>
-            </div>
-
-            <div class="card-footer">
-              <select class="status-select" onchange="setJobStatus('${job.id}', this.value)">
-                <option value="None" ${status === 'None' ? 'selected' : ''}>Status: Not Tracked</option>
-                <option value="Saved" ${status === 'Saved' ? 'selected' : ''}>⭐ Saved</option>
-                <option value="Applied" ${status === 'Applied' ? 'selected' : ''}>✅ Applied</option>
-                <option value="Interviewing" ${status === 'Interviewing' ? 'selected' : ''}>🎯 Interviewing</option>
-              </select>
-
-              <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
-                <button class="btn btn-purple" onclick="openStudioForJob('${job.id}')">
-                  🎯 Tailor CV
-                </button>
-                <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="btn">
-                  Apply Now ↗
-                </a>
-              </div>
-            </div>
-          </article>
+            </td>
+          </tr>
         `;
       }).join('');
     }
 
-    function bindFilterGroup(groupId, filterKey) {
-      const container = document.getElementById(groupId);
-      container.querySelectorAll('.chip').forEach(btn => {
-        btn.addEventListener('click', () => {
-          container.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          filters[filterKey] = btn.getAttribute('data-val');
-          renderJobs();
-        });
-      });
+    function jumpToCVForJob(jobId) {
+      switchMainView('cv');
+      const sel = document.getElementById('cv-role-select');
+      sel.value = jobId;
+      renderCVPreview(jobId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    document.getElementById('search-input').addEventListener('input', e => {
-      filters.search = e.target.value.trim();
-      renderJobs();
-    });
+    function renderCVPreview(jobId) {
+      const job = allJobs.find(j => j.id === jobId) || allJobs[0];
+      if (!job) return;
+
+      const isPM = job.category === 'AI Product Manager';
+      const isPO = job.category === 'AI Product Owner';
+      const v = shortVisaBadge(job);
+
+      const roleHeadline = isPM
+        ? 'AI Product Manager & M.S. Engineering Artificial Intelligence Candidate (CMU)'
+        : isPO
+        ? 'Technical AI Product Owner & M.S. Engineering Artificial Intelligence Candidate (CMU)'
+        : 'AI Business Analyst & M.S. Engineering Artificial Intelligence Candidate (CMU)';
+
+      const sheet = document.getElementById('cv-paper-sheet');
+      sheet.innerHTML = `
+        <h1>BUKUNMI TEMITOPE OGUNKOYA</h1>
+        <div class="cv-contact">
+          Kigali, Rwanda | <a href="mailto:bogunkoy@andrew.cmu.edu">bogunkoy@andrew.cmu.edu</a> | +250 780 067 798 | LinkedIn | Portfolio
+        </div>
+        <div class="cv-visa-line">
+          ${roleHeadline} • Graduating May 2028 • ${v.badge.replace(/^[^\w]+/, '')} (${v.sub})
+        </div>
+
+        <div class="cv-sec-title">PROFILE</div>
+        <p>
+          <strong>${job.category}</strong> and M.S. in Engineering Artificial Intelligence student at <strong>Carnegie Mellon University</strong> with 3+ years of FinTech product, project management, and automation experience. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, leading <span class="hl-change">Agile backlog prioritization</span>, and managing end-to-end delivery of Agentic AI workflows, OCR verification systems, and API-driven digital banking platforms across 30+ enterprise releases. Targeting <strong>${job.company}</strong> (${job.title}).
+        </p>
+
+        <div class="cv-sec-title">EDUCATION</div>
+        <div class="cv-row-head">
+          <span>Carnegie Mellon University Africa | M.S. Engineering Artificial Intelligence</span>
+          <span>2026 – May 2028</span>
+        </div>
+        <div class="cv-row-head">
+          <span>Federal University of Agriculture Abeokuta | B.Eng. Mechatronics Engineering</span>
+          <span>2016 – 2021</span>
+        </div>
+        <div style="font-size:0.8rem; color:#374151; margin-bottom:0.3rem;">
+          • Second Class Upper Honours, Best Graduating Student
+        </div>
+
+        <div class="cv-sec-title">WORK EXPERIENCE</div>
+        <div class="cv-row-head">
+          <span>Automation Business Analyst &amp; Product/Project Lead | Sterling Bank, Nigeria</span>
+          <span>March 2024 – July 2026</span>
+        </div>
+        <ul class="cv-bullets">
+          <li><strong>AI Product Definition &amp; PRDs:</strong> Authored <span class="hl-change">Product Requirements Documents (PRDs)</span> and workflow logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + API cross-validation), cutting manual verification costs by ~35% and accelerating customer onboarding.</li>
+          <li><strong>Backlog Prioritization &amp; Project Management:</strong> Owned <span class="hl-change">Agile backlog prioritization, sprint planning, and end-to-end project management</span> for the migration of 30+ enterprise automation workflows, leading cross-functional engineering, QA, and operations teams across discovery, build, UAT, pilot, and production release.</li>
+          <li><strong>AI Platform Re-Engineering:</strong> Re-engineered and launched an AI-enabled Customer Address Verification (CAV) portal, defining acceptance criteria and automated exception-handling rules to eliminate 70%+ of manual review bottlenecks and recurring monthly process costs.</li>
+          <li><strong>45% Faster Operational Turnaround:</strong> Reduced end-to-end turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM platforms by translating complex banking policies into prioritized Jira backlogs, PRDs, and developer-ready user stories.</li>
+        </ul>
+
+        <div class="cv-row-head">
+          <span>User Journey &amp; Product Growth Strategist | The Hook Creative Agency, Lagos, Nigeria</span>
+          <span>February 2022 – March 2024</span>
+        </div>
+        <ul class="cv-bullets">
+          <li>Drove a <strong>15% increase in account signups</strong> for the HerFidelity digital banking product by mapping end-to-end customer journeys, optimizing acquisition-to-onboarding funnel touchpoints, and prioritizing UX improvements.</li>
+          <li>Designed mixed-methods user research and data-collection frameworks across Gen Z and Gen X cohorts, translating behavioral insights into product roadmap recommendations.</li>
+        </ul>
+
+        <div class="cv-row-head">
+          <span>Automation Engineering Intern | 7up Bottling Company, Lagos, Nigeria</span>
+          <span>October 2019 – March 2020</span>
+        </div>
+        <ul class="cv-bullets">
+          <li>Programmed and calibrated PLC automation control cards across factory production lines in collaboration with control engineers, <strong>reducing maintenance downtime by 20%</strong>.</li>
+        </ul>
+
+        <div class="cv-sec-title">PROJECTS</div>
+        <div class="cv-row-head">
+          <span>Engineering Demand &amp; Backlog Prioritization Portal (Product &amp; Project Management Lead)</span>
+          <span>2026</span>
+        </div>
+        <ul class="cv-bullets">
+          <li>Authored the <span class="hl-change">PRD</span> and led end-to-end project delivery for a centralized engineering intake portal across business units; designed the <span class="hl-change">weighted backlog prioritization scoring model</span> (Business Impact × Effort) to rank and track competing engineering requests in real time.</li>
+        </ul>
+
+        <div class="cv-row-head">
+          <span>CMU-Africa Agentic AI &amp; Document Intelligence Evaluation Pipeline (M.S. Engineering AI)</span>
+          <span>2026</span>
+        </div>
+        <ul class="cv-bullets">
+          <li>Designed and benchmarked a multi-step Agentic AI, OCR, and Python/SQL validation pipeline for real-time KYC document verification, evaluating model precision, latency trade-offs, and automated exception-routing rules.</li>
+        </ul>
+
+        <div class="cv-sec-title">SKILLS, TOOLS &amp; CERTIFICATIONS</div>
+        <p style="margin-bottom:0.25rem;">
+          <strong>Product, Project &amp; Business Analysis:</strong> <span class="hl-change">PRDs (Product Requirements Documents), Agile Backlog Prioritization, End-to-End Project Management</span>, User Stories &amp; Acceptance Criteria, System &amp; API Design, UAT, Jira, Visio, Process Automation, User Research
+        </p>
+        <p style="margin-bottom:0.25rem;">
+          <strong>AI, Data &amp; Technical Stack:</strong> Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR, <span class="hl-change">Python, SQL</span>, Product &amp; Funnel Analytics
+        </p>
+        <p>
+          <strong>Certifications:</strong> Product Analytics Certification Badge (Pendo) • RPA Business Analyst Associate (UiPath) • Six Sigma White Belt
+        </p>
+      `;
+    }
+
+    function copyCleanCVText() {
+      const sheet = document.getElementById('cv-paper-sheet');
+      navigator.clipboard.writeText(sheet.innerText);
+      alert('Copied your tailored 1-page CV text to the clipboard!');
+    }
+
+    document.getElementById('search-input').addEventListener('input', renderTable);
 
     document.getElementById('export-btn').addEventListener('click', () => {
-      const statuses = getSavedStatuses();
+      const statuses = getStatuses();
       const rows = [
-        ['Company', 'Title', 'Category', 'Paid Status', 'Compensation', 'Work Mode', 'Location', 'Feasibility', 'Visa Path (Nigerian/Kigali)', 'My Status', 'Application URL']
+        ['Company', 'Role', 'Category', 'Location', 'Mode', 'Pay', 'Visa Path (Nigerian in Kigali)', 'My Status', 'Application URL']
       ];
       getFilteredJobs().forEach(j => {
+        const v = shortVisaBadge(j);
         rows.push([
           j.company,
           j.title,
           j.category,
-          j.paid_status || 'Paid',
-          j.compensation || 'Paid',
-          j.work_mode,
           j.location,
-          j.feasibility,
-          j.nigerian_kigali_visa_path,
+          j.work_mode,
+          shortPay(j),
+          `${v.badge} - ${v.sub}`,
           statuses[j.id] || 'Not Tracked',
           j.url
         ]);
@@ -1651,427 +1424,24 @@
       a.click();
     });
 
-    bindFilterGroup('category-filters', 'category');
-    bindFilterGroup('mode-filters', 'mode');
-    bindFilterGroup('visa-filters', 'visa');
-    bindFilterGroup('status-filters', 'status');
-
-    // =========================================================================
-    // CV BENCHMARK, ANTI-REPETITION AUDIT & ROLE-TAILORING ENGINE
-    // Pre-loaded with Bukunmi Temitope Ogunkoya's Master CV
-    // =========================================================================
-    const DEFAULT_BUKUNMI_CV = `BUKUNMI TEMITOPE OGUNKOYA
-Kigali, Rwanda | LinkedIn | +250 780 067 798 | Portfolio | bogunkoy@andrew.cmu.edu
-
-PROFILE
-Technology professional with over 3 years' experience designing automation workflows and digital banking products within financial services. I design systems end-to-end, from functional workflows and data validation rules to API integrations and automated exception handling, with a background in engineering and advanced studies in AI at CMU. I am looking for business analysis, product, and digital transformation roles where agentic AI, automation, and scalable technical frameworks create measurable operational impact.
-
-EDUCATION
-• Carnegie Mellon University Africa | M.S. Engineering Artificial Intelligence (In View) | 2026 - 2028
-• Federal University of Agriculture Abeokuta | B.Eng. Mechatronics Engineering (Second Class Upper Honours, Best Graduating Student) | 2016 - 2021
-
-WORK EXPERIENCE
-Automation Business Analyst | Sterling Bank, Nigeria (March 2024 – July 2026)
-• Delivered ~₦1 million in quarterly cost savings through the design of workflow logic for an AI-powered account pening document verification co-pilot using Agentic AI and OCR for faster customer onboarding process.
-• Eliminated ~₦600,000 in monthly process costs by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal, reducing manual intervention and verification delays.
-• Managed end-to-end migration of 30+ automation workflows into a new enterprise platform, managing crossfunctional teams across planning, build, UAT, pilot, deployment and production fixes phases.
-• Reduced operational turnaround time by 45% by translating complex banking workflows into automation-ready system requirements and user stories across Token OTP delivery, Loan eligibility system and CRM workflows.
-
-User Journey Strategist | The Hook Creative Agency, Lagos, Nigeria (February 2022 – March 2024)
-• Defined audience segmentation, customer journeys, and campaign touchpoints from ad to signups, that contributed to a 15% increase in account signups for the HerFidelity Product.
-• Designed user research and data-collection strategies for consumer research across Gen Z and Gen X audiences, translating findings into product and campaign recommendations.
-
-Automation Engineering Intern | 7up Bottling Company, Lagos, Nigeria (October 2019 – March 2020)
-• Assisted software engineers in programming PLC machine cards to support automation across factory production lines, reduced production maintenance downtime by 20%
-
-PROJECTS
-2026 | Engineering Demand Prioritization Portal
-• Led the business analysis for a centralized intake portal to streamline project requests across different business units. Designed the step-by-step process for how requests are submitted, assigned, and tracked in real time across engineering teams. Created the weighted scoring formula to rank projects by business impact for an objective prioritization system.
-
-2025 | AI-Copilot for Account Opening Document Verification
-• Designed an end-to-end AI-powered co-pilot for account opening document verification, pairing agentic AI with OCR and API-driven cross-validations to enable real-time KYC checks.
-
-SKILLS, TOOLS & METHODOLOGIES
-Product & Business Analysis: Product Requirements, System Design, Agile, UAT, Jira, Visio, Process Automation, User Research
-AI/ML: Generative AI, Agentic AI, OCR, AI System Design
-Certification: RPA Business Analyst Associate Training (UI Path) || Fundamentals of Project Management (Allison) || Six Sigma White Belt Certification (Six Sigma Online) || Product Analytics Certification Badge (Pendo)`;
-
-    const CATEGORY_BENCHMARKS = {
-      'AI Product Manager': {
-        requiredKeywords: [
-          'Product Strategy & Roadmapping',
-          'PRDs & Technical Specs',
-          'Agentic AI / LLM Systems',
-          'SQL & Python Data Fluency',
-          'LLM Evaluation & Guardrails',
-          'Funnel & Product Analytics (Pendo)',
-          'API & System Architecture',
-          'Cross-Functional Leadership',
-          'Customer Discovery & User Research',
-          'KPI & North-Star Metric Ownership'
-        ],
-        removeAdvice: [
-          'Drop duplicate 2025 KYC Co-Pilot Project (already in Sterling Bank Bullet #1)',
-          'Convert ₦1M / ₦600k Naira figures to % cost/latency reduction & throughput metrics',
-          'Fix "account pening" typo → "account opening"',
-          'Remove first-person "I design / I am looking for" in Profile',
-          'Drop "Fundamentals of Project Management (Allison)" cert',
-          'Condense 2019 7up PLC internship to 1 crisp line to free space for CMU AI coursework'
-        ]
-      },
-      'AI Product Owner': {
-        requiredKeywords: [
-          'Agile / Scrum Backlog Ownership',
-          'User Stories & Acceptance Criteria',
-          'Jira & Sprint Prioritization',
-          'Agentic AI & Workflow Orchestration',
-          'UAT & Release Management',
-          'SQL & Python Prototyping',
-          'API & Data Validation Rules',
-          'Weighted Prioritization Frameworks',
-          'Product Analytics (Pendo)',
-          'Data Science-to-Engineering Translation'
-        ],
-        removeAdvice: [
-          'Drop duplicate 2025 KYC Co-Pilot Project (replace with CMU AI technical build)',
-          'Convert ₦1M / ₦600k Naira figures to % cost reduction & sprint velocity/turnaround impact',
-          'Fix "account pening" typo → "account opening"',
-          'Remove passive verb "Assisted" in 7up Bottling bullet',
-          'Drop "Allison" certificate so Pendo Product Analytics & UiPath RPA BA stand out'
-        ]
-      },
-      'AI Business Analyst': {
-        requiredKeywords: [
-          'Process Mining & Workflow Re-Engineering',
-          'SQL, Python & Data Modeling',
-          'Business Case & Cost-Savings ROI',
-          'Agentic AI & RPA Automation (UiPath)',
-          'System Requirements & User Stories',
-          'API Cross-Validation & Exception Handling',
-          'UAT & Enterprise Platform Migration',
-          'Weighted Scoring & Decision Models',
-          'Executive KPI Dashboards (Power BI / Tableau)',
-          'Six Sigma Process Optimization'
-        ],
-        removeAdvice: [
-          'Merge duplicate 2025 KYC Co-Pilot Project into Sterling Bank or expand technical validation schema',
-          'Reframe ₦1M / ₦600k Naira figures as % operational cost reduction + hours/FTEs saved',
-          'Fix "account pening" typo → "account opening"',
-          'Replace first-person pronouns ("I") in Profile with sharp third-person BA positioning',
-          'Drop "Allison" certificate'
-        ]
-      }
-    };
-
-    let selectedStudioJobId = null;
-
-    function getMasterCV() {
-      return localStorage.getItem('bukunmi_master_cv_2027') || DEFAULT_BUKUNMI_CV;
-    }
-
-    function saveCustomCV(val) {
-      localStorage.setItem('bukunmi_master_cv_2027', val);
-      if (selectedStudioJobId) {
-        renderStudioForJob(selectedStudioJobId);
-      }
-    }
-
-    function resetDefaultCV() {
-      localStorage.removeItem('bukunmi_master_cv_2027');
-      document.getElementById('cv-master-input').value = DEFAULT_BUKUNMI_CV;
-      if (selectedStudioJobId) {
-        renderStudioForJob(selectedStudioJobId);
-      }
-    }
-
-    function toggleCVStudio() {
-      const studio = document.getElementById('cv-studio');
-      const btn = document.getElementById('toggle-studio-btn');
-      studio.classList.toggle('hidden');
-      const isHidden = studio.classList.contains('hidden');
-      btn.textContent = isHidden
-        ? '🧬 Open CV Benchmark & Tailoring Studio'
-        : '✕ Hide CV Benchmark Studio';
-    }
-
-    function switchStudioTab(paneId, btnEl) {
-      document.querySelectorAll('.studio-pane').forEach(p => p.classList.add('hidden'));
-      document.getElementById(paneId).classList.remove('hidden');
-      document.querySelectorAll('.studio-tab').forEach(b => b.classList.remove('active'));
-      if (btnEl) btnEl.classList.add('active');
-    }
-
-    function openStudioForJob(jobId) {
-      const studio = document.getElementById('cv-studio');
-      studio.classList.remove('hidden');
-      document.getElementById('toggle-studio-btn').textContent = '✕ Hide CV Benchmark Studio';
-      const select = document.getElementById('studio-job-select');
-      select.value = jobId;
-      selectStudioJob(jobId);
-      const rewriteTabBtn = document.querySelector('.studio-tab[data-tab="pane-rewriter"]');
-      switchStudioTab('pane-rewriter', rewriteTabBtn);
-      studio.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function selectStudioJob(jobId) {
-      selectedStudioJobId = jobId;
-      renderStudioForJob(jobId);
-    }
-
-    function buildVisaHeaderForJob(job) {
-      const loc = (job.location + ' ' + job.region).toLowerCase();
-      if (loc.includes('france') || loc.includes('paris') || loc.includes('munich') || loc.includes('germany') || loc.includes('amsterdam') || loc.includes('schengen') || loc.includes('zurich') || loc.includes('madrid')) {
-        return {
-          headerLine: 'Kigali, Rwanda | Nigerian Citizen (Valid Rwandan Residence Permit) | Enrolled M.S. Student at Carnegie Mellon University (Eligible for Tripartite European Convention de Stage / Student Internship Permit via Kigali Embassies)',
-          advice: `For <strong>${job.company}</strong> (${job.location}), European HR screens immediately for whether a non-EU student can sign a tripartite university internship agreement (<em>Convention de Stage / Pflichtpraktikum</em>). Placing your <strong>CMU-Africa M.S. enrollment (Expected May 2028)</strong> and <strong>Kigali embassy eligibility</strong> right under your name prevents automatic rejection.`
-        };
-      }
-      if (loc.includes('uk') || loc.includes('london') || loc.includes('united kingdom')) {
-        return {
-          headerLine: 'Kigali, Rwanda (UTC+2) | Enrolled M.S. AI Student at Carnegie Mellon University (Graduating May 2028) | Eligible for UK GAE (Tier 5) Sponsorship via VFS Global Kigali',
-          advice: `For <strong>${job.company}</strong> (${job.location}), UK recruiters look for penultimate-year degree status (Graduating 2028) and clarity on <strong>UK Government Authorised Exchange (GAE)</strong> visa processing via VFS Kigali.`
-        };
-      }
-      if (loc.includes('usa') || loc.includes('united states') || loc.includes('san francisco') || loc.includes('california') || loc.includes('north america')) {
-        return {
-          headerLine: 'Carnegie Mellon University — M.S. Engineering Artificial Intelligence (Expected May 2028) | Eligible for U.S. J-1 Intern Visa (U.S. Embassy Kigali)',
-          advice: `For <strong>${job.company}</strong> (${job.location}), lead with <strong>"Carnegie Mellon University — M.S. Engineering AI (Expected May 2028)"</strong> so US university recruiters immediately recognize CMU and your eligibility for a <strong>J-1 Intern DS-2019</strong> processed at U.S. Embassy Kigali.`
-        };
-      }
-      return {
-        headerLine: 'Kigali, Rwanda (Valid Residence Permit, UTC+2) | Lagos, Nigeria (Nigerian Citizen, UTC+1) | M.S. Engineering AI at Carnegie Mellon University Africa',
-        advice: `For <strong>${job.company}</strong> (${job.location}), highlight your dual <strong>Zero-Visa eligibility</strong> in both Kigali (Rwandan Student Residence Permit) and Lagos (Nigerian Citizen), plus EMEA-aligned UTC+1/UTC+2 timezones.`
-      };
-    }
-
-    function generateRewritesForJob(job) {
-      const cat = job.category;
-      const company = job.company;
-      const visaInfo = buildVisaHeaderForJob(job);
-
-      const isPM = cat === 'AI Product Manager';
-      const isPO = cat === 'AI Product Owner';
-
-      const tailoredProfile = isPM
-        ? `AI Product Manager & M.S. Engineering Artificial Intelligence student at Carnegie Mellon University (Graduating May 2028) with 3+ years of experience shipping AI-powered FinTech products, agentic workflows, and enterprise platforms. Proven track record owning end-to-end product lifecycles—from customer discovery, PRDs, and weighted prioritization models to LLM/OCR co-pilot design, API architecture, and Pendo product analytics—cutting operational turnaround by 45% across 30+ production workflows. Targeting ${company}'s ${job.title} to scale high-impact AI product experiences.`
-        : isPO
-        ? `Technical AI Product Owner & M.S. Engineering Artificial Intelligence student at Carnegie Mellon University (Graduating May 2028) with 3+ years of Agile product ownership across FinTech and enterprise automation. Experienced in translating complex AI/ML, OCR, and API capabilities into structured user stories, acceptance criteria, and prioritized Jira backlogs—leading cross-functional engineering and data teams across 30+ workflow releases and reducing turnaround time by 45%. Targeting ${company}'s ${job.title}.`
-        : `AI Business Analyst & M.S. Engineering Artificial Intelligence student at Carnegie Mellon University (Graduating May 2028) with 3+ years of experience in financial services process re-engineering, agentic AI automation, and data-driven decision modeling. Adept at combining SQL, Python, UiPath RPA, and Six Sigma process intelligence to translate complex business bottlenecks into AI-enabled workflows—delivering 45% faster operational turnaround and migrating 30+ enterprise workflows. Targeting ${company}'s ${job.title}.`;
-
-      const tailoredSterling = isPM
-        ? `• Spearheaded product definition and workflow architecture for an AI-powered Account Opening & KYC Document Verification Co-Pilot (Agentic AI + OCR + API validation), cutting manual verification costs by ~35% and accelerating customer onboarding across retail banking channels.
-• Owned end-to-end product re-engineering of an AI-enabled Customer Address Verification (CAV) platform, defining PRDs, confidence thresholds, and exception-handling logic to eliminate manual back-office bottlenecks.
-• Led cross-functional delivery of 30+ enterprise automation products from discovery through UAT, pilot, and production rollout across engineering, risk, and operations teams.
-• Reduced operational turnaround time by 45% by authoring technical PRDs, system requirements, and user stories for mission-critical Token OTP, Loan Eligibility scoring, and CRM platforms.`
-        : isPO
-        ? `• Acted as Technical Product Owner for an AI-powered Account Opening Document Verification Co-Pilot (Agentic AI + OCR), defining user stories, edge-case acceptance criteria, and API validation rules that cut manual review costs and sped up KYC onboarding.
-• Owned the Agile backlog and workflow re-engineering for an AI-enabled Customer Address Verification (CAV) portal, eliminating recurring monthly verification delays and manual intervention.
-• Orchestrated end-to-end migration of 30+ automation workflows onto a unified enterprise platform, driving sprint planning, Jira backlog grooming, UAT sign-off, pilot testing, and production releases.
-• Cut operational turnaround time by 45% by translating complex banking policies into developer-ready user stories and acceptance criteria across Token OTP delivery, Loan Eligibility, and CRM systems.`
-        : `• Architected workflow logic and business rules for an AI-powered Account Opening KYC Verification Co-Pilot (Agentic AI + OCR + real-time API cross-checks), eliminating manual review bottlenecks and driving recurring quarterly cost reductions.
-• Re-engineered end-to-end process flows for an AI-enabled Customer Address Verification (CAV) portal, reducing manual back-office intervention, verification latency, and monthly operational expenditure.
-• Led business systems analysis and UAT for the migration of 30+ automation workflows into an enterprise platform, coordinating cross-functional teams across build, pilot, deployment, and production support.
-• Reduced operational turnaround time by 45% by mapping as-is/to-be processes (Visio) and authoring functional requirements across Token OTP, Loan Eligibility scoring, and CRM workflows.`;
-
-      const tailoredHook = isPM
-        ? `• Drove funnel conversion up 15% for the HerFidelity digital banking product by conducting end-to-end funnel analytics, audience segmentation, and onboarding journey optimization from acquisition to activation.
-• Led mixed-methods user research across Gen Z and Gen X segments, synthesizing behavioral insights into actionable product roadmap recommendations and feature experiments.`
-        : `• Increased account signup conversion by 15% for the HerFidelity financial product by mapping end-to-end customer journeys, identifying drop-off friction, and defining iterative UX/product enhancements.
-• Designed quantitative and qualitative user research pipelines across Gen Z and Gen X cohorts, translating user pain points into prioritized product requirements.`;
-
-      const tailoredProjects = `2026 | Engineering Demand Prioritization & ROI Scoring Portal (Product & Systems Lead)
-• Designed a centralized product intake and governance portal to eliminate ad-hoc engineering requests across business units; authored the multi-criteria weighted scoring algorithm (Business Impact × Effort × Strategic Alignment) to rank backlog items objectively and enable real-time delivery tracking.
-
-2026 | CMU-Africa AI Systems & Agentic KYC Evaluation Pipeline (M.S. Engineering AI)
-• [Replaces duplicate 2025 KYC bullet]: Built and evaluated a multi-step Agentic AI & OCR document verification pipeline using Python, structured JSON schema validation, and confidence-threshold routing to benchmark precision/recall and latency on financial KYC documents.`;
-
-      const tailoredSkills = isPM
-        ? `Product Management & Analytics: PRDs & Technical Specs, Product Strategy & Roadmapping, Funnel & Product Analytics (Pendo Certified), User Research, Weighted Backlog Prioritization, Agile/Scrum, Jira, A/B Experimentation
-AI & Technical Stack: Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR & KYC Automation, Python, SQL, REST API Integration & Schema Validation, Visio
-Certifications: Product Analytics Certification (Pendo) || UiPath RPA Business Analyst Associate || Six Sigma White Belt`
-        : isPO
-        ? `Product Ownership & Agile Delivery: Agile / Scrum Backlog Management, User Stories & Acceptance Criteria, Sprint Planning, UAT & Release Management, Jira, Weighted Prioritization Models, Product Analytics (Pendo Certified), Visio
-AI & Technical Stack: Agentic AI & LLM Workflows, AI System Design, OCR Document Intelligence, Python, SQL, REST API Validation & Exception Handling, Process Automation
-Certifications: Product Analytics Certification (Pendo) || UiPath RPA Business Analyst Associate || Six Sigma White Belt`
-        : `Business Analysis & Process Intelligence: Process Mining & Workflow Re-Engineering, Functional Requirements & User Stories, ROI & Cost-Benefit Modeling, UAT & Enterprise Migration, Jira, Visio, Six Sigma Process Optimization
-AI, Data & Automation Stack: Agentic AI & LLM Workflows, UiPath RPA (Certified BA Associate), OCR & Automated KYC Validation, SQL, Python, Product & Funnel Analytics (Pendo Certified), REST API Integration
-Certifications: UiPath RPA Business Analyst Associate || Product Analytics Certification (Pendo) || Six Sigma White Belt`;
-
-      return [
-        {
-          section: '1. Header & Visa Eligibility Hook',
-          original: `BUKUNMI TEMITOPE OGUNKOYA\nKigali, Rwanda | LinkedIn | +250 780 067 798 | Portfolio | bogunkoy@andrew.cmu.edu`,
-          tailored: `BUKUNMI TEMITOPE OGUNKOYA\n${visaInfo.headerLine}\nLinkedIn | Portfolio | +250 780 067 798 | bogunkoy@andrew.cmu.edu`,
-          reason: `Injects exact graduation year (May 2028) and ${job.region} work-authorization signal so recruiters don't guess your visa path.`
-        },
-        {
-          section: `2. Executive Profile (Tailored for ${company} — ${cat})`,
-          original: `Technology professional with over 3 years' experience designing automation workflows and digital banking products within financial services. I design systems end-to-end, from functional workflows and data validation rules to API integrations and automated exception handling, with a background in engineering and advanced studies in AI at CMU. I am looking for business analysis, product, and digital transformation roles where agentic AI, automation, and scalable technical frameworks create measurable operational impact.`,
-          tailored: tailoredProfile,
-          reason: `Eliminates first-person pronouns ("I design / I am looking for"), foregrounds CMU M.S. Engineering AI + 45% turnaround metric, and aligns directly with ${company}'s ${cat} rubric.`
-        },
-        {
-          section: '3. Sterling Bank — Automation Business Analyst (Fixed Typo + Global Metrics)',
-          original: `• Delivered ~₦1 million in quarterly cost savings through the design of workflow logic for an AI-powered account pening document verification co-pilot using Agentic AI and OCR for faster customer onboarding process.\n• Eliminated ~₦600,000 in monthly process costs by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal, reducing manual intervention and verification delays.\n• Managed end-to-end migration of 30+ automation workflows into a new enterprise platform, managing crossfunctional teams across planning, build, UAT, pilot, deployment and production fixes phases.\n• Reduced operational turnaround time by 45% by translating complex banking workflows into automation-ready system requirements and user stories across Token OTP delivery, Loan eligibility system and CRM workflows.`,
-          tailored: tailoredSterling,
-          reason: `Fixes "account pening" typo → "Account Opening", replaces small-looking Naira figures (₦1M/₦600k) with global-ready %/efficiency impact, and frames bullets around ${cat} ownership.`
-        },
-        {
-          section: '4. The Hook Creative Agency — User Journey Strategist',
-          original: `• Defined audience segmentation, customer journeys, and campaign touchpoints from ad to signups, that contributed to a 15% increase in account signups for the HerFidelity Product.\n• Designed user research and data-collection strategies for consumer research across Gen Z and Gen X audiences, translating findings into product and campaign recommendations.`,
-          tailored: tailoredHook,
-          reason: `Leads with the 15% conversion lift metric (Google XYZ format) and shifts framing from marketing agency campaigns to digital banking funnel & product discovery.`
-        },
-        {
-          section: '5. Projects (Eliminates Duplicate 2025 KYC Bullet)',
-          original: `2026 | Engineering Demand Prioritization Portal.\n• Led the business analysis for a centralized intake portal to streamline project requests across different business units. Designed the step-by-step process for how requests are submitted, assigned, and tracked in real time across engineering teams. Created the weighted scoring formula to rank projects by business impact for an objective prioritization system.\n2025 | AI-Copilot for Account Opening Document Verification\n• Designed an end-to-end AI-powered co-pilot for account opening document verification, pairing agentic AI with OCR and API-driven cross-validations to enable real-time KYC checks.`,
-          tailored: tailoredProjects,
-          reason: `Removes the exact duplicate of Sterling Bank Bullet #1 and replaces it with a technical CMU-Africa M.S. AI evaluation pipeline highlight showing Python, JSON schemas, and precision/latency metrics.`
-        },
-        {
-          section: '6. Skills & Certifications (Injected SQL/Python/PRDs & Trimmed Clutter)',
-          original: `Product & Business Analysis: Product Requirements, System Design, Agile, UAT, Jira, Visio, Process Automation, User Research\nAI/ML: Generative AI, Agentic AI, OCR, AI System Design.\nCertification: RPA Business Analyst Associate Training (UI Path) || Fundamentals of Project Management (Allison)|| Six Sigma White Belt Certification (Six Sigma Online) ||Product Analytics Certification Badge (Pendo).`,
-          tailored: tailoredSkills,
-          reason: `Adds missing ATS filter keywords (Python, SQL, PRDs, REST APIs, Weighted Prioritization) backed by your CMU AI & Mechatronics background, and drops the low-signal "Allison" certificate.`
-        }
-      ];
-    }
-
-    function renderStudioForJob(jobId) {
-      const job = allJobs.find(j => j.id === jobId) || allJobs[0];
-      if (!job) return;
-      selectedStudioJobId = job.id;
-
-      document.getElementById('studio-cat-badge').textContent = job.category;
-      document.getElementById('studio-visa-badge').textContent = `${job.work_mode} • ${job.region}`;
-
-      const cvText = getMasterCV().toLowerCase();
-      const bench = CATEGORY_BENCHMARKS[job.category] || CATEGORY_BENCHMARKS['AI Product Manager'];
-
-      // Dynamic keyword check against current CV text in editor
-      const matched = [];
-      const gaps = [];
-
-      const checks = [
-        { label: 'Agentic AI & OCR', test: () => cvText.includes('agentic ai') && cvText.includes('ocr') },
-        { label: 'End-to-End System & API Design', test: () => cvText.includes('api') && cvText.includes('system design') },
-        { label: 'Agile, UAT & Jira', test: () => cvText.includes('agile') && cvText.includes('jira') && cvText.includes('uat') },
-        { label: 'User Stories & Requirements', test: () => cvText.includes('user stories') || cvText.includes('product requirements') },
-        { label: 'Weighted Prioritization Scoring', test: () => cvText.includes('weighted scoring') || cvText.includes('prioritization') },
-        { label: 'Quantified Impact (45% Turnaround, +15% Signups)', test: () => cvText.includes('45%') && cvText.includes('15%') },
-        { label: 'Pendo Product Analytics & UiPath RPA', test: () => cvText.includes('pendo') && cvText.includes('rpa') },
-        { label: 'SQL & Python Data Fluency', test: () => cvText.includes('sql') && cvText.includes('python') },
-        { label: 'PRDs & Roadmap Ownership', test: () => cvText.includes('prd') || cvText.includes('roadmap') },
-        { label: 'LLM Evaluation / RAG / Confidence Thresholds', test: () => cvText.includes('eval') || cvText.includes('rag') || cvText.includes('precision') },
-        { label: 'Typo-Free ("account opening")', test: () => !cvText.includes('account pening') },
-        { label: 'Global Currency Framing (No raw ₦ Naira)', test: () => !cvText.includes('₦1 million') && !cvText.includes('₦600,000') }
-      ];
-
-      checks.forEach(c => {
-        if (c.test()) matched.push(c.label);
-        else gaps.push(c.label);
-      });
-
-      const baseScore = Math.round((matched.length / checks.length) * 100);
-      document.getElementById('score-readiness').textContent = `${baseScore}% → 96%`;
-      document.getElementById('score-summary').innerHTML =
-        `Benchmarked against <strong>${job.company}</strong> (${job.title}) &amp; <strong>${job.category}</strong> rubric.`;
-
-      document.getElementById('pills-matched').innerHTML = matched
-        .map(m => `<span class="kw-pill kw-match">✓ ${m}</span>`)
-        .join('');
-
-      document.getElementById('pills-gaps').innerHTML = (gaps.length ? gaps : ['All core benchmarks present!'])
-        .map(g => `<span class="kw-pill kw-gap">+ ${g}</span>`)
-        .join('');
-
-      document.getElementById('pills-drop').innerHTML = bench.removeAdvice
-        .map(r => `<span class="kw-pill kw-drop">✕ ${r}</span>`)
-        .join('');
-
-      const visaInfo = buildVisaHeaderForJob(job);
-      document.getElementById('studio-header-recommendation').innerHTML = `
-        <strong>🌍 Recommended CV Header &amp; Mobility Signal for ${job.company} (${job.location})</strong>
-        <div style="margin-top:0.25rem; color:#e2e8f0;">${visaInfo.advice}</div>
-        <div style="margin-top:0.5rem; padding:0.5rem 0.7rem; background:#0b0f19; border:1px solid var(--border); border-radius:0.45rem; font-family:monospace; font-size:0.79rem; color:var(--green);">
-          ${visaInfo.headerLine}
-        </div>
-      `;
-
-      const rewrites = generateRewritesForJob(job);
-      window._currentTailoredBlocks = rewrites;
-      document.getElementById('rewrite-container').innerHTML = rewrites.map((rw, idx) => `
-        <div class="rewrite-row">
-          <div class="rewrite-col orig">
-            <h5><span>❌ Current CV (${rw.section})</span></h5>
-            <div class="rewrite-text">${rw.original}</div>
-          </div>
-          <div class="rewrite-col tailored">
-            <h5>
-              <span>✅ Tailored for ${job.company} (${job.category})</span>
-              <button class="copy-mini" onclick="copyRewriteBlock(${idx}, this)">📋 Copy</button>
-            </h5>
-            <div class="rewrite-text">${rw.tailored}</div>
-            <div class="rewrite-reason">💡 <strong>Why this benchmark change works:</strong> ${rw.reason}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function copyRewriteBlock(idx, btnEl) {
-      const blocks = window._currentTailoredBlocks || [];
-      if (!blocks[idx]) return;
-      navigator.clipboard.writeText(blocks[idx].tailored);
-      const old = btnEl.textContent;
-      btnEl.textContent = '✓ Copied!';
-      setTimeout(() => { btnEl.textContent = old; }, 1600);
-    }
-
-    function copyFullTailoredCV() {
-      const blocks = window._currentTailoredBlocks || [];
-      const job = allJobs.find(j => j.id === selectedStudioJobId) || allJobs[0];
-      const fullText = [
-        blocks[0]?.tailored || '',
-        '\nPROFILE\n' + (blocks[1]?.tailored || ''),
-        '\nEDUCATION\n• Carnegie Mellon University Africa | M.S. Engineering Artificial Intelligence (Expected May 2028) | 2026 – 2028\n• Federal University of Agriculture Abeokuta | B.Eng. Mechatronics Engineering (Second Class Upper Honours, Best Graduating Student) | 2016 – 2021',
-        '\nWORK EXPERIENCE\nAutomation Business Analyst | Sterling Bank, Nigeria (March 2024 – July 2026)\n' + (blocks[2]?.tailored || ''),
-        '\nUser Journey Strategist | The Hook Creative Agency, Lagos, Nigeria (February 2022 – March 2024)\n' + (blocks[3]?.tailored || ''),
-        '\nAutomation Engineering Intern | 7up Bottling Company, Lagos, Nigeria (October 2019 – March 2020)\n• Programmed and calibrated PLC automation cards alongside control engineers across factory production lines, reducing maintenance downtime by 20%.',
-        '\nPROJECTS\n' + (blocks[4]?.tailored || ''),
-        '\nSKILLS, TOOLS & CERTIFICATIONS\n' + (blocks[5]?.tailored || '')
-      ].join('\n');
-
-      navigator.clipboard.writeText(fullText);
-      alert(`Copied full tailored CV for ${job ? job.company + ' (' + job.title + ')' : 'selected role'} to your clipboard!`);
-    }
-
-    function initCVStudio() {
-      const select = document.getElementById('studio-job-select');
-      select.innerHTML = allJobs.map(j =>
-        `<option value="${j.id}">${j.company} — ${j.title} [${j.category} • ${j.location}]</option>`
-      ).join('');
-      document.getElementById('cv-master-input').value = getMasterCV();
-      if (allJobs.length > 0) {
-        selectStudioJob(allJobs[0].id);
-      }
-    }
-
     async function init() {
       try {
         const res = await fetch('./jobs.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Fallback to inline JSON');
+        if (!res.ok) throw new Error('Fallback');
         const data = await res.json();
         allJobs = data.jobs || [];
-        if (data.metadata && data.metadata.last_updated) {
-          document.getElementById('last-updated-text').textContent =
-            'Last synced: ' + data.metadata.last_updated.slice(0, 10);
-        }
       } catch (e) {
         allJobs = FALLBACK_DATA.jobs || [];
       }
-      updateKPIs();
-      renderJobs();
-      initCVStudio();
+      renderTable();
+
+      const sel = document.getElementById('cv-role-select');
+      sel.innerHTML = allJobs.map(j =>
+        `<option value="${j.id}">${j.company} — ${j.title} (${j.location})</option>`
+      ).join('');
+      if (allJobs.length > 0) {
+        renderCVPreview(allJobs[0].id);
+      }
     }
 
     init();
