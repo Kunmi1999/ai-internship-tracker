@@ -590,7 +590,7 @@
       <div class="cv-layout">
         <aside class="cv-sidebar">
           <h3>Tailor Your 1-Page CV</h3>
-          <p>Select any role from the tracker to automatically adjust your CV framing, keywords, and visa header.</p>
+          <p>Select any role from the tracker to automatically adjust your CV framing and keywords.</p>
 
           <label for="cv-role-select">1. Select Role (Auto-Tailors to Its Job Description):</label>
           <select id="cv-role-select" onchange="renderCVPreview(this.value)"></select>
@@ -1343,13 +1343,6 @@
 
       const isPM = job.category === 'AI Product Manager';
       const isPO = job.category === 'AI Product Owner';
-      const v = shortVisaBadge(job);
-
-      const roleHeadline = isPM
-        ? 'AI Product Manager • M.S. Engineering Artificial Intelligence (Carnegie Mellon University)'
-        : isPO
-        ? 'Technical AI Product Owner • M.S. Engineering Artificial Intelligence (Carnegie Mellon University)'
-        : 'AI Business Analyst • M.S. Engineering Artificial Intelligence (Carnegie Mellon University)';
 
       const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI TEMITOPE OGUNKOYA';
       const savedContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
@@ -1393,11 +1386,8 @@
       const sheet = document.getElementById('cv-paper-sheet');
       sheet.innerHTML = `
         <h1>${savedName}</h1>
-        <div class="cv-contact">
+        <div class="cv-contact" style="margin-bottom:0.9rem;">
           ${savedContact}
-        </div>
-        <div class="cv-visa-line">
-          ${roleHeadline} • Graduating May 2028 • ${v.badge.replace(/^[^\w]+/, '')} (${v.sub})
         </div>
 
         <div class="cv-sec-title">PROFILE</div>
