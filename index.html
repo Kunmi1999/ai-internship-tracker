@@ -589,11 +589,29 @@
     <section id="view-cv" class="hidden">
       <div class="cv-layout">
         <aside class="cv-sidebar">
-          <h3>Tailor Bukunmi's CV</h3>
+          <h3>Tailor Your 1-Page CV</h3>
           <p>Select any role from the tracker to automatically adjust your CV framing, keywords, and visa header.</p>
 
           <label for="cv-role-select">Tailor For Role:</label>
           <select id="cv-role-select" onchange="renderCVPreview(this.value)"></select>
+
+          <label for="cv-private-header">Your Header Info (Saved Privately in Browser):</label>
+          <input
+            type="text"
+            id="cv-private-name"
+            class="search-box"
+            style="width:100%; max-width:100%; margin-bottom:0.45rem; padding:0.4rem 0.6rem;"
+            placeholder="Your Full Name (e.g. Bukunmi Temitope Ogunkoya)"
+            oninput="savePrivateHeader()"
+          />
+          <input
+            type="text"
+            id="cv-private-contact"
+            class="search-box"
+            style="width:100%; max-width:100%; margin-bottom:0.9rem; padding:0.4rem 0.6rem;"
+            placeholder="City | Email | Phone | LinkedIn"
+            oninput="savePrivateHeader()"
+          />
 
           <div class="upgrades-box">
             <h4>✅ Built Into Your Generated CV:</h4>
@@ -1301,11 +1319,14 @@
         ? 'Technical AI Product Owner & M.S. Engineering Artificial Intelligence Candidate (CMU)'
         : 'AI Business Analyst & M.S. Engineering Artificial Intelligence Candidate (CMU)';
 
+      const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI T. O.';
+      const savedContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
+
       const sheet = document.getElementById('cv-paper-sheet');
       sheet.innerHTML = `
-        <h1>BUKUNMI TEMITOPE OGUNKOYA</h1>
+        <h1>${savedName}</h1>
         <div class="cv-contact">
-          Kigali, Rwanda | <a href="mailto:bogunkoy@andrew.cmu.edu">bogunkoy@andrew.cmu.edu</a> | +250 780 067 798 | LinkedIn | Portfolio
+          ${savedContact}
         </div>
         <div class="cv-visa-line">
           ${roleHeadline} • Graduating May 2028 • ${v.badge.replace(/^[^\w]+/, '')} (${v.sub})
@@ -1388,6 +1409,17 @@
       `;
     }
 
+    function savePrivateHeader() {
+      const nameVal = document.getElementById('cv-private-name').value.trim();
+      const contactVal = document.getElementById('cv-private-contact').value.trim();
+      if (nameVal) localStorage.setItem('cv_private_name', nameVal);
+      else localStorage.removeItem('cv_private_name');
+      if (contactVal) localStorage.setItem('cv_private_contact', contactVal);
+      else localStorage.removeItem('cv_private_contact');
+      const sel = document.getElementById('cv-role-select');
+      if (sel && sel.value) renderCVPreview(sel.value);
+    }
+
     function copyCleanCVText() {
       const sheet = document.getElementById('cv-paper-sheet');
       navigator.clipboard.writeText(sheet.innerText);
@@ -1434,6 +1466,9 @@
         allJobs = FALLBACK_DATA.jobs || [];
       }
       renderTable();
+
+      document.getElementById('cv-private-name').value = localStorage.getItem('cv_private_name') || '';
+      document.getElementById('cv-private-contact').value = localStorage.getItem('cv_private_contact') || '';
 
       const sel = document.getElementById('cv-role-select');
       sel.innerHTML = allJobs.map(j =>
