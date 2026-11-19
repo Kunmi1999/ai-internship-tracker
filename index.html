@@ -592,8 +592,17 @@
           <h3>Tailor Your 1-Page CV</h3>
           <p>Select any role from the tracker to automatically adjust your CV framing, keywords, and visa header.</p>
 
-          <label for="cv-role-select">Tailor For Role:</label>
+          <label for="cv-role-select">1. Select Role (Auto-Tailors to Its Job Description):</label>
           <select id="cv-role-select" onchange="renderCVPreview(this.value)"></select>
+
+          <label for="cv-custom-jd">Or Paste Any Job Description Text (Optional):</label>
+          <textarea
+            id="cv-custom-jd"
+            class="search-box"
+            style="width:100%; max-width:100%; min-height:64px; margin-bottom:0.75rem; padding:0.45rem 0.6rem; font-family:inherit; resize:vertical;"
+            placeholder="Paste a raw job description here to dynamically inject its key skills & focus areas into your CV..."
+            oninput="renderCVPreview(document.getElementById('cv-role-select').value)"
+          ></textarea>
 
           <label for="cv-private-header">Your Header Info (Saved Privately in Browser):</label>
           <input
@@ -1308,22 +1317,78 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function extractCustomJDSignals(jdText, job) {
+      const text = `${jdText || ''} ${job.title} ${job.highlights || ''} ${job.company}`.toLowerCase();
+      const signals = [];
+      if (text.includes('sql')) signals.push('SQL');
+      if (text.includes('python')) signals.push('Python');
+      if (text.includes('scrum') || text.includes('agile')) signals.push('Agile/Scrum');
+      if (text.includes('agentforce') || text.includes('agentic') || text.includes('agents')) signals.push('Agentic AI Workflows');
+      if (text.includes('forecast') || text.includes('predictive')) signals.push('Predictive Analytics & Forecasting');
+      if (text.includes('process intelligence') || text.includes('process mining') || text.includes('celonis')) signals.push('Process Intelligence & Value Engineering');
+      if (text.includes('power bi') || text.includes('tableau') || text.includes('dashboard')) signals.push('KPI Dashboards (Power BI / Tableau)');
+      if (text.includes('cloud') || text.includes('saas')) signals.push('Enterprise Cloud & SaaS Architecture');
+      if (text.includes('fintech') || text.includes('bank') || text.includes('financial') || text.includes('revolut') || text.includes('jpmorgan') || text.includes('goldman') || text.includes('morgan stanley')) {
+        signals.push('FinTech & Digital Banking Systems');
+      }
+      return signals;
+    }
+
     function renderCVPreview(jobId) {
       const job = allJobs.find(j => j.id === jobId) || allJobs[0];
       if (!job) return;
+
+      const customJD = (document.getElementById('cv-custom-jd')?.value || '').trim();
+      const jdSignals = extractCustomJDSignals(customJD, job);
 
       const isPM = job.category === 'AI Product Manager';
       const isPO = job.category === 'AI Product Owner';
       const v = shortVisaBadge(job);
 
       const roleHeadline = isPM
-        ? 'AI Product Manager & M.S. Engineering Artificial Intelligence Candidate (CMU)'
+        ? 'AI Product Manager • M.S. Engineering Artificial Intelligence (Carnegie Mellon University)'
         : isPO
-        ? 'Technical AI Product Owner & M.S. Engineering Artificial Intelligence Candidate (CMU)'
-        : 'AI Business Analyst & M.S. Engineering Artificial Intelligence Candidate (CMU)';
+        ? 'Technical AI Product Owner • M.S. Engineering Artificial Intelligence (Carnegie Mellon University)'
+        : 'AI Business Analyst • M.S. Engineering Artificial Intelligence (Carnegie Mellon University)';
 
-      const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI T. O.';
+      const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI TEMITOPE OGUNKOYA';
       const savedContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
+
+      // Company & JD-specific focus phrase
+      const jdContextNote = job.highlights
+        ? job.highlights.replace(/^Direct [^.]+\.\s*/i, '').replace(/^Pre-filtered [^.]+\.\s*/i, '')
+        : '';
+
+      const profileText = isPM
+        ? `<strong>AI Product Manager</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience shipping AI-powered digital banking products, agentic workflows, and enterprise platforms. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, driving <span class="hl-change">weighted backlog prioritization</span>, and leading cross-functional engineering and data science teams across 30+ product releases—cutting operational turnaround time by 45%. Combines <span class="hl-change">Python, SQL, and Pendo product analytics</span> with deep expertise in LLM/OCR system design to deliver measurable product impact for <strong>${job.company}</strong> (${job.title}).`
+        : isPO
+        ? `<strong>Technical AI Product Owner</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of Agile product ownership and automation delivery in financial services. Adept at translating complex AI/ML, OCR, and API architectures into clear <span class="hl-change">Product Requirements Documents (PRDs), user stories, acceptance criteria, and prioritized Jira backlogs</span>. Led end-to-end delivery of 30+ enterprise workflows from discovery and sprint planning through UAT and release—reducing operational turnaround by 45%. Tailored for <strong>${job.company}</strong> (${job.title}).`
+        : `<strong>AI Business Analyst</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience in process intelligence, enterprise workflow re-engineering, and AI-driven business transformation. Proven ability to pair <span class="hl-change">PRDs, backlog prioritization, and ROI cost-benefit modeling</span> with <span class="hl-change">SQL, Python, UiPath RPA, and Agentic AI</span> to eliminate operational bottlenecks—cutting turnaround times by 45% across 30+ enterprise banking workflows. Tailored for <strong>${job.company}</strong> (${job.title}).`;
+
+      const sterlingBullets = isPM
+        ? `
+          <li><strong>AI Product Strategy &amp; PRDs:</strong> Authored <span class="hl-change">Product Requirements Documents (PRDs)</span>, user journeys, and decision logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + API cross-validation), cutting quarterly onboarding verification costs by ~35% and accelerating customer activation.</li>
+          <li><strong>Backlog Prioritization &amp; Cross-Functional PM Leadership:</strong> Owned <span class="hl-change">product backlog prioritization, roadmap sequencing, and end-to-end project management</span> for 30+ enterprise automation workflows, leading engineering, QA, and operations teams from discovery through UAT, pilot, and production launch.</li>
+          <li><strong>AI Platform Re-Engineering:</strong> Spearheaded end-to-end product re-engineering of an AI-enabled Customer Address Verification (CAV) portal, defining confidence thresholds and automated exception-handling guardrails that eliminated 70%+ of manual review bottlenecks.</li>
+          <li><strong>45% Turnaround Reduction:</strong> Reduced operational turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM platforms by translating complex business and regulatory problems into prioritized PRDs, API specifications, and user stories.</li>
+        `
+        : isPO
+        ? `
+          <li><strong>Technical Product Ownership &amp; PRDs:</strong> Acted as Product Owner and authored <span class="hl-change">PRDs, user stories, and acceptance criteria</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + real-time API validation), slashing manual review costs by ~35%.</li>
+          <li><strong>Agile Backlog Prioritization &amp; Release Delivery:</strong> Owned <span class="hl-change">Jira backlog grooming, weighted sprint prioritization, and end-to-end project management</span> across the migration of 30+ enterprise workflows, driving sprint ceremonies, UAT sign-off, pilot testing, and production releases.</li>
+          <li><strong>Workflow &amp; Exception Re-Engineering:</strong> Re-engineered the AI-enabled Customer Address Verification (CAV) portal from backlog definition to launch, implementing automated validation rules that removed 70%+ of manual intervention and verification delays.</li>
+          <li><strong>45% Faster Delivery &amp; Turnaround:</strong> Cut end-to-end operational turnaround time by 45% across Token OTP, Loan Eligibility, and CRM systems by translating complex banking rules into developer-ready user stories and testable acceptance criteria.</li>
+        `
+        : `
+          <li><strong>AI Business Systems Analysis &amp; PRDs:</strong> Authored <span class="hl-change">PRDs, functional specifications, and data-validation rules</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Verification Co-Pilot (Agentic AI + OCR + API cross-checks), reducing quarterly verification costs by ~35% and eliminating manual bottlenecks.</li>
+          <li><strong>Backlog Prioritization &amp; Enterprise Project Governance:</strong> Led <span class="hl-change">backlog prioritization, business-impact scoring, and end-to-end project management</span> for the migration of 30+ enterprise workflows, coordinating cross-functional teams across requirements, process mapping (Visio), UAT, and production deployment.</li>
+          <li><strong>Process Intelligence &amp; Cost Elimination:</strong> Re-engineered end-to-end process flows for an AI-enabled Customer Address Verification (CAV) portal, eliminating 70%+ of manual back-office intervention and recurring monthly operational costs.</li>
+          <li><strong>45% Operational Efficiency Gain:</strong> Reduced operational turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM workflows by translating complex business processes into automation-ready system requirements and user stories.</li>
+        `;
+
+      const extraSignalStr = jdSignals.length
+        ? ` • <em>Role-Matched Focus:</em> <span class="hl-change">${jdSignals.join(', ')}</span>`
+        : '';
 
       const sheet = document.getElementById('cv-paper-sheet');
       sheet.innerHTML = `
@@ -1337,7 +1402,7 @@
 
         <div class="cv-sec-title">PROFILE</div>
         <p>
-          <strong>${job.category}</strong> and M.S. in Engineering Artificial Intelligence student at <strong>Carnegie Mellon University</strong> with 3+ years of FinTech product, project management, and automation experience. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, leading <span class="hl-change">Agile backlog prioritization</span>, and managing end-to-end delivery of Agentic AI workflows, OCR verification systems, and API-driven digital banking platforms across 30+ enterprise releases. Targeting <strong>${job.company}</strong> (${job.title}).
+          ${profileText}
         </p>
 
         <div class="cv-sec-title">EDUCATION</div>
@@ -1359,10 +1424,7 @@
           <span>March 2024 – July 2026</span>
         </div>
         <ul class="cv-bullets">
-          <li><strong>AI Product Definition &amp; PRDs:</strong> Authored <span class="hl-change">Product Requirements Documents (PRDs)</span> and workflow logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + API cross-validation), cutting manual verification costs by ~35% and accelerating customer onboarding.</li>
-          <li><strong>Backlog Prioritization &amp; Project Management:</strong> Owned <span class="hl-change">Agile backlog prioritization, sprint planning, and end-to-end project management</span> for the migration of 30+ enterprise automation workflows, leading cross-functional engineering, QA, and operations teams across discovery, build, UAT, pilot, and production release.</li>
-          <li><strong>AI Platform Re-Engineering:</strong> Re-engineered and launched an AI-enabled Customer Address Verification (CAV) portal, defining acceptance criteria and automated exception-handling rules to eliminate 70%+ of manual review bottlenecks and recurring monthly process costs.</li>
-          <li><strong>45% Faster Operational Turnaround:</strong> Reduced end-to-end turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM platforms by translating complex banking policies into prioritized Jira backlogs, PRDs, and developer-ready user stories.</li>
+          ${sterlingBullets}
         </ul>
 
         <div class="cv-row-head">
@@ -1371,7 +1433,7 @@
         </div>
         <ul class="cv-bullets">
           <li>Drove a <strong>15% increase in account signups</strong> for the HerFidelity digital banking product by mapping end-to-end customer journeys, optimizing acquisition-to-onboarding funnel touchpoints, and prioritizing UX improvements.</li>
-          <li>Designed mixed-methods user research and data-collection frameworks across Gen Z and Gen X cohorts, translating behavioral insights into product roadmap recommendations.</li>
+          <li>Designed mixed-methods user research and quantitative/qualitative data-collection frameworks across Gen Z and Gen X cohorts, translating behavioral insights into prioritized product roadmap recommendations.</li>
         </ul>
 
         <div class="cv-row-head">
@@ -1384,11 +1446,11 @@
 
         <div class="cv-sec-title">PROJECTS</div>
         <div class="cv-row-head">
-          <span>Engineering Demand &amp; Backlog Prioritization Portal (Product &amp; Project Management Lead)</span>
+          <span>Engineering Demand &amp; Backlog Prioritization Portal (PRD &amp; Project Management Lead)</span>
           <span>2026</span>
         </div>
         <ul class="cv-bullets">
-          <li>Authored the <span class="hl-change">PRD</span> and led end-to-end project delivery for a centralized engineering intake portal across business units; designed the <span class="hl-change">weighted backlog prioritization scoring model</span> (Business Impact × Effort) to rank and track competing engineering requests in real time.</li>
+          <li>Authored the <span class="hl-change">PRD</span> and led end-to-end project delivery for a centralized engineering intake portal across business units; designed the <span class="hl-change">weighted backlog prioritization scoring model</span> (Business Impact × Effort × Strategic Alignment) to objectively rank and track competing engineering requests in real time.</li>
         </ul>
 
         <div class="cv-row-head">
@@ -1396,7 +1458,7 @@
           <span>2026</span>
         </div>
         <ul class="cv-bullets">
-          <li>Designed and benchmarked a multi-step Agentic AI, OCR, and Python/SQL validation pipeline for real-time KYC document verification, evaluating model precision, latency trade-offs, and automated exception-routing rules.</li>
+          <li>Designed and benchmarked a multi-step Agentic AI, OCR, and <span class="hl-change">Python/SQL</span> validation pipeline for real-time KYC document verification, evaluating model precision, latency trade-offs, and automated exception-routing rules${jdContextNote ? ' (' + jdContextNote + ')' : ''}.</li>
         </ul>
 
         <div class="cv-sec-title">SKILLS, TOOLS &amp; CERTIFICATIONS</div>
@@ -1404,7 +1466,7 @@
           <strong>Product, Project &amp; Business Analysis:</strong> <span class="hl-change">PRDs (Product Requirements Documents), Agile Backlog Prioritization, End-to-End Project Management</span>, User Stories &amp; Acceptance Criteria, System &amp; API Design, UAT, Jira, Visio, Process Automation, User Research
         </p>
         <p style="margin-bottom:0.25rem;">
-          <strong>AI, Data &amp; Technical Stack:</strong> Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR, <span class="hl-change">Python, SQL</span>, Product &amp; Funnel Analytics
+          <strong>AI, Data &amp; Technical Stack:</strong> Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR, <span class="hl-change">Python, SQL</span>, Product &amp; Funnel Analytics${extraSignalStr}
         </p>
         <p>
           <strong>Certifications:</strong> Product Analytics Certification Badge (Pendo) • RPA Business Analyst Associate (UiPath) • Six Sigma White Belt
