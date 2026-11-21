@@ -519,7 +519,10 @@
           📋 Internship Table
         </button>
         <button class="tab-btn" id="tab-cv-btn" onclick="switchMainView('cv')">
-          📄 My Tailored 1-Page CV (PRDs &amp; Backlog Built-In)
+          📄 My Tailored 1-Page CV
+        </button>
+        <button class="tab-btn" id="tab-cover-btn" onclick="switchMainView('cover')">
+          ✉️ Tailored Cover Letter
         </button>
       </div>
     </div>
@@ -649,6 +652,52 @@
         </div>
       </div>
     </section>
+
+    <!-- VIEW 3: TAILORED COVER LETTER GENERATOR -->
+    <section id="view-cover" class="hidden">
+      <div class="cv-layout">
+        <aside class="cv-sidebar">
+          <h3>Tailor Your Cover Letter</h3>
+          <p>Select any role from the tracker to generate a 1-page cover letter tailored to that company and role.</p>
+
+          <label for="cl-role-select">1. Select Role:</label>
+          <select id="cl-role-select" onchange="renderCoverLetterPreview(this.value)"></select>
+
+          <label for="cl-custom-jd">Or Paste Any Job Description Text (Optional):</label>
+          <textarea
+            id="cl-custom-jd"
+            class="search-box"
+            style="width:100%; max-width:100%; min-height:64px; margin-bottom:0.75rem; padding:0.45rem 0.6rem; font-family:inherit; resize:vertical;"
+            placeholder="Paste a job description here to weave its key priorities into your cover letter..."
+            oninput="renderCoverLetterPreview(document.getElementById('cl-role-select').value)"
+          ></textarea>
+
+          <div class="upgrades-box">
+            <h4>✅ Tailored Automatically:</h4>
+            <ul>
+              <li><strong>Company &amp; Role Hook:</strong> Opens directly for the selected company, role title, and track (AI PM, PO, or BA).</li>
+              <li><strong>Sterling Bank Impact:</strong> Highlights your PRDs, backlog prioritization across 30+ workflows, 45% turnaround cut, and ₦1M/₦600k savings.</li>
+              <li><strong>CMU-Africa &amp; Portfolio Depth:</strong> Connects your M.S. Engineering AI studies and Automated Loan Eligibility System to their AI roadmap.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:0.5rem;">
+            <button class="btn btn-primary" style="justify-content:center; padding:0.65rem;" onclick="downloadCoverAsDocx()">
+              📝 Download Cover Letter (.docx)
+            </button>
+            <button class="btn btn-ghost" style="justify-content:center; padding:0.6rem;" onclick="window.print()">
+              🖨️ Save / Print as PDF
+            </button>
+            <button class="btn" style="justify-content:center;" onclick="copyCoverLetterText()">
+              📋 Copy Cover Letter Text
+            </button>
+          </div>
+        </aside>
+
+        <div class="cv-paper" id="cl-paper-sheet" contenteditable="true" spellcheck="true" style="line-height:1.55; font-size:13.5px;" title="Click anywhere on the cover letter to edit before downloading">
+        </div>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -662,7 +711,7 @@
       "AI Product Owner",
       "AI Business Analyst"
     ],
-    "last_updated": "2026-11-19T11:50:00+02:00",
+    "last_updated": "2026-11-21T09:15:00+02:00",
     "filtered_out_examples": [
       {
         "company": "BAE Systems",
@@ -703,6 +752,31 @@
         "company": "BNY",
         "role": "2027 Summer Internship Program - Product Management (London)",
         "reason": "Excluded automatically: Requires permanent right to work in the UK without present or future sponsorship."
+      },
+      {
+        "company": "Addepar",
+        "role": "Technical Product Management Intern (ADX) - Summer 2027",
+        "reason": "Excluded automatically: Requires existing U.S. work authorization with no current or future visa sponsorship."
+      },
+      {
+        "company": "Appian",
+        "role": "Product Manager Intern (Summer 2027)",
+        "reason": "Excluded automatically: Explicitly states Appian will not sponsor a new applicant for employment authorization."
+      },
+      {
+        "company": "Intercontinental Exchange (ICE)",
+        "role": "Product Management Intern – Summer Internship Program 2027",
+        "reason": "Excluded automatically: Explicitly states visa sponsorship is not available."
+      },
+      {
+        "company": "Google",
+        "role": "Associate Product Manager (BS/MS) Intern, 2027 (London)",
+        "reason": "Excluded automatically: Explicitly states not eligible for immigration sponsorship and application window closed."
+      },
+      {
+        "company": "Nasdaq",
+        "role": "Business Analyst - Copenhagen Summer Intern 2027 (R0027251)",
+        "reason": "Excluded automatically: Requires existing legal right to work in Denmark/EU without separate visa sponsorship."
       }
     ]
   },
@@ -1082,7 +1156,7 @@
       "nigerian_kigali_visa_path": "No travel visa required. Work remotely from Kigali (UTC+2) or Nigeria (UTC+1); G-P is an Employer of Record platform equipped for international remote hires.",
       "feasibility": "Zero Visa (Remote / Local)",
       "season": "2027 Cohort (6-Month Track)",
-      "url": "https://www.g-p.com/about-us/careers/",
+      "url": "https://job-boards.greenhouse.io/gp/jobs/4497672007",
       "date_added": "2026-11-18",
       "is_new": true,
       "highlights": "Focuses on G-P Assist (LLM-powered global HR assistant), product analytics, user behavior, and AI adoption metrics."
@@ -1162,6 +1236,82 @@
       "date_added": "2026-11-19",
       "is_new": true,
       "highlights": "Direct Morgan Stanley EMEA Technology & Data Summer Analyst application page."
+    },
+    {
+      "id": "barclays-data-analytics-intern-2027",
+      "title": "2027 Customer and Digital – Data and Analytics Summer Internship Programme (London)",
+      "company": "Barclays",
+      "category": "AI Business Analyst",
+      "work_mode": "Hybrid",
+      "location": "London, United Kingdom",
+      "region": "United Kingdom",
+      "paid_status": "Paid",
+      "compensation": "Paid (~£44,595–£54,500 pro-rated annualised base for 10 weeks)",
+      "sponsorship_policy": "UK Licensed Sponsor; Barclays explicitly accepts 2027 London intern applications requiring visa sponsorship (subject to UK Home Office criteria)",
+      "nigerian_kigali_visa_path": "UK Temporary Work – Government Authorised Exchange (GAE) / sponsored route via VFS Global in Kigali using your CMU-Africa enrollment.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027 (10 Weeks)",
+      "url": "https://barclays.wd3.myworkdayjobs.com/en-US/External_Career_Site_Barclays/job/London/2027-Customer-and-Digital---Data-and-Analytics-Summer-Internship-Programme-London_JR-0000129280",
+      "date_added": "2026-11-21",
+      "is_new": true,
+      "highlights": "Direct Barclays Workday requisition (JR-0000129280) for penultimate-year Undergraduate/Master's students in Data & Analytics at Canary Wharf, London."
+    },
+    {
+      "id": "amazon-us-pmt-intern-2027",
+      "title": "Product Manager Technical (PMT) Intern – Summer 2027",
+      "company": "Amazon (US)",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Seattle, WA (USA)",
+      "region": "United States",
+      "paid_status": "Paid",
+      "compensation": "Paid (~$143,735 annualized base equivalent / ~$68–$73+/hr for 12 weeks + housing/relocation support)",
+      "sponsorship_policy": "Supports international graduate work authorization (F-1 CPT/OPT and J-1 Academic Training / Intern pathways; verify third-party J-1 DS-2019 for non-US campuses)",
+      "nigerian_kigali_visa_path": "Confirm J-1 Intern (DS-2019) sponsorship compatibility with Amazon University Recruiting for CMU-Africa Master's students; interview at U.S. Embassy Kigali.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027 (12 Weeks)",
+      "url": "https://www.amazon.jobs/en/jobs/10509639/product-manager-technical-pmt-intern-summer-2027",
+      "date_added": "2026-11-21",
+      "is_new": true,
+      "highlights": "Direct Amazon Jobs requisition (Job ID 10509639) for Master's/MBA students graduating Dec 2027–Jun 2028. Own technical product strategy, PR/FAQs, and AI/cloud launches."
+    },
+    {
+      "id": "cloudflare-pm-intern-lisbon-2027",
+      "title": "Product Manager Intern (2027) – Lisbon",
+      "company": "Cloudflare",
+      "category": "AI Product Manager",
+      "work_mode": "Hybrid",
+      "location": "Lisbon, Portugal",
+      "region": "Europe (Schengen)",
+      "paid_status": "Paid",
+      "compensation": "Paid (€2,450/month for 12-week full-time summer term)",
+      "sponsorship_policy": "Open to BS/MS students; verify Portuguese Schengen student internship permit eligibility on Greenhouse form (in-office 3–5 days/week)",
+      "nigerian_kigali_visa_path": "Verify whether Cloudflare Lisbon supports a Portuguese temporary internship visa / Schengen Student Internship Permit via Embassy in Kigali using CMU-Africa enrollment.",
+      "feasibility": "Medium (Verify J-1 / EOR)",
+      "season": "Summer 2027 (May–Sep 2027, 12 Weeks)",
+      "url": "https://job-boards.greenhouse.io/cloudflare/jobs/8332008?gh_jid=8332008",
+      "date_added": "2026-11-21",
+      "is_new": true,
+      "highlights": "Direct Cloudflare Greenhouse requisition (8332008). AI-native product management across Cloudflare's global edge, security, and Workers AI platform."
+    },
+    {
+      "id": "blackrock-emea-client-product-2027",
+      "title": "2027 Client and Product Summer Internship Program – EMEA (Abu Dhabi / Riyadh)",
+      "company": "BlackRock",
+      "category": "AI Product Manager",
+      "work_mode": "On-site",
+      "location": "Abu Dhabi, UAE / Riyadh, Saudi Arabia",
+      "region": "EMEA (Middle East)",
+      "paid_status": "Paid",
+      "compensation": "Paid (Competitive pro-rated Gulf market analyst stipend; EMEA salary band disclosed in portal)",
+      "sponsorship_policy": "Sponsors UAE / Saudi Arabia internship work permits & residency visas for international Master's students (Abu Dhabi & Riyadh deadline: Jan 31, 2027; European hubs closed)",
+      "nigerian_kigali_visa_path": "BlackRock sponsors UAE/Saudi temporary internship entry & work permits; apply from Kigali with CMU-Africa penultimate-year (2028 grad) status.",
+      "feasibility": "High (Sponsors + Kigali Embassy)",
+      "season": "Summer 2027 (Jun–Aug, 8 Weeks)",
+      "url": "https://careers.blackrock.com/job/2027-client-and-product-summer-internship-program-emea-job-id-12222",
+      "date_added": "2026-11-21",
+      "is_new": true,
+      "highlights": "Direct BlackRock requisition (Job ID 12222). European hubs closed Oct–Nov 2026, while Abu Dhabi & Riyadh remain open until Jan 31, 2027 for Global Product Solutions."
     }
   ]
 };
@@ -1186,11 +1336,12 @@
     }
 
     function switchMainView(view) {
-      const isTracker = view === 'tracker';
-      document.getElementById('view-tracker').classList.toggle('hidden', !isTracker);
-      document.getElementById('view-cv').classList.toggle('hidden', isTracker);
-      document.getElementById('tab-tracker-btn').classList.toggle('active', isTracker);
-      document.getElementById('tab-cv-btn').classList.toggle('active', !isTracker);
+      document.getElementById('view-tracker').classList.toggle('hidden', view !== 'tracker');
+      document.getElementById('view-cv').classList.toggle('hidden', view !== 'cv');
+      document.getElementById('view-cover').classList.toggle('hidden', view !== 'cover');
+      document.getElementById('tab-tracker-btn').classList.toggle('active', view === 'tracker');
+      document.getElementById('tab-cv-btn').classList.toggle('active', view === 'cv');
+      document.getElementById('tab-cover-btn').classList.toggle('active', view === 'cover');
     }
 
     function shortPay(job) {
@@ -1300,7 +1451,8 @@
                   <option value="Applied" ${st === 'Applied' ? 'selected' : ''}>✅ Applied</option>
                   <option value="Interviewing" ${st === 'Interviewing' ? 'selected' : ''}>🎯 Interview</option>
                 </select>
-                <button class="btn btn-ghost" onclick="jumpToCVForJob('${j.id}')">📄 Tailor CV</button>
+                <button class="btn btn-ghost" onclick="jumpToCVForJob('${j.id}')">📄 CV</button>
+                <button class="btn btn-ghost" onclick="jumpToCoverForJob('${j.id}')">✉️ Cover</button>
                 <a class="btn btn-primary" href="${j.url}" target="_blank" rel="noopener noreferrer">Apply ↗</a>
               </div>
             </td>
@@ -1317,10 +1469,17 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function jumpToCoverForJob(jobId) {
+      switchMainView('cover');
+      const sel = document.getElementById('cl-role-select');
+      sel.value = jobId;
+      renderCoverLetterPreview(jobId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     function extractCustomJDSignals(jdText, job) {
       const text = `${jdText || ''} ${job.title} ${job.highlights || ''} ${job.company}`.toLowerCase();
       const signals = [];
-      if (text.includes('sql')) signals.push('SQL');
       if (text.includes('python')) signals.push('Python');
       if (text.includes('scrum') || text.includes('agile')) signals.push('Agile/Scrum');
       if (text.includes('agentforce') || text.includes('agentic') || text.includes('agents')) signals.push('Agentic AI Workflows');
@@ -1334,6 +1493,15 @@
       return signals;
     }
 
+    function getFormattedHeaderInfo() {
+      const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI TEMITOPE OGUNKOYA';
+      const rawContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
+      const savedContact = rawContact
+        .replace(/\bLinkedIn\b/gi, '<a href="https://www.linkedin.com/in/bukunmiogunkoya" target="_blank" rel="noopener noreferrer" style="color:#1d4ed8; text-decoration:underline;">LinkedIn</a>')
+        .replace(/\bPortfolio\b/gi, '<a href="https://bukunmi.pages.dev" target="_blank" rel="noopener noreferrer" style="color:#1d4ed8; text-decoration:underline;">Portfolio</a>');
+      return { savedName, savedContact };
+    }
+
     function renderCVPreview(jobId) {
       const job = allJobs.find(j => j.id === jobId) || allJobs[0];
       if (!job) return;
@@ -1344,34 +1512,30 @@
       const isPM = job.category === 'AI Product Manager';
       const isPO = job.category === 'AI Product Owner';
 
-      const savedName = localStorage.getItem('cv_private_name') || 'BUKUNMI TEMITOPE OGUNKOYA';
-      const rawContact = localStorage.getItem('cv_private_contact') || 'Kigali, Rwanda | LinkedIn | Portfolio';
-      const savedContact = rawContact
-        .replace(/\bLinkedIn\b/gi, '<a href="https://www.linkedin.com/in/bukunmiogunkoya" target="_blank" rel="noopener noreferrer" style="color:#1d4ed8; text-decoration:underline;">LinkedIn</a>')
-        .replace(/\bPortfolio\b/gi, '<a href="https://bukunmi.pages.dev" target="_blank" rel="noopener noreferrer" style="color:#1d4ed8; text-decoration:underline;">Portfolio</a>');
+      const { savedName, savedContact } = getFormattedHeaderInfo();
 
       const profileText = isPM
-        ? `<strong>AI Product Manager</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience shipping AI-powered digital banking products, agentic workflows, and enterprise platforms. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, driving <span class="hl-change">weighted backlog prioritization</span>, and leading cross-functional engineering and data science teams across 30+ product releases—cutting operational turnaround time by 45%. Combines <span class="hl-change">Python, SQL, and Pendo product analytics</span> with deep expertise in LLM/OCR system design to deliver measurable product and operational impact.`
+        ? `<strong>AI Product Manager</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience shipping AI-powered digital banking products, agentic workflows, and enterprise platforms. Proven track record authoring <span class="hl-change">Product Requirements Documents (PRDs)</span>, driving <span class="hl-change">weighted backlog prioritization</span>, and leading cross-functional engineering and data science teams across 30+ product releases—cutting operational turnaround time by 45%. Combines <span class="hl-change">Python and Pendo product analytics</span> with deep expertise in LLM/OCR system design to deliver measurable product and operational impact.`
         : isPO
         ? `<strong>Technical AI Product Owner</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of Agile product ownership and automation delivery in financial services. Adept at translating complex AI/ML, OCR, and API architectures into clear <span class="hl-change">Product Requirements Documents (PRDs), user stories, acceptance criteria, and prioritized Jira backlogs</span>. Led end-to-end delivery of 30+ enterprise workflows from discovery and sprint planning through UAT and release—reducing operational turnaround by 45%.`
-        : `<strong>AI Business Analyst</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience in process intelligence, enterprise workflow re-engineering, and AI-driven business transformation. Proven ability to pair <span class="hl-change">PRDs, backlog prioritization, and ROI cost-benefit modeling</span> with <span class="hl-change">SQL, Python, UiPath RPA, and Agentic AI</span> to eliminate operational bottlenecks—cutting turnaround times by 45% across 30+ enterprise banking workflows.`;
+        : `<strong>AI Business Analyst</strong> and M.S. in Engineering Artificial Intelligence candidate at <strong>Carnegie Mellon University</strong> with 3+ years of experience in process intelligence, enterprise workflow re-engineering, and AI-driven business transformation. Proven ability to pair <span class="hl-change">PRDs, backlog prioritization, and ROI cost-benefit modeling</span> with <span class="hl-change">Python, UiPath RPA, and Agentic AI</span> to eliminate operational bottlenecks—cutting turnaround times by 45% across 30+ enterprise banking workflows.`;
 
       const sterlingBullets = isPM
         ? `
-          <li><strong>AI Product Strategy &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">Product Requirements Documents (PRDs)</span> and workflow logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + Python/SQL API validation), benchmarking precision/latency trade-offs and accelerating customer onboarding.</li>
+          <li><strong>AI Product Strategy &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">Product Requirements Documents (PRDs)</span> and workflow logic for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + Python/API validation), benchmarking precision/latency trade-offs and accelerating customer onboarding.</li>
           <li><strong>Backlog Prioritization &amp; Cross-Functional PM Leadership:</strong> Owned <span class="hl-change">product backlog prioritization, roadmap sequencing, and end-to-end project management</span> for 30+ enterprise automation workflows, leading engineering, QA, and operations teams from discovery through UAT, pilot, and production launch.</li>
           <li><strong>AI Platform Re-Engineering:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by spearheading end-to-end product re-engineering of an AI-enabled Customer Address Verification (CAV) portal with confidence-threshold routing and automated exception-handling rules, reducing manual intervention and verification delays.</li>
           <li><strong>45% Turnaround Reduction:</strong> Reduced operational turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM platforms by translating complex business and regulatory problems into prioritized PRDs, API specifications, and user stories.</li>
         `
         : isPO
         ? `
-          <li><strong>Technical Product Ownership &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> as Product Owner by authoring <span class="hl-change">PRDs, user stories, and acceptance criteria</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + Python/SQL API validation), benchmarking precision and latency for real-time KYC checks.</li>
+          <li><strong>Technical Product Ownership &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> as Product Owner by authoring <span class="hl-change">PRDs, user stories, and acceptance criteria</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Document Verification Co-Pilot (Agentic AI + OCR + Python/API validation), benchmarking precision and latency for real-time KYC checks.</li>
           <li><strong>Agile Backlog Prioritization &amp; Release Delivery:</strong> Owned <span class="hl-change">Jira backlog grooming, weighted sprint prioritization, and end-to-end project management</span> across the migration of 30+ enterprise workflows, driving sprint ceremonies, UAT sign-off, pilot testing, and production releases.</li>
           <li><strong>Workflow &amp; Exception Re-Engineering:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by re-engineering the AI-enabled Customer Address Verification (CAV) portal from backlog definition to launch, defining confidence-threshold and exception-routing rules that reduced manual intervention and verification delays.</li>
           <li><strong>45% Faster Delivery &amp; Turnaround:</strong> Cut end-to-end operational turnaround time by 45% across Token OTP, Loan Eligibility, and CRM systems by translating complex banking rules into developer-ready user stories and testable acceptance criteria.</li>
         `
         : `
-          <li><strong>AI Business Systems Analysis &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">PRDs, functional specifications, and workflow logic</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Verification Co-Pilot (Agentic AI + OCR + Python/SQL API validation), evaluating precision, latency, and automated exception-routing rules.</li>
+          <li><strong>AI Business Systems Analysis &amp; PRDs:</strong> Delivered <strong>~₦1 million in quarterly cost savings</strong> by authoring <span class="hl-change">PRDs, functional specifications, and workflow logic</span> for an AI-powered <span class="hl-change">Account Opening</span> KYC Verification Co-Pilot (Agentic AI + OCR + Python/API validation), evaluating precision, latency, and automated exception-routing rules.</li>
           <li><strong>Backlog Prioritization &amp; Enterprise Project Governance:</strong> Led <span class="hl-change">backlog prioritization, business-impact scoring, and end-to-end project management</span> for the migration of 30+ enterprise workflows, coordinating cross-functional teams across requirements, process mapping (Visio), UAT, and production deployment.</li>
           <li><strong>Process Intelligence &amp; Cost Elimination:</strong> Eliminated <strong>~₦600,000 in monthly process costs</strong> by re-engineering and designing an AI-enabled Customer Address Verification (CAV) portal with automated exception-handling rules, reducing manual intervention and verification delays.</li>
           <li><strong>45% Operational Efficiency Gain:</strong> Reduced operational turnaround time by 45% across Token OTP delivery, Loan Eligibility scoring, and CRM workflows by translating complex business processes into automation-ready system requirements and user stories.</li>
@@ -1454,12 +1618,78 @@
           <strong>Product, Project &amp; Business Analysis:</strong> <span class="hl-change">PRDs (Product Requirements Documents), Agile Backlog Prioritization, End-to-End Project Management</span>, User Stories &amp; Acceptance Criteria, System &amp; API Design, UAT, Jira, Visio, Process Automation, User Research
         </p>
         <p style="margin-bottom:0.25rem;">
-          <strong>AI, Data &amp; Technical Stack:</strong> Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR, <span class="hl-change">Python, SQL</span>, Product &amp; Funnel Analytics${extraSignalStr}
+          <strong>AI, Data &amp; Technical Stack:</strong> Agentic AI Workflows, Generative AI / LLMs, AI System Design, OCR, <span class="hl-change">Python</span>, Product &amp; Funnel Analytics${extraSignalStr}
         </p>
         <p>
           <strong>Certifications:</strong> Product Analytics Certification Badge (Pendo) • RPA Business Analyst Associate (UiPath) • Six Sigma White Belt
         </p>
       `;
+    }
+
+    function renderCoverLetterPreview(jobId) {
+      const job = allJobs.find(j => j.id === jobId) || allJobs[0];
+      if (!job) return;
+
+      const customJD = (document.getElementById('cl-custom-jd')?.value || '').trim();
+      const jdSignals = extractCustomJDSignals(customJD, job);
+      const { savedName, savedContact } = getFormattedHeaderInfo();
+      const todayStr = new Date().toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      const isPM = job.category === 'AI Product Manager';
+      const isPO = job.category === 'AI Product Owner';
+
+      const roleOpening = isPM
+        ? `I am writing to express my strong interest in the <strong>${job.title}</strong> position at <strong>${job.company}</strong> (${job.location}). Currently pursuing an M.S. in Engineering Artificial Intelligence at Carnegie Mellon University Africa following three years of shipping AI-powered financial products and automation platforms, I bring a rare blend of hands-on AI/LLM systems fluency and end-to-end product execution.`
+        : isPO
+        ? `I am writing to apply for the <strong>${job.title}</strong> role at <strong>${job.company}</strong> (${job.location}). As an M.S. in Engineering Artificial Intelligence student at Carnegie Mellon University Africa with over three years of product ownership and Agile delivery experience in financial services, I specialize in translating complex AI and API capabilities into clear PRDs, prioritized backlogs, and shipped features.`
+        : `I am excited to apply for the <strong>${job.title}</strong> position at <strong>${job.company}</strong> (${job.location}). Currently completing my M.S. in Engineering Artificial Intelligence at Carnegie Mellon University Africa after three years as an Automation Business Analyst in digital banking, I thrive at the intersection of business process intelligence, AI workflow design, and cross-functional delivery.`;
+
+      const sterlingParagraph = isPM
+        ? `At Sterling Bank, I owned product definition and backlog prioritization across 30+ enterprise automation workflows. Notably, I authored the Product Requirements Documents (PRDs) and decision logic for an AI-powered Account Opening KYC Verification Co-Pilot pairing Agentic AI, OCR, and Python/API validation—delivering ~₦1 million in quarterly cost savings while benchmarking precision and latency trade-offs. I also spearheaded the re-engineering of an AI-enabled Customer Address Verification portal (eliminating ~₦600,000 in monthly process costs) and cut operational turnaround times by 45% across Token OTP, Loan Eligibility, and CRM products.`
+        : isPO
+        ? `At Sterling Bank, I served as Technical Product Owner and Project Lead for the migration of 30+ enterprise workflows, owning Jira backlog grooming, weighted sprint prioritization, UAT sign-off, and production releases. I authored PRDs, user stories, and acceptance criteria for an AI-powered Account Opening KYC Verification Co-Pilot (Agentic AI + OCR + Python/API validation), delivering ~₦1 million in quarterly cost savings. By re-engineering our Customer Address Verification portal with confidence-threshold and exception-routing rules, I eliminated ~₦600,000 in monthly process costs and reduced overall operational turnaround by 45%.`
+        : `At Sterling Bank, I led business systems analysis, PRD authoring, and weighted backlog prioritization across 30+ enterprise banking workflows, coordinating engineering, QA, and operations teams from discovery through UAT and release. I designed the workflow logic and exception-handling rules for an AI-powered Account Opening KYC Verification Co-Pilot (Agentic AI + OCR + Python/API validation), generating ~₦1 million in quarterly cost savings, and re-engineered our Customer Address Verification portal to eliminate ~₦600,000 in monthly process costs while reducing operational turnaround time by 45%.`;
+
+      const portfolioParagraph = `Beyond my banking work, I designed an Automated Loan Eligibility & Recommendation System that replaced a three-day manual spreadsheet process with a real-time rules engine—complete with BVN/watchlist checks, cash-flow analysis, and a full audit trail for Portfolio Managers—and built an Engineering Demand Prioritization Portal using a weighted business-impact scoring model.${jdSignals.length ? ' Combined with my focus on ' + jdSignals.join(', ') + ',' : ''} I am eager to bring this product rigor, analytical clarity, and AI execution mindset to ${job.company}.`;
+
+      const sheet = document.getElementById('cl-paper-sheet');
+      sheet.innerHTML = `
+        <h1>${savedName}</h1>
+        <div class="cv-contact" style="margin-bottom:1.1rem;">
+          ${savedContact}
+        </div>
+        <p style="margin-bottom:0.85rem;">${todayStr}</p>
+        <p style="margin-bottom:0.2rem;"><strong>Hiring Team</strong></p>
+        <p style="margin-bottom:0.2rem;">${job.company} (${job.location})</p>
+        <p style="margin-bottom:1rem;"><strong>Re: Application for ${job.title}</strong></p>
+
+        <p style="margin-bottom:0.85rem;">Dear ${job.company} Hiring Team,</p>
+        <p style="margin-bottom:0.85rem;">${roleOpening}</p>
+        <p style="margin-bottom:0.85rem;">${sterlingParagraph}</p>
+        <p style="margin-bottom:0.85rem;">${portfolioParagraph}</p>
+        <p style="margin-bottom:1.1rem;">Thank you for considering my application. I would welcome the opportunity to discuss how my experience in AI product workflows, PRDs, and backlog prioritization can contribute to ${job.company} in Summer 2027.</p>
+        <p style="margin-bottom:0.2rem;">Sincerely,</p>
+        <p><strong>${savedName}</strong></p>
+      `;
+    }
+
+    function copyCoverLetterText() {
+      const sheet = document.getElementById('cl-paper-sheet');
+      navigator.clipboard.writeText(sheet.innerText);
+      alert('Copied your tailored cover letter to the clipboard!');
+    }
+
+    function downloadCVAsDocx() {
+      exportSheetToDocx('cv-paper-sheet', 'Bukunmi.docx');
+    }
+
+    function downloadCoverAsDocx() {
+      const sel = document.getElementById('cl-role-select');
+      const job = allJobs.find(j => j.id === (sel ? sel.value : '')) || allJobs[0];
+      const safeCo = job ? job.company.replace(/[^a-zA-Z0-9]+/g, '_') : 'Role';
+      exportSheetToDocx('cl-paper-sheet', `Bukunmi_Cover_Letter_${safeCo}.docx`);
     }
 
     function savePrivateHeader() {
@@ -1471,6 +1701,8 @@
       else localStorage.removeItem('cv_private_contact');
       const sel = document.getElementById('cv-role-select');
       if (sel && sel.value) renderCVPreview(sel.value);
+      const clSel = document.getElementById('cl-role-select');
+      if (clSel && clSel.value) renderCoverLetterPreview(clSel.value);
     }
 
     function copyCleanCVText() {
@@ -1570,10 +1802,8 @@
       });
     }
 
-    function downloadCVAsDocx() {
-      const sheet = document.getElementById('cv-paper-sheet');
-      const sel = document.getElementById('cv-role-select');
-      const job = allJobs.find(j => j.id === (sel ? sel.value : '')) || allJobs[0];
+    function exportSheetToDocx(sheetId, filename) {
+      const sheet = document.getElementById(sheetId);
 
       const paragraphs = [];
 
@@ -1722,7 +1952,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'Bukunmi.docx';
+      a.download = filename;
       a.click();
       URL.revokeObjectURL(url);
     }
@@ -1772,11 +2002,15 @@
       document.getElementById('cv-private-contact').value = localStorage.getItem('cv_private_contact') || '';
 
       const sel = document.getElementById('cv-role-select');
-      sel.innerHTML = allJobs.map(j =>
+      const clSel = document.getElementById('cl-role-select');
+      const optsHtml = allJobs.map(j =>
         `<option value="${j.id}">${j.company} — ${j.title} (${j.location})</option>`
       ).join('');
+      sel.innerHTML = optsHtml;
+      if (clSel) clSel.innerHTML = optsHtml;
       if (allJobs.length > 0) {
         renderCVPreview(allJobs[0].id);
+        renderCoverLetterPreview(allJobs[0].id);
       }
     }
 
